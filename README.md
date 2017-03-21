@@ -1,2 +1,2 @@
-# WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi
+# Baza danych dokument w podpisanych stemplami czasowymi
 Projekt Put WTI
