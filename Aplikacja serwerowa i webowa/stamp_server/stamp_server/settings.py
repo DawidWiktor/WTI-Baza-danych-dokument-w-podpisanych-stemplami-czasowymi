@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages  # na samym dole MESSAGES_TAGS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -122,8 +123,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # EMAIL SETTING
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'WPISAC ADRES'
-EMAIL_HOST_PASSWORD = 'haselo do maila'
+EMAIL_HOST = 'poczta.int.pl'  # kurcze :/ to jest jakas podfirma dla interia.pl (nie lubie interii) ale dziala :D
+EMAIL_HOST_USER = 'project.stampservice@int.pl'
+EMAIL_HOST_PASSWORD = 'nasze_haselo'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+#  potrzebne dla 'messages'
+#  to sa klasy bootstrapa przypisane do typow
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}

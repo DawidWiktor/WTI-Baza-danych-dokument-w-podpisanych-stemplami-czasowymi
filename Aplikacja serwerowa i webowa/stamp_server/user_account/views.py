@@ -7,6 +7,7 @@ from django.core.mail import send_mail  # wysylanie maili
 from django.contrib.auth.forms import PasswordChangeForm  # wbudowany formularz zmiany hasla
 
 from django.contrib import messages  # powiadomienia, ktore mozna wyswietlic w HTMLu
+from django.contrib.messages import get_messages
 import hashlib  # do generowania activation_code
 
 from stamp_server.settings import EMAIL_HOST_USER  # import maila tej apki
@@ -52,7 +53,7 @@ def register_view(request):
 
         #  generowanie kodu aktywacyjnego: skrot MD5 nazwy uzytkownika+jakis tekst
         activation_code = hashlib.md5(username.encode('utf-8')+b'dUzOSoLi').hexdigest()
-        subject = "Webscraper - Activation Code"
+        subject = "Stamp service - Activation Code"
         text = (
             """
             Siemka {},
@@ -85,29 +86,31 @@ def user_profile(request):
 
 @login_required(login_url='/')
 def change_password(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST['old_password'] and request.POST['new_pass1'] \
+            and request.POST['new_pass2']:  # sprawdzenie czy wszystkie pola zostaly uzupelnione
         old_password = request.POST.get('old_password')
         user = authenticate(username=request.user, password=old_password)
         # sprawdza stare haslo user'a
         # authenticate zwraca obiekt 'User' jesli haslo pasuje do uzytkownika, else zwraca None
         if user is None:
-            # TODO: podano zle stare haslo
-            # MESSAGES
-            pass
+            messages.error(request, 'Podano złe aktualne hasło!')
+            return redirect('user_account:user_profile')
         new_pass1 = request.POST.get('new_pass1')
         new_pass2 = request.POST.get('new_pass2')
         if new_pass1 != new_pass2:
-            # TODO: hasla sa rozne
-            # MESSAGES
+            messages.error(request, 'Wpisz nowe hasło dwukrotnie!')
+            return redirect('user_account:user_profile')
             pass
         user.set_password(new_pass1)
         user.save()
         update_session_auth_hash(request, user)  # aktualizacja biezacej sesji dla user'a z nowym haslem
+    else:
+        messages.error(request, 'Żadne pole hasła nie może być puste!')
     return redirect('user_account:user_profile')
 
 @login_required(login_url='/')
 def change_email(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST['email']:
         new_email = request.POST.get('email')
         obj_user = get_object_or_404(User, username=request.user)
         obj_user.email = new_email
@@ -128,11 +131,15 @@ def change_email(request):
 
         send_mail(subject,text,EMAIL_HOST_USER,[new_email],fail_silently=False)  # wyslanie maila
         logout(request)
-    return redirect('main_app:start_page')
+        return redirect('main_app:start_page')
+    else:
+        messages.error(request, 'Adres e-mail nie może być pusty!')
+        return redirect('user_account:user_profile')
+
 
 @login_required(login_url='/')
 def account_delete(request):
     user = get_object_or_404(User, username=request.user)
-    # user.is_active = False  # TODO: usuwac czy deaktywowac uzytkownika??
-    user.delete()  # usuwa uzytkownika i wszystkie dane z nim powiazane
+    user.is_active = False  # TODO: usuwac czy deaktywowac uzytkownika??
+    # user.delete()  # usuwa uzytkownika i wszystkie dane z nim powiazane
     return redirect('main_app:start_page')

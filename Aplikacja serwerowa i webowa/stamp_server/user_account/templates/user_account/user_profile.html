@@ -2,41 +2,51 @@
 
 <!-- TODO: Nie ruszac parametrow !! czyli nawiasow klamrowych -->
 
-{% block change_password %}
-<form action="{% url 'user_account:change_password' %}" method="post">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="old_password">Aktualne hasło:</label>
-        <input type="password" class="form-control" id="old_password" name="old_password">
-    </div>
-    <div class="form-group">
-        <label for="new_pass1">Nowe hasło:</label>
-        <input type="password" class="form-control" id="new_pass1" name="new_pass1">
-    </div>
-    <div class="form-group">
-        <label for="new_pass2">Nowe hasło:</label>
-        <input type="password" class="form-control" id="new_pass2" name="new_pass2">
-    </div>
-        <button type="submit" class="btn btn-default">Zapisz</button>
-</form>
-{% endblock %}
-
-{% block change_email %}
-<form action="{% url 'user_account:change_email' %}" method="post">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="email">E-mail:</label>
-        <input type="email" class="form-control" id="email" name="email" value="{{ request.user.email }}">
-    </div>
-        <button type="submit" class="btn btn-default">Zapisz</button>
-</form>
-{% endblock %}
-
-{% block account_delete %}
-<form action="{% url 'user_account:account_delete' %}" method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-default">Usuń konto</button>
-</form>
+{% block change_password_email_and_account_delete %}
+<div class="user_profile">
+        {% if messages %}
+                {% for message in messages %}
+                  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                  </div>
+                {% endfor %}
+        {% endif %}
+        <form action="{% url 'user_account:account_delete' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-default">Usuń konto</button>
+        </form>
+    <hr>
+        <h3>Zmiana hasła</h3>
+        <form action="{% url 'user_account:change_password' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="old_password">Aktualne hasło:</label>
+                <input type="password" class="form-control" id="old_password" name="old_password">
+            </div>
+            <div class="form-group">
+                <label for="new_pass1">Nowe hasło:</label>
+                <input type="password" class="form-control" id="new_pass1" name="new_pass1">
+            </div>
+            <div class="form-group">
+                <label for="new_pass2">Nowe hasło:</label>
+                <input type="password" class="form-control" id="new_pass2" name="new_pass2">
+            </div>
+                <button type="submit" class="btn btn-default">Zmień hasło</button>
+        </form>
+    <hr>
+        <h3>Zmiana adresu e-mail <small>(wymaga ponownej aktywacji)</small></h3>
+        <form action="{% url 'user_account:change_email' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ request.user.email }}">
+            </div>
+                <button type="submit" class="btn btn-default">Zmień e-mail</button>
+        </form>
+</div>
 {% endblock %}
 
 
