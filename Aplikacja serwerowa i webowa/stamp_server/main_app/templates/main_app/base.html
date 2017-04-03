@@ -6,10 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    {% if user.is_authenticated %}
-        {% load static %}
-        <link href="{% static 'user_account/css/base.css' %}" rel="stylesheet">
-    {% endif %}
+    {% load static %}
+    <link href="{% static 'main_app/css/base.css' %}" rel="stylesheet">
 
     <title>Stamp Service</title>
 </head>
@@ -22,7 +20,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 {% if user.is_authenticated %}
                     <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">{{ user }}</a></li>
+                            <li><a href="{% url 'main_app:archives' %}">Archiwum</a></li>
                             <li id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <a href="#">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -50,8 +48,13 @@
 
 <div class="container-fluid">
 
-        {% block change_password_email_and_account_delete %}
-        {% endblock %}
+    <!-- PANEL UZYTKOWNIKA -->
+    {% block change_password_email_and_account_delete %}
+    {% endblock %}
+
+    <!-- STRONA GLOWNA -->
+    {% block description_and_verify %}
+    {% endblock %}
 
 </div>
 
