@@ -3,5 +3,11 @@
 }
 
 .middle_of_page {
-    padding: 10% 10% 10% 10%;
+    padding: 8%;
+}
+
+.frame {
+    margin-bottom: 10px;
+    border:1px solid #c2c2c2;
+    border-radius: 25px;
 }

@@ -2,14 +2,26 @@
 
 {% block description_and_verify %}
     <div class="row middle_of_page">
-
-        <div class="col-md-6">
-            [TUTAJ BEDZIE FORMULARZ PODPISYWANIA PLIKU]
+        <div class="col-md-5 frame">
+            <h3>Dodaj plik do systemu</h3>
+            <form name = "form" enctype = "multipart/form-data" action = "{% url 'main_app:upload_file' %}" method = "POST" >
+                {% csrf_token %}
+                {{ uploadForm }}
+                <br/>
+                <button type="submit" class="btn btn-default">Wyślij</button>
+            </form>
+            <br/>
         </div>
-        <div class="col-md-6">
-            [TUTAJ BEDZIE FORMULARZ SPRAWDZANIA PLIKU]
+        <div class="col-md-5 col-md-offset-1 frame">
+            <h3>Wybierz plik magnetyczny</h3>
+            <form name = "form" enctype = "multipart/form-data" action = "{% url 'main_app:magnet_file' %}" method = "POST" >
+                {% csrf_token %}
+                {{ magnetForm }}
+                <br/>
+                <button type="submit" class="btn btn-default">Sprawdź</button>
+            </form>
+            <br/>
         </div>
-
     </div>
 
 {% endblock %}
