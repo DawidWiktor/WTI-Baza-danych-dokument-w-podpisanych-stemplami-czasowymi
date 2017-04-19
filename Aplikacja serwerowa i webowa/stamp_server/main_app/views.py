@@ -2,6 +2,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import UploadFileForm, MagnetFileForm
+from .models import Documents
+from datetime import datetime
 
 def start_page(request):
     if request.user.is_authenticated:
@@ -19,7 +21,12 @@ def start_page(request):
 
 @login_required
 def archives(request):
-    return render(request, 'main_app/archives.html')
+    docs = Documents.objects.filter(owner=request.user)
+    data = {
+        "docs": docs,
+        "datetime": datetime.now()  # czas i data - dla testow
+    }
+    return render(request, 'main_app/archives.html', data)
 
 @login_required
 def upload_file(request):

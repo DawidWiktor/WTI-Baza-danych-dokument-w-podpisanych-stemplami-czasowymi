@@ -1,10 +1,29 @@
 {% extends 'main_app/base.html' %}
 
 {% block description_and_verify %}
-    <div class="row middle_of_page">
-
-        [TUTAJ BEDZIE ARCHIWUM]
-
+    <div class="row">
+        <div class="container">
+            <h2>Archiwum dokumentów</h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Plik</th>
+                            <th>Data dodania</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for doc in docs %}
+                            <tr>
+                                <td>{{ doc.filename }}</td>
+                                <td>{{ doc.date }}</td>
+                                <td>AKCJE</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {{ datetime }}
+        </div>
     </div>
 
 {% endblock %}

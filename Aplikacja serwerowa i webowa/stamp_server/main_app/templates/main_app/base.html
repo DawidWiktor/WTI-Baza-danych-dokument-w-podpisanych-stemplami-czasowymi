@@ -6,16 +6,34 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('clock').innerHTML =
+        h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+    </script>
+
     {% load static %}
     <link href="{% static 'main_app/css/base.css' %}" rel="stylesheet">
 
-    <title>Stamp Service</title>
+    <title>MagnetoDocs</title>
 </head>
-<body>
+<body onload="startTime()">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'main_app:start_page' %}">Stamp Service</a>
+                <a class="navbar-brand" href="{% url 'main_app:start_page' %}">MagnetoDocs</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 {% if user.is_authenticated %}
@@ -47,7 +65,11 @@
     {% endif %}
 
 <div class="container-fluid">
-
+    <div class="row">
+        <div class="text-center">
+            <div id="clock" style="font-size: 20pt;"></div>
+        </div>
+    </div>
     <!-- PANEL UZYTKOWNIKA -->
     {% block change_password_email_and_account_delete %}
     {% endblock %}

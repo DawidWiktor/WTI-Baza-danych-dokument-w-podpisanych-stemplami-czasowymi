@@ -1,13 +1,12 @@
 .user_profile {
-    margin: 5% 35% 0px 25%;
-}
-
-.middle_of_page {
-    padding: 8%;
+    margin: 0% 35% 0px 25%;
 }
 
 .frame {
     margin-bottom: 10px;
     border:1px solid #c2c2c2;
     border-radius: 25px;
+}
+body {
+    padding-top: 50px;
 }

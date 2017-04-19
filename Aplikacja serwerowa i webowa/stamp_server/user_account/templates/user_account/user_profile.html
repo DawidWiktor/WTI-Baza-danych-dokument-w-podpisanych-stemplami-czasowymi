@@ -14,11 +14,6 @@
                   </div>
                 {% endfor %}
         {% endif %}
-        <form action="{% url 'user_account:account_delete' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-default">Usuń konto</button>
-        </form>
-    <hr>
         <h3>Zmiana hasła</h3>
         <form action="{% url 'user_account:change_password' %}" method="post">
             {% csrf_token %}
@@ -45,6 +40,11 @@
                 <input type="email" class="form-control" id="email" name="email" value="{{ request.user.email }}">
             </div>
                 <button type="submit" class="btn btn-default">Zmień e-mail</button>
+        </form>
+        <hr>
+        <form action="{% url 'user_account:account_delete' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-default center-block">Usuń konto</button>
         </form>
 </div>
 {% endblock %}
