@@ -6,26 +6,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-    function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        m = checkTime(m);
-        s = checkTime(s);
-        document.getElementById('clock').innerHTML =
-        h + ":" + m + ":" + s;
-        var t = setTimeout(startTime, 500);
-    }
-    function checkTime(i) {
-        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-        return i;
-    }
-    </script>
 
     {% load static %}
     <link href="{% static 'main_app/css/base.css' %}" rel="stylesheet">
+    <script src="{% static 'main_app/js/clock.js' %}" type="text/javascript"></script>
 
     <title>MagnetoDocs</title>
 </head>

@@ -1,9 +1,10 @@
 # coding=utf-8
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import UploadFileForm, MagnetFileForm
 from .models import Documents
-from datetime import datetime
+import os
+from stamp_server.settings import MEDIA_ROOT, MEDIA_URL
 
 def start_page(request):
     if request.user.is_authenticated:
@@ -24,9 +25,19 @@ def archives(request):
     docs = Documents.objects.filter(owner=request.user)
     data = {
         "docs": docs,
-        "datetime": datetime.now()  # czas i data - dla testow
+        "user": request.user,
+        "MEDIA_URL": MEDIA_URL
     }
     return render(request, 'main_app/archives.html', data)
+
+@login_required
+def delete_file(request, file_id):
+    user = request.user
+    doc = get_object_or_404(Documents, pk=file_id)
+    if doc.owner == user:
+        doc.delete()  # usuniecie pliku z bazy danych
+        os.remove(os.path.join(MEDIA_ROOT, doc.file.name))  # usuniecie pliku z dysku
+    return redirect('main_app:archives')
 
 @login_required
 def upload_file(request):
@@ -49,7 +60,7 @@ def magnet_file(request):
     if request.method == 'POST':
         form = MagnetFileForm(request.POST, request.FILES)
         if form.is_valid():
-            print("Sprawdzene pliku magnetycznego......")
+            print("Sprawdzene pliku magnetycznego......")  # TODO zrobic
             print(request.FILES)
             plik = request.FILES['file'].read()
             print(plik.decode("utf-8"))

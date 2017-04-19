@@ -17,12 +17,14 @@
                             <tr>
                                 <td>{{ doc.filename }}</td>
                                 <td>{{ doc.date }}</td>
-                                <td>AKCJE</td>
+                                <td>
+                                    <a href="{{ MEDIA_URL }}{{ doc.file.name }}" class="btn btn-success">Pobierz</a>
+                                    <a href="{% url 'main_app:delete_file' doc.id %}" class="btn btn-danger">Usuń</a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                {{ datetime }}
         </div>
     </div>
 
