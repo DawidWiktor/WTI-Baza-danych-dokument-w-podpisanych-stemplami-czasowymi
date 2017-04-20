@@ -22,6 +22,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 {% if user.is_authenticated %}
                     <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{% url 'main_app:start_page' %}">Strona główna</a></li>
                             <li><a href="{% url 'main_app:archives' %}">Archiwum</a></li>
                             <li id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <a href="#">
@@ -49,6 +50,7 @@
     {% endif %}
 
 <div class="container-fluid">
+    <!-- ZAGAR -->
     <div class="row">
         <div class="text-center">
             <div id="clock" style="font-size: 20pt;"></div>
@@ -58,8 +60,8 @@
     {% block change_password_email_and_account_delete %}
     {% endblock %}
 
-    <!-- STRONA GLOWNA -->
-    {% block description_and_verify %}
+    <!-- CZESC GLOWNA -->
+    {% block middle %}
     {% endblock %}
 
 </div>
