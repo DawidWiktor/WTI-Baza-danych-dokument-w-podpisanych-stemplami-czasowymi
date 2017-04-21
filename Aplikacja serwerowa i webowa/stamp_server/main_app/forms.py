@@ -1,6 +1,5 @@
 from django import forms
 from .models import Documents
-import magic  # walidacja formularzy
 
 class UploadFileForm(forms.ModelForm):
     # upload pliku do podpisania
@@ -31,10 +30,12 @@ class MagnetFileForm(forms.Form):
     # upload pliku magnetycznego
     magnet_file = forms.FileField(label='Plik')  # help_text='' - dodatkowa informacja
 
-    def clean_document(self):
+    def clean_magnet_file(self):
         magnet_file = self.cleaned_data['magnet_file']
-        mime = magic.from_buffer(magnet_file.read(), mime=True)
-        if mime == 'text/plain' and magnet_file._size <= 5242880:
+        mime = magnet_file.content_type
+        if mime == 'application/octet-stream' and magnet_file.size <= 100:
+            # plik jest typu application/octet-stream i ma miec <= 100 bajtow
             return magnet_file
         else:
+            # rzucam blad, ale w views.py i tak go nie lapie, bo tam sprawdzam poprawnosc if'em
             raise forms.ValidationError('Bad magnet file !!!')
