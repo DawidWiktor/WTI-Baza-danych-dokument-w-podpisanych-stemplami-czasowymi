@@ -12,3 +12,13 @@ body {
     border:1px solid #c2c2c2;
     border-radius: 25px;
 }
+.frame_notlogged {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border:1px solid #c2c2c2;
+    border-radius: 25px;
+}
+
+.main_part {
+    padding-top: 3%;
+}

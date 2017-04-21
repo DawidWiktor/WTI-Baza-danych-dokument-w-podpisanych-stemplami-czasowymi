@@ -142,3 +142,6 @@ MESSAGE_TAGS = {
 # UPLOAD PLIKOW
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# adres do przekierowania kiedy nie jestes zalogowany
+LOGIN_URL = '/'  # strona glowna

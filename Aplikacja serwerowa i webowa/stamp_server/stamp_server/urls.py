@@ -16,10 +16,17 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.static import static
-from .settings import MEDIA_ROOT, MEDIA_URL
+from .settings import MEDIA_ROOT, MEDIA_URL, DEBUG
+from django.views.static import serve
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^account/', include('user_account.urls')),
     url(r'^', include('main_app.urls'))  # od razu po wejsci kieruje do main_app.urls
-] + static(MEDIA_URL, document_root=MEDIA_ROOT)  # umozliwia serwowanie statycznych plikow z katalogu media
+]
+
+if DEBUG:
+    # umozliwia serwowanie statycznych plikow z katalogu media
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT,}, name='media'),
+    ]

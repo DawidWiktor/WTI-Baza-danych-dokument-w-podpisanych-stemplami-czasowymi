@@ -2,13 +2,21 @@
 
 
 {% block middle %}
-    <div class="row">
+    <div class="row main_part">
 
-        <div class="col-md-6">
-            [TUTAJ BEDZIE OPIS SERWISU]
+        <div class="col-md-5 text-center">
+            <h1>MagnetoDocs</h1>
+            {% lorem 1 p %}
         </div>
-        <div class="col-md-6">
-            [TUTAJ BEDZIE FORMULARZ SPRAWDZANIA PLIKU]
+        <div class="col-md-5 col-md-offset-1 frame_notlogged">
+            <h3>Wybierz plik magnetyczny</h3>
+                <form name = "form" enctype = "multipart/form-data" action = "{% url 'main_app:magnet_file' %}" method = "POST" >
+                    {% csrf_token %}
+                    {{ magnetForm }}
+                    <br/>
+                    <button type="submit" class="btn btn-default">Sprawdź</button>
+                </form>
+            <br/>
         </div>
 
     </div>

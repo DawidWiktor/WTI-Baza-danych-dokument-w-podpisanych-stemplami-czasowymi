@@ -2,7 +2,7 @@
 
 {% block middle %}
     <div class="container">
-        <div class="row">
+        <div class="row main_part">
             <div class="col-md-5 frame">
                 <h3>Dodaj plik do systemu</h3>
                 <form name = "form" enctype = "multipart/form-data" action = "{% url 'main_app:upload_file' %}" method = "POST" >

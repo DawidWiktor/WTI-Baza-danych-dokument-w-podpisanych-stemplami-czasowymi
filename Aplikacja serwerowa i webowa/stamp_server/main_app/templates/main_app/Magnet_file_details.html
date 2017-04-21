@@ -3,30 +3,31 @@
 {% block middle %}
     <div class="row">
         <div class="container">
-            <h2>Archiwum dokumentów</h2>
+            {% if doc %}
+            <h2>Znaleziono dokument</h2>
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Plik</th>
-                            <th>Data dodania</th>
+                            <th>Nazwa dokumentu</th>
+                            <th>Właściciel</th>
+                            <th>Czas dodania pliku</th>
                             <th>Akcje</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for doc in docs %}
                             <tr>
                                 <td>{{ doc.filename }}</td>
+                                <td>{{ doc.owner.username }}</td>
                                 <td>{{ doc.timestamp|date:"j E o H:i:s"}}</td>
                                 <td>
                                     <a href="{{ MEDIA_URL }}{{ doc.file.name }}" class="btn btn-success">Pobierz</a>
-                                    <a href="{% url 'main_app:download_magnet_file' doc.id %}" class="btn btn-primary">Plik magnetyczny</a>
-                                    <a href="{% url 'main_app:delete_file' doc.id %}" class="btn btn-danger">Usuń</a>
                                 </td>
                             </tr>
-                        {% endfor %}
                     </tbody>
                 </table>
+            {% else %}
+            <h2>Plik magnetyczny prowadzi do dokumentu, który już nie istnieje :( </h2>
+            {% endif %}
         </div>
     </div>
-
 {% endblock %}

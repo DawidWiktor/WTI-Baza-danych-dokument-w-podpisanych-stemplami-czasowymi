@@ -13,8 +13,10 @@ class Documents(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="właściciel")
     file = models.FileField(upload_to=user_directory_path, verbose_name="plik")
     timestamp = models.DateTimeField(default=timezone.now)
-    hash = models.CharField(max_length=64, null=True)
+    hash = models.CharField(max_length=64, unique=True, db_index=True)
 
     def filename(self):
         # return filename of the file, because field 'file' return path
+        # w archives.html z tego korzystam
         return os.path.basename(self.file.name)
+

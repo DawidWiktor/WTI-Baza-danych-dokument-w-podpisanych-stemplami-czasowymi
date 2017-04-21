@@ -29,12 +29,12 @@ class UploadFileForm(forms.ModelForm):
 
 class MagnetFileForm(forms.Form):
     # upload pliku magnetycznego
-    document = forms.FileField(label='Plik')  # help_text='' - dodatkowa informacja
+    magnet_file = forms.FileField(label='Plik')  # help_text='' - dodatkowa informacja
 
     def clean_document(self):
-        document = self.cleaned_data['file']
-        mime = magic.from_buffer(document.read(), mime=True)
-        if mime == 'text/plain' and document._size <= 5242880:
-            return document
+        magnet_file = self.cleaned_data['magnet_file']
+        mime = magic.from_buffer(magnet_file.read(), mime=True)
+        if mime == 'text/plain' and magnet_file._size <= 5242880:
+            return magnet_file
         else:
             raise forms.ValidationError('Bad magnet file !!!')
