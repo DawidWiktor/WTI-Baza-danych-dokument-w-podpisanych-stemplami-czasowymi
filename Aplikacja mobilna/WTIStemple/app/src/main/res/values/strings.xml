@@ -1,0 +1,20 @@
+<resources>
+    # activity_logowanie
+    <string name="app_name">WTI Stemple</string>
+    <string name="logowanie">Zaloguj się</string>
+    <string name="rejestracja">Rejestracja</string>
+
+    # activity_rejestracja
+    <string name="zarejestruj">Zarejestruj się</string>
+    <string name="title_activity_rejestracja">Rejestracja</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_menu">WTI Stemple</string>
+    # app_bar_menu
+    <string name="opisProgramu">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus.</string>
+    <string name="wybierzPlik">Wybierz plik</string>
+</resources>
