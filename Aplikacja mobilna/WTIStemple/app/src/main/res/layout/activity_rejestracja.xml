@@ -33,7 +33,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editText9"
+            android:id="@+id/loginET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -42,7 +42,7 @@
             android:layout_marginTop="90dp"/>
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/emailET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -51,7 +51,7 @@
             android:layout_marginTop="8dp"/>
 
         <EditText
-            android:id="@+id/editText10"
+            android:id="@+id/hasloET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -61,7 +61,7 @@
             />
 
         <EditText
-            android:id="@+id/editText11"
+            android:id="@+id/phasloET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

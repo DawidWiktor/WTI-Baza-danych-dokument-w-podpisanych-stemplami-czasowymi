@@ -6,9 +6,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+
+import java.util.Objects;
 
 public class rejestracjaActivity extends AppCompatActivity {
+
+    EditText login, email, haslo, phaslo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +22,23 @@ public class rejestracjaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rejestracja);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Log.d("cos", "by bylo");
+        login = (EditText) findViewById(R.id.loginET);
+        email = (EditText) findViewById(R.id.emailET);
+        haslo = (EditText) findViewById(R.id.hasloET);
+        phaslo = (EditText) findViewById(R.id.phasloET);
     }
 
     public void click(View view) {
-        Intent intent = new Intent(rejestracjaActivity.this, menuActivity.class);
-        startActivity(intent);
+        String h = haslo.getText().toString();
+        String ph = phaslo.getText().toString();
+
+        if(Objects.equals(h, ph)) { // sprawdzenie czy hasla sa identyczne
+
+            Intent intent = new Intent(rejestracjaActivity.this, menuActivity.class);
+            startActivity(intent);
+        }
 
     }
 }
