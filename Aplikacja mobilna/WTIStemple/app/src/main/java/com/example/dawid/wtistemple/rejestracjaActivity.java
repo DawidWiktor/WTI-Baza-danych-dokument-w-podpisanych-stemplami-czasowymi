@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 import java.util.Objects;
 
-public class rejestracjaActivity extends AppCompatActivity {
+public class rejestracjaActivity extends AppCompatActivity{
 
     EditText login, email, haslo, phaslo;
 
@@ -23,7 +23,7 @@ public class rejestracjaActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Log.d("cos", "by bylo");
+
         login = (EditText) findViewById(R.id.loginET);
         email = (EditText) findViewById(R.id.emailET);
         haslo = (EditText) findViewById(R.id.hasloET);
@@ -31,14 +31,22 @@ public class rejestracjaActivity extends AppCompatActivity {
     }
 
     public void click(View view) {
-        String h = haslo.getText().toString();
-        String ph = phaslo.getText().toString();
 
-        if(Objects.equals(h, ph)) { // sprawdzenie czy hasla sa identyczne
+        new SprawdzenieWTle(this).execute();
+       /* String h = haslo.getText().toString();
+        String ph = phaslo.getText().toString();
+        String em = email.getText().toString();
+
+
+        if(Objects.equals(h, ph) ) { // sprawdzenie czy hasla sa identyczne oraz email
 
             Intent intent = new Intent(rejestracjaActivity.this, menuActivity.class);
             startActivity(intent);
-        }
+        }*/
 
     }
+
+
+
+
 }

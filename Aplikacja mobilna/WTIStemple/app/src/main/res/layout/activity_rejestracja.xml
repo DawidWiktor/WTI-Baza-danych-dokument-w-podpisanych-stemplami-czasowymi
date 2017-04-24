@@ -77,6 +77,13 @@
             android:layout_marginTop="8dp"
             android:onClick="click"
             android:text="@string/zarejestruj" />
+
+        <ProgressBar
+            android:id="@+id/rejestracjaPB"
+            android:visibility="invisible"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout>
