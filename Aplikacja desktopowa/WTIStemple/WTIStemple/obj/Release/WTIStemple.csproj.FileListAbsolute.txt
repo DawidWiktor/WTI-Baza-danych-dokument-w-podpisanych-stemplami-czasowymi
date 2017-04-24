@@ -1,0 +1,13 @@
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\bin\Release\WTIStemple.exe.config
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\bin\Release\WTIStemple.exe
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\bin\Release\WTIStemple.pdb
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\obj\Release\MainWindow.g.cs
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\obj\Release\App.g.cs
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\obj\Release\WTIStemple_MarkupCompile.cache
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\obj\Release\WTIStemple_MarkupCompile.lref
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\obj\Release\MainWindow.baml
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\obj\Release\WTIStemple.g.resources
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\obj\Release\WTIStemple.Properties.Resources.resources
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\obj\Release\WTIStemple.csproj.GenerateResource.Cache
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\obj\Release\WTIStemple.exe
+D:\GIT_REPOSITORY\WTI-Baza-danych-dokument-w-podpisanych-stemplami-czasowymi\Aplikacja desktopowa\WTIStemple\WTIStemple\obj\Release\WTIStemple.pdb
