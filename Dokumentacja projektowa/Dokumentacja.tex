@@ -1,0 +1,205 @@
+\documentclass[12pt,twoside,a4paper]{report}
+\usepackage{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{mdwlist}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{sidecap}
+\usepackage{wrapfig}
+\usepackage{indentfirst}
+\usepackage{color}
+\usepackage{hyperref} 
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+\usepackage{setspace}
+\usepackage{blkarray}
+\usepackage{longtable}
+\usepackage{lipsum}
+\singlespacing 
+\setlength{\parindent}{25pt}
+\setlength{\parskip}{5pt}
+\pagestyle{plain}
+\usepackage{pdflscape}
+\usepackage{color, colortbl}
+\usepackage[usenames,dvipsnames]{xcolor}
+\frenchspacing
+\widowpenalty=10000
+\clubpenalty=10000
+\usepackage[tableposition=top]{caption}
+\makeatletter
+\newcommand{\linia}{\rule{\linewidth}{0.4mm}}
+\renewcommand{\maketitle}{\begin{titlepage}
+		\vspace*{-2.5cm}
+		\begin{center}\small
+			Politechnika Poznañska\\
+			Wydzia³ Elektryczny\\
+			Instytut Automatyki i In¿ynierii Informatycznej
+		\end{center}
+		\vspace{5cm}
+		\noindent\linia
+		\begin{center}
+			\LARGE \textsc{Projekt Zespo³owy}\\
+			\Large {Inteligentny zamek}
+		\end{center}
+		\linia
+		\vspace{1cm}
+		\begin{flushright}
+			\begin{minipage}{7cm}
+				\textit{\small Autorzy:}\\\\
+				\normalsize \textsc{Maciej Marciniak}\\
+				\normalsize nr indeksu: 121996\\
+				\normalsize e mail: \\
+				maciej.r.marcniak@student.put.poznan.pl\\\\
+				\normalsize \textsc{Damian Filipowicz}\\
+				\normalsize nr indeksu: 122002\\
+				\normalsize e mail: \\
+				Damian.Filipowicz@student.put.poznan.pl \\\\
+				\normalsize \textsc{Krzysztof £uczak}\\
+				\normalsize nr indeksu: 122008\\
+				\normalsize e mail: \\
+				krzysztof.t.luczak@student.put.poznan.pl \\\\
+				\normalsize \textsc{Dawid Wiktorski}\\
+				\normalsize nr indeksu: 122056\\
+				\normalsize e mail: \\
+				dawid.wiktorski@student.put.poznan.pl \par
+			\end{minipage}
+		\end{flushright}
+		\vspace*{\stretch{6}}
+		\begin{center}
+			\@date
+		\end{center}
+	\end{titlepage}%
+}
+\makeatother
+\usepackage[none]{hyphenat}
+\renewcommand{\figurename}{Rysunek}
+\definecolor{lightgray}{RGB}{230,230,230}
+\begin{document}
+	\sloppy
+	\maketitle
+	\newpage 
+	\tableofcontents
+	\chapter{Ogólny opis systemu}
+	System ten bêdzie s³u¿yæ do uzyskiwania podpisów cyfrowych ze stemplem czasowym, który bêdzie wiarygodny poprzez zastosowanie urzêdu certyfikacyjnego w postaci serwera po³¹czonego z baz¹ danych. U¿ytkownik przy pomocy aplikacji lub strony internetowej bêdzie przesy³a³ dokument wraz z funkcj¹ skrótu, nastêpnie serwer bêdzie swoim w³asnym podpisem dawa³ stempel czasowy, który bêdzie umieszcza³ w bazie danych i odsy³a³ u¿ytkownikowi (do aplikacji lub strony WWW) dokument wraz z podpisem cyfrowym zawieraj¹cym stempel czasowy. Dziêki temu dokumenty bêd¹ mia³y wiarygodny stempel czasowy pozwalaj¹cy okreœliæ dok³adn¹ godzinê zatwierdzenia dokumentu w systemie autentykacji.
+	
+	W sk³ad systemu bêdzie wchodziæ:
+	\begin{itemize*}
+		\item aplikacja serwerowa z baz¹ danych,
+		\item aplikacja webowa,
+		\item aplikacja mobilna,
+		\item aplikacja desktopowa.
+	\end{itemize*}
+	
+	\chapter{Organizacja pracy}
+	\section{Podzia³ zadañ}
+	Realizacja projektu odbywaæ siê bêdzie w modu³ach tworzonych wspó³bie¿nie: 
+	\begin{itemize*}
+		\item dokumentowania projektu,
+		\item tworzenia aplikacji serwerowej,
+		\item tworzenia aplikacji webowej,
+		\item tworzenia aplikacji mobilnej,
+		\item tworzenia aplikacji desktopowej,
+		\item mechanizm uwierzytelniania.
+	\end{itemize*}
+
+	Wyszczególniony podzia³ modu³ów pomiêdzy cz³onków zespo³u przedstawiony zosta³ w Tabeli \ref{tab:podzial_prac}.
+	
+	\begin{longtable}[!ht]{|p{3.5cm}|p{7.5cm}|} 
+		\caption{Podzia³ zadañ projektowych}
+		\label{tab:podzial_prac}\\
+		\hline	
+		\rowcolor{BrickRed}Osoba & Rola\\	\hline
+		\rowcolor{lightgray} \textcolor{red}{Maciej Marciniak} & \textcolor{red}{Kierownik, programista: dokumentacja, organizacja zespo³u, aplikacja serwerowa}\\ \hline
+		\rowcolor{lightgray} Dawid Wiktorski & Programista: aplikacja mobilna na system Android, aplikacja serwerowa\\ \hline
+		\rowcolor{lightgray} Krzysztof £uczak & Programista: aplikacja webowa, aplikacja serwerowa, mechanizm uwierzytelniania \\ \hline
+		\rowcolor{lightgray} Damian Filipowicz & Programista, aplikacja desktopowa, aplikacja serwerowa\\ \hline
+	\end{longtable}
+
+	\section{Harmonogram pracy}
+	Harmonogram pracy zespo³u przedstawiony zosta³ na wykresie Gantta, który znajduje siê w linku poni¿ej do arkusza Google:
+	\textcolor{blue}{\href{https://docs.google.com/spreadsheets/d/1y5tACI1IHK5rfhLSwWZuGVoh0uXH1JwH9xcQJ_xenw0/edit?usp=sharing}{Harmonogram prac}}
+	
+	\section{Repozytiorium GitHub}
+		\textcolor{blue}{\href{https://github.com/wapet1995/WTI---Baza-danych-dokument-w-podpisanych-stemplami-czasowymi}{Repozytorium GitHub}}
+		
+	\chapter{Schemat idei stempli czasowych}
+	Na dokument podpisany stemplem czasowym sk³adaj¹ siê trzy pliki:
+	\begin{itemize*}
+		\item podpisywany dokument,
+		\item stempel czasowy,
+		\item wygenerowany certyfikat uwierzytelniaj¹cy stempel czasowy.
+	\end{itemize*}		
+	\section*{Tworzenie dokumentu podpisanego stemplem czasowym}
+		Tworzenie certyfikatu odbywa siê po stronie zaufanego urzêdu poprzez dodanie do funkcji skrótu podpisywanego dokumentu, stempla czasowego, a nastêpnie z utworzonej paczki ponownie tworzy siê funkcjê skrótu. Ostatecznie skrót obu plików szyfruje siê kluczem prywatnym i przesy³a siê z powrotem do u¿ytkownika.
+
+		Schemat przebiegu tworzenia dokumentu przedstawiony jest na Rysunku \ref{diagram:diagram tworzenia stempli}. 
+		
+		\begin{figure}[!ht]
+			\vspace{-1.5cm}
+			\centering
+			\includegraphics[width=12cm]{tworzenie_stempli_wiki.png}
+			\caption{Diagram tworzenia stempli czasowych}
+			\label{diagram:diagram tworzenia stempli}
+		\end{figure}
+	\newpage	
+	\section*{Weryfikacja dokumentu podpisanego stemplem czasowym}
+		Weryfikacja certyfikatu odbywa siê po stronie u¿ytkownika poprzez wykonanie funkcji skrótu dokumentu, nastêpnie dodanie do niej do³¹czonego stempla czasowego i ponowne wykonanie funkcji skrótu. Certyfikat nale¿y odszyfrowaæ kluczem publicznym u¿ytkownika, po czym porównaæ utworzone ci¹gi znaków. Je¿eli otrzymane pliki s¹ identyczne, to dokument zosta³ podpisany o podanej godzinie, która umieszczona jest w do³¹czonym pliku stempla czasowego.
+		
+		Schemat przebiegu weryfikacji dokumentu przedstawiony jest na Obrazie \ref{diagram:diagram weryfikacji stempli}.
+		
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[width=13cm]{weryfikacja_stempli_wiki.png}
+			\caption{Diagram weryfikacja stempli czasowych}
+			\label{diagram:diagram weryfikacji stempli}
+		\end{figure}	
+	
+	\chapter{Diagramy UML systemu}
+	
+	\section{Diagram przypadków u¿ycia}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15.17cm]{diagram_przypadkow_uzycia.png}
+		\caption{Diagram przypadków u¿ycia}
+		\label{diagram:diagram przypadkow uzycia}
+	\end{figure}
+
+	\section{Diagramy sekwencji}
+	\subsection*{Rejestracja u¿ytkownika}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{diagram_seq_rejestracja_uzytkownika.png}
+		\caption{Diagram sekwencji rejestracji u¿ytkownika}
+		\label{diagram:diagram seq rejestracja uzytkownika}
+	\end{figure}
+	\newpage
+	\subsection*{Logowanie u¿ytkownika}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{diagram_seq_logowanie_uzytkownika.png}
+		\caption{Diagram sekwencji logowanie u¿ytkownika}
+		\label{diagram:diagram seq logowanie uzytkownika}
+	\end{figure}
+	\newpage
+	\subsection*{Podpis pliku stemplem czasowym}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{diagram_seq_podpis_pliku_semplem.png}
+		\caption{Diagram sekwencji podpisu pliku stemplem czasowym}
+		\label{diagram:diagram seq podpis pliku stemplem}
+	\end{figure}
+	\newpage
+	\subsection*{Weryfikacja stempla czasowego}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{diagram_seq_weryfikacja_sempla.png}
+		\caption{Diagram sekwencji weryfikacji stempla czasowego}
+		\label{diagram:diagram seq weryfikacja stempla}
+	\end{figure}
+
+\end{document}

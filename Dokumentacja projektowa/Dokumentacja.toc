@@ -1,0 +1,9 @@
+\contentsline {chapter}{\numberline {1}Og\'olny opis systemu}{4}{chapter.1}
+\contentsline {chapter}{\numberline {2}Organizacja pracy}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Podzia\IeC {\l } zada\'n}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Harmonogram pracy}{6}{section.2.2}
+\contentsline {section}{\numberline {2.3}Repozytiorium GitHub}{6}{section.2.3}
+\contentsline {chapter}{\numberline {3}Schemat idei stempli czasowych}{7}{chapter.3}
+\contentsline {chapter}{\numberline {4}Diagramy UML systemu}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}Diagram przypadk\'ow u\.zycia}{9}{section.4.1}
+\contentsline {section}{\numberline {4.2}Diagramy sekwencji}{10}{section.4.2}
