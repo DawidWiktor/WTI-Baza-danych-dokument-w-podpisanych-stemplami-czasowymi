@@ -47,7 +47,7 @@ def delete_file(request, file_id):
     path = 'media/' + str(request.user.id)  # katalog w ktorym sa pliki
 
     # sprawdzam czy istnieje tez plik magnetyczny do dokumentu
-    magnet_filename = 'plik_' + str(file_id) + ".magnet"
+    magnet_filename = str(doc.filename())+" "+str(doc.timestamp.strftime('%d.%m.%Y %H:%M'))+".magnet"
     magnet_path = os.path.join(path, magnet_filename)
     if os.path.isfile(magnet_path):
         # usuwam plik magnetyczny
@@ -109,7 +109,7 @@ def download_magnet_file(request, file_id):
     # pobranie pliku magnetycznego z archiwum
     doc = get_object_or_404(Documents, id=file_id)
     if request.user == doc.owner:
-        magnet_filename = 'plik_'+str(file_id)+".magnet"  # MAGNET FILENAME
+        magnet_filename = str(doc.filename())+" "+str(doc.timestamp.strftime('%d.%m.%Y %H:%M'))+".magnet"  # MAGNET FILENAME
         magnet_path = 'media/'+str(request.user.id) + '/' + magnet_filename # MAGNET FILE PATH
 
         if not os.path.isfile(magnet_path):
