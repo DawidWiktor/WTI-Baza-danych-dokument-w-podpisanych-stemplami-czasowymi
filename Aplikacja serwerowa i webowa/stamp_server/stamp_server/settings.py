@@ -26,12 +26,13 @@ SECRET_KEY = 'ail_^k)pfqfptqn91)@aju@r!!82=kzc!f5j7pe13pel_n*oiq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.137.1']
+ALLOWED_HOSTS = ['127.0.0.1','192.168.137.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap3',
     'main_app.apps.MainAppConfig',
     'user_account.apps.UserAccountConfig',
     'django.contrib.admin',

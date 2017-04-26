@@ -4,16 +4,6 @@
 
 {% block change_password_email_and_account_delete %}
 <div class="user_profile">
-        {% if messages %}
-                {% for message in messages %}
-                  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                    {{ message }}
-                  </div>
-                {% endfor %}
-        {% endif %}
         <h3>Zmiana hasła</h3>
         <form action="{% url 'user_account:change_password' %}" method="post">
             {% csrf_token %}

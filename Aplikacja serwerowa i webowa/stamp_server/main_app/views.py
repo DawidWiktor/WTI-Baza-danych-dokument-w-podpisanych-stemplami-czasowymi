@@ -9,6 +9,7 @@ from stamp_server.settings import MEDIA_ROOT, MEDIA_URL
 import hashlib  # generowanie SHA384
 from django.core.signing import Signer  # podpisywanie pliku magnetycznego
 from django.core.signing import BadSignature
+from django.contrib import messages  # powiadomienia, ktore mozna wyswietlic w HTMLu
 
 def start_page(request):
     if request.user.is_authenticated:
@@ -61,6 +62,7 @@ def delete_file(request, file_id):
     if os.path.isfile(doc_path):
         # usuniecie dokumentu z dysku
         os.remove(doc_path)
+    messages.success(request,'Usunięto plik z archiwum.')
     return redirect('main_app:archives')
 
 # --------------   metody pomocnicze    ----------
@@ -96,9 +98,11 @@ def upload_file(request):
 
             plik.hash = hash_h_ts
             plik.save()
+            messages.success(request,'Dodano plik do archiwum.')
             return redirect('main_app:start_page')
         else:
             print("Bad form !!! File with the same name exist in database !!!")
+            messages.error(request,'Plik o identycznej nazwie istnieje w archwium. Zmień nazwę.')
             return redirect('main_app:start_page')
     else:
         return redirect('main_app:start_page')
@@ -139,6 +143,7 @@ def magnet_file(request):
                 signed_hash = signer.unsign(lancuch)
             except BadSignature:
                 print("Sign error !!!")
+                messages.error(request,'Plik nie przeszedł weryfikacji.')
                 return redirect('main_app:start_page')
 
             doc = Documents.objects.filter(hash=signed_hash).first()  # szukam pliku do ktorego kieruje magnet
@@ -149,8 +154,10 @@ def magnet_file(request):
                 }
                 return render(request, 'main_app/Magnet_file_details.html', data)
             else:
+                messages.warning(request,'Plik magnetyczny prowadzi do dokumentu, który już nie istnieje :( ')
                 return render(request, 'main_app/Magnet_file_details.html')
         else:
+            messages.error(request,'Maksymalny rozmiar 100 bajtów. Tylko pliki .magnet')
             print("Błędny formularz pliku magnetycznego !!!")
             return redirect('main_app:start_page')
     else:
