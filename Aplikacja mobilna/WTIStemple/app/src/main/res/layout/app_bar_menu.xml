@@ -67,5 +67,15 @@
         app:layout_anchor="@+id/include2"
         app:layout_anchorGravity="center_vertical|center_horizontal" />
 
+    <ProgressBar
+        android:id="@+id/menuPB"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom|left"
+        app:layout_anchor="@+id/include2"
+        app:layout_anchorGravity="center_vertical|center_horizontal"
+        android:visibility="invisible"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

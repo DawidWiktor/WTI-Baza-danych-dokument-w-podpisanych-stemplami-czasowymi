@@ -153,18 +153,7 @@ public class menuActivity extends AppCompatActivity
 
     public void wgrajClick(View v)
     {
-        String haszPliku = "";
-
-        try {
-            haszPliku = AlgorytmSHA256.hashFile(plikPath);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        //showChooser();
+        new WgrywanieAsync(this).execute(plikPath);
     }
 
     public void sprawdzClick(View w)
