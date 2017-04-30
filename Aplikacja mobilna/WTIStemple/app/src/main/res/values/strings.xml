@@ -17,4 +17,19 @@
     # app_bar_menu
     <string name="opisProgramu">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus.</string>
     <string name="wybierzPlik">Wybierz plik</string>
+    <string name="wgraj">Wgraj</string>
+    <string name="sprawdz">Sprawdź</string>
+
+
+    <string name="chooser_title">Lorem ipsum</string>
+    <string name="choose_file">Select a file</string>
+    <string name="internal_storage">Internal storage</string>
+    <string name="empty_directory">Empty Directory</string>
+    <string name="storage_removed">Storage was removed or unmounted.</string>
+    <string name="error_selecting_file">Error selecting File</string>
+
+    # activity_archiwum
+
+    <string name="title_activity_archwiwum">Archiwum</string>
+    <string name="title_activity_moj_profil">MojProfilActivity</string>
 </resources>

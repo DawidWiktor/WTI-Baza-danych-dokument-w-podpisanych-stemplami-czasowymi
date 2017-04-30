@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.dawid.wtistemple.menuActivity">
+    tools:context="com.example.dawid.wtistemple.menuActivity"
+    >
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,15 +24,6 @@
     <include layout="@layout/content_menu"
         android:id="@+id/include2" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
-        android:text="@string/wybierzPlik"
-        app:layout_anchor="@+id/include2"
-        app:layout_anchorGravity="center_vertical|center_horizontal" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -43,6 +35,37 @@
         android:text="@string/opisProgramu"
         app:layout_anchor="@+id/include2"
         app:layout_anchorGravity="top|left" />
+
+    <Button
+        android:id="@+id/wybierzPlikBTN"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:onClick="wybierzPlikClcik"
+        android:text="@string/wybierzPlik"
+        app:layout_anchor="@+id/include2"
+        app:layout_anchorGravity="center_vertical|left" />
+
+    <Button
+        android:id="@+id/wgrajBTN"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:text="@string/wgraj"
+        app:layout_anchor="@+id/include2"
+        android:onClick="wgrajClick"
+        app:layout_anchorGravity="center_vertical|center_horizontal" />
+
+    <Button
+        android:id="@+id/sprawdzBTN"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginTop="330dp"
+        android:onClick="sprawdzClick"
+        android:text="@string/sprawdz"
+        app:layout_anchor="@+id/include2"
+        app:layout_anchorGravity="center_vertical|center_horizontal" />
 
 
 </android.support.design.widget.CoordinatorLayout>

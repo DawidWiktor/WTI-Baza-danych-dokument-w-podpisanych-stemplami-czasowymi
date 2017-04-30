@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Objects;
@@ -28,11 +29,12 @@ public class rejestracjaActivity extends AppCompatActivity{
         email = (EditText) findViewById(R.id.emailET);
         haslo = (EditText) findViewById(R.id.hasloET);
         phaslo = (EditText) findViewById(R.id.phasloET);
+
     }
 
     public void click(View view) {
 
-        new SprawdzenieWTle(this).execute();
+        new RejestracjaAsync(this).execute();
        /* String h = haslo.getText().toString();
         String ph = phaslo.getText().toString();
         String em = email.getText().toString();

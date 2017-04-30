@@ -19,8 +19,7 @@ public class logowanieActivity extends AppCompatActivity {
         switch (view.getId())
         {
             case R.id.logowanieBtn:
-                intent = new Intent(logowanieActivity.this, menuActivity.class);
-                startActivity(intent);
+                new LogowanieAsync(this).execute();
                 break;
             case R.id.rejestracjaBtn:
                 intent = new Intent(logowanieActivity.this, rejestracjaActivity.class);
