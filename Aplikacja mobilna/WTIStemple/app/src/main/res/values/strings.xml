@@ -31,5 +31,18 @@
     # activity_archiwum
 
     <string name="title_activity_archwiwum">Archiwum</string>
-    <string name="title_activity_moj_profil">MojProfilActivity</string>
+
+
+
+    # activity_moj_profil
+    <string name="title_activity_moj_profil">Mój profil</string>
+    <string name="zmianaHasla">Zmiana hasła</string>
+    <string name="aktualneHaslo">Aktualne hasło:</string>
+    <string name="noweHaslo">Nowe hasło:</string>
+    <string name="zmienHaslo">Zmień hasło</string>
+    <string name="zmianaEmail">Zmiana adresu e-mail</string>
+    <string name="email">E-mail:</string>
+    <string name="zmienEmail">Zmien e-mail</string>
+    <string name="usunKonto">Usuń konto</string>
+
 </resources>
