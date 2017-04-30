@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Objects;
 
 import static android.R.attr.data;
@@ -64,7 +65,7 @@ public class LogowanieAsync extends AsyncTask<Void, Void, String> {
             StringBuffer hexString = new StringBuffer();
 
             for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]);
+                String hex = Integer.toHexString(0xff & hash[i]).toUpperCase();
                 if(hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
             }
@@ -76,12 +77,20 @@ public class LogowanieAsync extends AsyncTask<Void, Void, String> {
     }
 
 
-    private String sprawdzenieDanych()
-    {
+    private String sprawdzenieDanych(){
         String wiadomosc = "";
 
         //timetTest();
-
+        AlgorytmPBKDF2 alg = new AlgorytmPBKDF2();
+        String a = "nic nie ma";
+        try {
+            a = alg.test();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+        Log.d("haslo", a);
         String logi = login.getText().toString();
         String hasl = haslo.getText().toString();
         if(logi.isEmpty() || hasl.isEmpty())
@@ -90,9 +99,7 @@ public class LogowanieAsync extends AsyncTask<Void, Void, String> {
             Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
         }
         else{
-            String x = sha256(hasl);
-            Log.d("cos", "alala123123");
-            Log.d("cos", x);
+
             Intent intent = new Intent(activity, menuActivity.class);
             activity.startActivity(intent);
 

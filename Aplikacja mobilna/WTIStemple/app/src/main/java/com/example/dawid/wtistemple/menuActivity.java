@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +21,10 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 public class menuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -148,13 +153,22 @@ public class menuActivity extends AppCompatActivity
 
     public void wgrajClick(View v)
     {
-        Log.d("spr", "coasasdasdas asdasd");
-        Log.d("spr", plikPath);
+        String haszPliku = "";
+
+        try {
+            haszPliku = AlgorytmSHA256.hashFile(plikPath);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         //showChooser();
     }
 
     public void sprawdzClick(View w)
     {
-        showChooser();
+//        showChooser();
     }
 }
