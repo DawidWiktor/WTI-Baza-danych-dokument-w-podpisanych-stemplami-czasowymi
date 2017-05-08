@@ -11,4 +11,8 @@ urlpatterns = [
     url(r'^magnet/$', views.magnet_file, name='magnet_file'),
     url(r'^archives/delete/(?P<file_id>[0-9]+)/$', views.delete_file, name='delete_file'),
     url(r'^download/magnet/(?P<file_id>[0-9]+)/$', views.download_magnet_file, name='download_magnet_file'),
+
+    # API
+    url(r'^api/test_post/$', views.test_post, name='test_post'),
+    url(r'^api/test_get/$', views.test_get, name='test_get'),
 ]

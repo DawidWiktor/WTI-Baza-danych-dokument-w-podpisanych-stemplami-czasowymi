@@ -10,6 +10,8 @@ import hashlib  # generowanie SHA384
 from django.core.signing import Signer  # podpisywanie pliku magnetycznego
 from django.core.signing import BadSignature
 from django.contrib import messages  # powiadomienia, ktore mozna wyswietlic w HTMLu
+from django.views.decorators.csrf import csrf_exempt  # wylaczenie CSRF tokenow
+from django.http import JsonResponse  # zwracanie JSONow w odpowiedzi
 
 def start_page(request):
     if request.user.is_authenticated:
@@ -162,3 +164,32 @@ def magnet_file(request):
             return redirect('main_app:start_page')
     else:
         return redirect('main_app:start_page')
+
+
+# --------------- METODY TESTOWE ----------------
+@csrf_exempt
+def test_post(request):
+    if request.method == 'POST':
+        login = request.POST.get('login','nie podano loginu')
+        haslo = request.POST.get('haslo', 'nie podano hasla')
+        print(login, haslo)
+        data = {
+            "login":login,
+            "haslo":haslo
+        }
+        return JsonResponse(data)
+    return JsonResponse({"error":"error"})
+
+@csrf_exempt
+def test_get(request):
+    data = {
+        "dokument.docx": {
+            "timestamp": "jakiś tam",
+            "owner": "ktoś tam"
+        },
+        "plik.txt": {
+            "timestamp": "jakiś tam 2",
+            "owner": "ktoś tam 2"
+        }
+    }
+    return JsonResponse(data)
