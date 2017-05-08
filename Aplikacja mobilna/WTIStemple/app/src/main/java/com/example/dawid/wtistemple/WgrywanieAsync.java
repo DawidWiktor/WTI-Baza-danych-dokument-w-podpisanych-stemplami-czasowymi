@@ -12,12 +12,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SecureRandom;
+import java.security.Security;
 import java.util.Objects;
+
+import javax.crypto.KeyAgreement;
+import javax.crypto.spec.DHParameterSpec;
 
 
 /**
@@ -61,7 +72,17 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
         String wiadomosc = "";
 
         String haszPliku = "";
-
+        try {
+            wiadomosc = DiffieHellman();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
         try {
             haszPliku = AlgorytmSHA256.hashFile(plikPath);
         } catch (NoSuchAlgorithmException e) {
@@ -69,54 +90,31 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-timetTest();
 
+
+        Snackbar snackbar =  Snackbar.make(activity.getCurrentFocus(), "hasz pliku: " + haszPliku,Snackbar.LENGTH_INDEFINITE);
+        View snackbarView = snackbar.getView();
+        TextView tv= (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        tv.setMaxLines(30);
+        snackbar.show();
         // TODO: polaczenie z serwerem
 
         return wiadomosc;
     }
 
 
-    public void timetTest()
-    {
-        Log.d("cos", "cos");
-        for(int i = 0; i < 80000; i++) {
-            long a = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long b = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long c = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long d = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long e = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long f = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long g = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long h = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long z = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long j = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long k = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long l = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
 
-
-            long w = a - b + c + d - e + f - g - j + k;
-
-            String plaintext = "your text here";
-            MessageDigest m = null;
-            try {
-                m = MessageDigest.getInstance("MD5");
-            } catch (NoSuchAlgorithmException e1) {
-                e1.printStackTrace();
-            }
-            m.reset();
-            m.update(plaintext.getBytes());
-            byte[] digest = m.digest();
-            BigInteger bigInt = new BigInteger(1, digest);
-            String hashtext = bigInt.toString(16);
-// Now we need to zero pad it if you actually want the full 32 chars.
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-        }
-
-
+    public String DiffieHellman() throws InvalidAlgorithmParameterException, NoSuchProviderException, NoSuchAlgorithmException, InvalidKeyException {
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("DH");
+        keyGen.initialize(1024, new SecureRandom());
+        KeyPair ackp = keyGen.generateKeyPair();
+        String a =  ackp.getPrivate().toString() + " \npubliczny:\n" +ackp.getPublic().toString();
+        Log.d("klucze", a);
+        a = " x" ;
+        return a;
     }
+
+
 
 
 }

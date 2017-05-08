@@ -10,19 +10,32 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Objects;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import static android.R.attr.data;
+import static android.R.attr.theme;
 
 /**
  * Created by Dawid on 29.04.2017.
  */
 
-public class LogowanieAsync extends AsyncTask<Void, Void, String> {
+public class LogowanieAsync extends AsyncTask<String, String, String> {
 
     private Activity activity;
     private ProgressBar progressBar;
@@ -47,10 +60,56 @@ public class LogowanieAsync extends AsyncTask<Void, Void, String> {
 
 
     @Override
-    protected String doInBackground(Void... params) {
+    protected String doInBackground(String... params) {
         return sprawdzenieDanych();
 
     }
+
+
+    public String aba(){
+        String requestURL = "http://192.168.137.1:8000/api/test_get/";
+        URL url;
+        String response = "";
+        try {
+            url = new URL(requestURL);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+            writer.write("cos tam");
+
+            writer.flush();
+            writer.close();
+            os.close();
+            int responseCode=conn.getResponseCode();
+
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                String line;
+                BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((line=br.readLine()) != null) {
+                    response+=line;
+                }
+            }
+            else {
+                response="";
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Snackbar.make(activity.getCurrentFocus(), response, Snackbar.LENGTH_INDEFINITE).show();
+        return response;
+    }
+
 
     @Override
     protected void onPostExecute(String s) {
@@ -93,6 +152,8 @@ public class LogowanieAsync extends AsyncTask<Void, Void, String> {
         Log.d("haslo", a);
         String logi = login.getText().toString();
         String hasl = haslo.getText().toString();
+
+
         if(logi.isEmpty() || hasl.isEmpty())
         {
             wiadomosc = wiadomosc + "Wszystkie pola muszą być uzupełnione";

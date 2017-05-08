@@ -51,12 +51,11 @@
             android:layout_marginLeft="20dp"/>
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/aktualneHasloET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"/>
@@ -70,12 +69,11 @@
             android:layout_marginLeft="20dp"/>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/noweHasloET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
@@ -90,23 +88,23 @@
 
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/noweHaslo1ET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/zmienHasloBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zmienHaslo"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:onClick="zmienHaslo"/>
 
         <TextView
             android:id="@+id/textView13"
@@ -125,32 +123,34 @@
             android:layout_marginTop="15dp"/>
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/zmienEmailET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
+
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"/>
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/zmienEmailBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zmienEmail"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:onClick="zmienEmail"/>
 
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/usunKontoBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/usunKonto"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="25dp"/>
+            android:layout_marginTop="25dp"
+            android:onClick="usunKonto"/>
 
     </LinearLayout>
 </ScrollView>

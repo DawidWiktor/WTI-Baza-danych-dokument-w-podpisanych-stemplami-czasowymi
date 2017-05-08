@@ -5,7 +5,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:name=".GlobalValue"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -83,6 +87,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.dawid.wtistemple.menuActivity" />
         </activity>
+
     </application>
 
 </manifest>

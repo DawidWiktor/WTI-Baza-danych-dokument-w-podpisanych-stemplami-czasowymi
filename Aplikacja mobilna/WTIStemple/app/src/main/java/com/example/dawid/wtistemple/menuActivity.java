@@ -50,6 +50,7 @@ public class menuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -158,6 +159,7 @@ public class menuActivity extends AppCompatActivity
 
     public void sprawdzClick(View w)
     {
-//        showChooser();
+        new SprawdzAsync(this).execute();
+        //new JsonTask(this).execute("http://192.168.137.1:8000/api/test_get/");
     }
 }
