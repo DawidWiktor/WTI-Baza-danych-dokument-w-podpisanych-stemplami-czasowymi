@@ -43,5 +43,10 @@ namespace WTIStemple
         {
 
         }
+
+        private void addfileControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WTIStemple"
         mc:Ignorable="d"
-        Title="main" Height="400" Width="500">
+        Title="main" Height="400" Width="525">
 
 
     <Grid>
         <Button Content="wyloguj" HorizontalAlignment="Left" Margin="419,-1,-0.176,0" VerticalAlignment="Top" Width="75"/>
-        <TabControl Margin="0,0,0,0">
+        <TabControl Margin="0,0,0.168,-0.056" Height="371" VerticalAlignment="Bottom">
             <TabItem Header="dodaj plik">
-                <local:addfileControl />
+                <local:addfileControl Loaded="addfileControl_Loaded" />
             </TabItem>
             <TabItem Header="sprawdź plik">
                 <local:chekfileControl Loaded="chekfileControl_Loaded" />
