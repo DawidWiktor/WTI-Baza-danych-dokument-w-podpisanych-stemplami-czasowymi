@@ -3,7 +3,7 @@ from __future__ import print_function
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import UploadFileForm, MagnetFileForm
-from .models import Documents
+from .models import Documents, Tokens
 import os
 from stamp_server.settings import MEDIA_ROOT, MEDIA_URL
 import hashlib  # generowanie SHA384
@@ -12,6 +12,7 @@ from django.core.signing import BadSignature
 from django.contrib import messages  # powiadomienia, ktore mozna wyswietlic w HTMLu
 from django.views.decorators.csrf import csrf_exempt  # wylaczenie CSRF tokenow
 from django.http import JsonResponse  # zwracanie JSONow w odpowiedzi
+from django.contrib.auth.models import User
 
 def start_page(request):
     if request.user.is_authenticated:
@@ -169,11 +170,39 @@ def magnet_file(request):
 # -----------------  API  -----------------------
 @csrf_exempt
 def api_login(request):
-    pass
+    if request.method == 'POST':
+        login = request.POST.get('login','')
+        password = request.POST.get('password', '')
+        if login == '' or password == '':
+            return JsonResponse({"session_key":"error"})
+        
+        try:
+            user = User.objects.get(username=login)
+        except User.DoesNotExist:
+            return JsonResponse({"session_key":"error"})
+        
+        Tokens.objects.get_or_create(user = user, session = request.session.session_key)
+        return JsonResponse({"session_key": request.session.session_key})
+    else:
+        return JsonResponse({"session_key":"error"})
 
 @csrf_exempt
 def api_logout(request):
-    pass
+    if request.method == 'POST':
+        login = request.POST.get('login','')
+        password = request.POST.get('password', '')
+        if login == '' or password == '':
+            return JsonResponse({"status":"error"})
+        
+        try:
+            user = User.objects.get(username=login)
+            token = Tokens.objects.get(user = user, session = request.session.session_key)
+            token.delete()
+            return JsonResponse({"status":"ok"})
+        except:
+            return JsonResponse({"status":"error"})
+    else:
+        return JsonResponse({"status":"error"})
 
 @csrf_exempt
 def api_register(request):
