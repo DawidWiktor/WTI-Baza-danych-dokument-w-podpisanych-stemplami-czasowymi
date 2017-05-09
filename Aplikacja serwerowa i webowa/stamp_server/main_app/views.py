@@ -166,6 +166,39 @@ def magnet_file(request):
         return redirect('main_app:start_page')
 
 
+# -----------------  API  -----------------------
+@csrf_exempt
+def api_login(request):
+    pass
+
+@csrf_exempt
+def api_logout(request):
+    pass
+
+@csrf_exempt
+def api_register(request):
+    pass
+
+@csrf_exempt
+def api_archives(request):
+    pass
+    
+@csrf_exempt
+def api_delete_file(request):
+    pass
+
+@csrf_exempt
+def api_upload_file(request):
+    pass
+
+@csrf_exempt
+def api_download_magnet_file(request):
+    pass
+
+@csrf_exempt
+def api_magnet_file(request):
+    pass
+
 # --------------- METODY TESTOWE ----------------
 @csrf_exempt
 def test_post(request):
