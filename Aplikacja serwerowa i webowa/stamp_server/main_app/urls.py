@@ -13,6 +13,16 @@ urlpatterns = [
     url(r'^download/magnet/(?P<file_id>[0-9]+)/$', views.download_magnet_file, name='download_magnet_file'),
 
     # API
-    url(r'^api/test_post/$', views.test_post, name='test_post'),
-    url(r'^api/test_get/$', views.test_get, name='test_get'),
+    url(r'^api/login/$', views.api_login, name='api_login'),
+    url(r'^api/logout/$', views.api_logout, name='api_logout'),
+    url(r'^api/register/$', views.api_register, name='api_register'),
+    url(r'^api/del_account/$', views.api_del_account, name='api_del_account'),
+    url(r'^api/change_mail/$', views.api_change_mail, name='api_change_mail'),
+    url(r'^api/change_password/$', views.api_change_password, name='api_change_password'),
+    url(r'^api/archives/$', views.api_archives, name='api_archives'),
+    url(r'^api/del_file/$', views.api_delete_file, name='api_delete_file'),
+    url(r'^api/upload/$', views.api_upload_file, name='api_upload_file'),
+    url(r'^api/download_magnet/$', views.api_download_magnet_file, name='api_download_magnet_file'),
+    url(r'^api/magnet/$', views.api_magnet_file, name='api_magnet_file'),
+    url(r'^api/download_file/$', views.api_download_file, name='api_download_file'),
 ]
