@@ -1,8 +1,9 @@
+# coding=utf-8
 from django.db import models
 from django.contrib.auth.models import User
 import os  # for filename in Documents
 import django.utils.timezone as timezone  # data i czas
-from django.contrib.sessions.models import Session
+import hashlib
 
 def user_directory_path(instance, filename):
     # ustawia katalog zapisu pliku
@@ -23,8 +24,15 @@ class Documents(models.Model):
 
 class Tokens(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="właściciel")
-    session = models.ForeignKey(Session)
-    # http://gavinballard.com/associating-django-users-sessions/
-    # https://docs.djangoproject.com/en/1.11/topics/http/sessions/
-    # https://www.tutorialspoint.com/django/django_sessions.htm
+    key = models.CharField(max_length=64, unique=True)
+    timestamp = models.DateTimeField(default=timezone.now)
 
+    @staticmethod
+    def generate_key(username, timestamp):
+        hasher = hashlib.sha256()
+        hasher.update(str(username).encode('utf-8')+str(timestamp).encode('utf-8'))
+        return hasher.hexdigest()
+
+    def save(self, *args, **kwargs):
+        self.key = self.generate_key(self.user.username, self.timestamp)
+        super(Tokens, self).save(*args, **kwargs)
