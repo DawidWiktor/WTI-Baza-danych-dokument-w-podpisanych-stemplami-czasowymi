@@ -7,6 +7,9 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -55,11 +58,22 @@ public class SprawdzAsync extends AsyncTask<String, String, String> {
         String wynik = "";
         wynik = aba();
 
+        //odczytanie jsona
+        if (wynik != null) {
+            try {
+                JSONObject jsonObj = new JSONObject(wynik);
+                JSONObject token = jsonObj.getJSONObject("login");
+                String tok = token.getString("token");
+                Snackbar.make(activity.getCurrentFocus(), tok, Snackbar.LENGTH_INDEFINITE).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
         return wynik;
     }
 
     public String aba(){
-        String requestURL = "http://192.168.137.1:8000/api/test_post/";
+        String requestURL = "http://192.168.137.1:8000/api/login/";
         URL url;
         String response = "";
         try {
@@ -75,8 +89,8 @@ public class SprawdzAsync extends AsyncTask<String, String, String> {
 
 
             Uri.Builder builder = new Uri.Builder()
-                    .appendQueryParameter("login", "dawid")
-                    .appendQueryParameter("haslo", "password123");
+                    .appendQueryParameter("username", "Dawid")
+                    .appendQueryParameter("password", "dawid1234");
 
             String query = builder.build().getEncodedQuery();
 
@@ -105,7 +119,7 @@ public class SprawdzAsync extends AsyncTask<String, String, String> {
             e.printStackTrace();
         }
 
-        Snackbar.make(activity.getCurrentFocus(), response, Snackbar.LENGTH_INDEFINITE).show();
+       // Snackbar.make(activity.getCurrentFocus(), response, Snackbar.LENGTH_LONG).show();
         return response;
     }
 

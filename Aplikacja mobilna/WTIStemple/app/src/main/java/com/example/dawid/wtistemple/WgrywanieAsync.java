@@ -72,17 +72,7 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
         String wiadomosc = "";
 
         String haszPliku = "";
-        try {
-            wiadomosc = DiffieHellman();
-        } catch (InvalidAlgorithmParameterException e) {
-            e.printStackTrace();
-        } catch (NoSuchProviderException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        }
+
         try {
             haszPliku = AlgorytmSHA256.hashFile(plikPath);
         } catch (NoSuchAlgorithmException e) {
@@ -104,15 +94,7 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
 
 
 
-    public String DiffieHellman() throws InvalidAlgorithmParameterException, NoSuchProviderException, NoSuchAlgorithmException, InvalidKeyException {
-        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("DH");
-        keyGen.initialize(1024, new SecureRandom());
-        KeyPair ackp = keyGen.generateKeyPair();
-        String a =  ackp.getPrivate().toString() + " \npubliczny:\n" +ackp.getPublic().toString();
-        Log.d("klucze", a);
-        a = " x" ;
-        return a;
-    }
+
 
 
 

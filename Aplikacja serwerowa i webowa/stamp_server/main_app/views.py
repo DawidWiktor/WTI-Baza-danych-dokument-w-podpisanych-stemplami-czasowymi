@@ -187,12 +187,12 @@ def api_login(request):
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user is None or not user.is_active:
-            return JsonResponse({"token": "error"})
+            return JsonResponse({"login" :{"token": "error"}})
 
         tok, created = Tokens.objects.get_or_create(user=user)
-        return JsonResponse({"token": tok.key})
+        return JsonResponse({"login" :{"token": tok.key}})
     else:
-        return JsonResponse({"token":"error"})
+        return JsonResponse({"login" :{"token":"error"}})
 
 @csrf_exempt
 def api_logout(request):
@@ -200,11 +200,11 @@ def api_logout(request):
         try:
             token = Tokens.objects.get(key=request.POST.get('token'))
             token.delete()
-            return JsonResponse({"status":"ok"})
+            return JsonResponse({"logout":{"status":"ok"}})
         except Tokens.DoesNotExist:
-            return JsonResponse({"status":"error"})
+            return JsonResponse({"logout":{"status":"error"}})
     else:
-        return JsonResponse({"status":"error"})
+        return JsonResponse({"logout":{"status":"error"}})
 
 @csrf_exempt
 def api_register(request):
@@ -213,7 +213,7 @@ def api_register(request):
         password = request.POST.get('password')
         email = request.POST.get('email')
         if User.objects.filter(username=username).exists():
-            return JsonResponse({"status":"Username exists"})
+            return JsonResponse({"register": {"status":"Username exists"}})
 
         new_user = User.objects.create_user(username, email, password, is_active=False)
         new_user.save()
@@ -229,7 +229,7 @@ def api_register(request):
             """.format(username, HOST_NAME, username, activation_code))
 
         send_mail(subject, text, EMAIL_HOST_USER, [email], fail_silently=False)  # wyslanie maila
-        return JsonResponse({"status": "ok", "info": "activate email by link"})
+        return JsonResponse({"register": {"status": "ok"}})
 
 @csrf_exempt
 def api_del_account(request):
