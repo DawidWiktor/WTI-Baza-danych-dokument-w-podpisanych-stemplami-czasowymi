@@ -235,18 +235,18 @@ def api_register(request):
 def api_del_account(request):
     tok = Tokens.objects.get(key=request.POST.get('token'))
     if tok is None:
-        return JsonResponse({"status": "error"})
+        return JsonResponse({"del":{"status": "error"}})
     user = tok.user
     user.is_active = False
     # user.delete()  # usuwa uzytkownika i wszystkie dane z nim powiazane
-    return JsonResponse({"status": "ok"})
+    return JsonResponse({"del":{"status": "ok"}})
 
 @csrf_exempt
 def api_change_mail(request):
     if request.method == 'POST' and request.POST['email']:
         tok = Tokens.objects.get(key=request.POST.get('token'))
         if tok is None:
-            return JsonResponse({"status": "error"})
+            return JsonResponse({"mail":{"status": "error"}})
         new_email = request.POST.get('email')
         obj_user = tok.user
         obj_user.email = new_email
@@ -267,7 +267,7 @@ def api_change_mail(request):
 
         send_mail(subject,text,EMAIL_HOST_USER,[new_email],fail_silently=False)  # wyslanie maila
         tok.delete()
-        return JsonResponse({"status": "ok"})
+        return JsonResponse({"mail":{"status": "ok"}})
 
 @csrf_exempt
 def api_change_password(request):
@@ -277,7 +277,7 @@ def api_change_password(request):
 
         tok = Tokens.objects.get(key=request.POST.get('token'))
         if tok is None:
-            return JsonResponse({"status": "error"})
+            return JsonResponse({"password":{"status": "error"}})
         user = tok.user
 
         user_check = authenticate(username=tok.user.username, password=old_password)
@@ -287,20 +287,20 @@ def api_change_password(request):
         new_pass1 = request.POST.get('new_pass1')
         new_pass2 = request.POST.get('new_pass2')
         if new_pass1 != new_pass2:
-            return JsonResponse({"status": "not the same passwords"})
+            return JsonResponse({"password":{"status": "not the same passwords"}})
 
         user.set_password(new_pass1)
         user.save()
         tok.delete()
-        return JsonResponse({"status": "ok", "info": "please login with new password"})
-    return JsonResponse({"status": "error"})
+        return JsonResponse({"password":{"status": "ok"}})
+    return JsonResponse({"password":{"status": "error"}})
 
 
 @csrf_exempt
 def api_archives(request):
     tok = Tokens.objects.get(key=request.POST.get('token'))
     if tok is None:
-        return JsonResponse({"status": "error"})
+        return JsonResponse({"archive":{"status": "error"}})
     user = tok.user
 
     tmp_docs = Documents.objects.filter(owner=user)

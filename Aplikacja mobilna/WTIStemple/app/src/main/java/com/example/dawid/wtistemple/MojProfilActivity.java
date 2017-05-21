@@ -29,6 +29,7 @@ public class MojProfilActivity extends AppCompatActivity {
     }
 
     public void zmienEmail(View view) {
+        new ZmianaEmailAsync(this).execute();
     }
 
     public void usunKonto(View view) {
