@@ -22,7 +22,7 @@ def login_view(request):
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         #  sprawdzenie czy haslo pasuje do uzytkownika
-        if user is not None:
+        if user is not None and user.is_active():
             login(request, user)
         else:
             messages.error(request, 'Błędny login lub hasło.')

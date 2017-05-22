@@ -187,12 +187,12 @@ def api_login(request):
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user is None or not user.is_active:
-            return JsonResponse({"login" :{"token": "error"}})
+            return JsonResponse({"login": {"token": "error"}})
 
         tok, created = Tokens.objects.get_or_create(user=user)
-        return JsonResponse({"login" :{"token": tok.key}})
+        return JsonResponse({"login": {"token": tok.key}})
     else:
-        return JsonResponse({"login" :{"token":"error"}})
+        return JsonResponse({"login": {"token":"error"}})
 
 @csrf_exempt
 def api_logout(request):
@@ -271,8 +271,7 @@ def api_change_mail(request):
 
 @csrf_exempt
 def api_change_password(request):
-    if request.method == 'POST' and request.POST['old_password'] and request.POST['new_pass1'] \
-            and request.POST['new_pass2']:
+    if request.method == 'POST' and request.POST['old_password'] and request.POST['new_pass']:
         old_password = request.POST.get('old_password')
 
         tok = Tokens.objects.get(key=request.POST.get('token'))
@@ -284,12 +283,8 @@ def api_change_password(request):
         if user_check != user:
             return JsonResponse({"status": "bad old password"})
 
-        new_pass1 = request.POST.get('new_pass1')
-        new_pass2 = request.POST.get('new_pass2')
-        if new_pass1 != new_pass2:
-            return JsonResponse({"password":{"status": "not the same passwords"}})
-
-        user.set_password(new_pass1)
+        new_pass = request.POST.get('new_pass')
+        user.set_password(new_pass)
         user.save()
         tok.delete()
         return JsonResponse({"password":{"status": "ok"}})
