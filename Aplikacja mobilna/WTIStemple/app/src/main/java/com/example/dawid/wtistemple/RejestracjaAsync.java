@@ -2,6 +2,7 @@ package com.example.dawid.wtistemple;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -9,10 +10,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by Dawid on 29.04.2017.
@@ -62,8 +75,6 @@ public class RejestracjaAsync extends AsyncTask<Void, Void, String> {
         String emai = email.getText().toString();
         String logi = login.getText().toString();
         Boolean fHaslo = true, fEmail = true;
-        Log.d("funkcja", "funkcja");
-        timetTest();
 
         if(hasl.isEmpty() || phasl.isEmpty() || emai.isEmpty() || logi.isEmpty() )
         {
@@ -86,8 +97,32 @@ public class RejestracjaAsync extends AsyncTask<Void, Void, String> {
 
         if(fHaslo && fEmail)
         {
-            Intent intent = new Intent(activity, menuActivity.class);
-            activity.startActivity(intent);
+            String wynik = laczenie();
+            String status ="";
+            if (wynik != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(wynik);
+                    JSONObject objectjso = jsonObj.getJSONObject("register");
+                    status = objectjso.getString("status");
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (status.equals("Username exists") || status.length() > 3) {
+                wiadomosc = "Taki użytkownik istnieje";
+                Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
+                return wiadomosc;
+            } else {
+
+                wiadomosc = "Konto zostało zarejestrowane. Link aktywacyjny został wysłany na e-mail.";
+                Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
+                return wiadomosc;
+            }
+
         }
         else
         {
@@ -103,45 +138,54 @@ public class RejestracjaAsync extends AsyncTask<Void, Void, String> {
         return m.matches();
     }
 
-    public void timetTest()
-    {
-        Log.d("cos", "cos");
-        for(int i = 0; i < 80000; i++) {
-            long a = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long b = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long c = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long d = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long e = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long f = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long g = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long h = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long z = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long j = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long k = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
-            long l = 958643 * 354861 * 4315 / 5132 * 513 + 13 + 88123 - 588442 * 3;
+    public String laczenie(){
+        String requestURL = "http://192.168.137.1:8000/api/register/";
+        URL url;
+        String response = "";
+        try {
+            url = new URL(requestURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("POST");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
 
 
-            long w = a - b + c + d - e + f - g - j + k;
+            Uri.Builder builder = new Uri.Builder()
+                    .appendQueryParameter("username", login.getText().toString())
+                    .appendQueryParameter("password", haslo.getText().toString())
+                    .appendQueryParameter("email", email.getText().toString());
 
-            String plaintext = "your text here";
-            MessageDigest m = null;
-            try {
-                m = MessageDigest.getInstance("MD5");
-            } catch (NoSuchAlgorithmException e1) {
-                e1.printStackTrace();
+            String query = builder.build().getEncodedQuery();
+
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+
+            writer.write(query);
+            writer.flush();
+            writer.close();
+            os.close();
+            int responseCode=conn.getResponseCode();
+
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                String line;
+                BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((line=br.readLine()) != null) {
+                    response+=line;
+                }
             }
-            m.reset();
-            m.update(plaintext.getBytes());
-            byte[] digest = m.digest();
-            BigInteger bigInt = new BigInteger(1, digest);
-            String hashtext = bigInt.toString(16);
-// Now we need to zero pad it if you actually want the full 32 chars.
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
+            else {
+                response="";
+
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-
+        return response;
     }
+
 }
 

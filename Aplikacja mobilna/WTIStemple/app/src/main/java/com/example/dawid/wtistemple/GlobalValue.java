@@ -7,21 +7,22 @@ import android.app.Application;
  */
 
 public class GlobalValue extends Application {
-    private String LoginGlobal, PasswordGlobal;
+    public static String LoginGlobal, PasswordGlobal, TokenGlobal;
 
-    public String getLoginGlobal() {
+    public static String getLoginGlobal() {
         return LoginGlobal;
     }
-
-    public void setLoginGlobal(String str) {
+    public static void setTokenGlobal(String token) { TokenGlobal = token;}
+    public static String getTokenGlobal () {return TokenGlobal;}
+    public static  void setLoginGlobal(String str) {
         LoginGlobal = str;
     }
 
-    public String getPasswordGlobal() {
+    public static String getPasswordGlobal() {
         return PasswordGlobal;
     }
 
-    public void setPasswordGlobal(String str) {
+    public static void setPasswordGlobal(String str) {
         PasswordGlobal = str;
     }
 }

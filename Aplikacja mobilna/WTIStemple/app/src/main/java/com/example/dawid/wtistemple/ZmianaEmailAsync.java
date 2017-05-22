@@ -39,27 +39,20 @@ import static android.R.attr.theme;
  * Created by Dawid on 29.04.2017.
  */
 
-public class LogowanieAsync extends AsyncTask<String, String, String> {
+public class ZmianaEmailAsync extends AsyncTask<String, String, String> {
 
     private Activity activity;
-    private ProgressBar progressBar;
-    private EditText login, haslo;
-
-    public LogowanieAsync(Activity activity)
+    private EditText email;
+    public ZmianaEmailAsync(Activity activity)
     {
         this.activity = activity;
+
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressBar = (ProgressBar) activity.findViewById(R.id.logowaniePB);
-        progressBar.setVisibility(View.VISIBLE);
-        login = (EditText) activity.findViewById(R.id.loginLogowanie);
-
-        haslo = (EditText) activity.findViewById(R.id.hasloLogowanie);
-
-
+        email = (EditText) activity.findViewById(R.id.zmienEmailET);
     }
 
 
@@ -69,78 +62,53 @@ public class LogowanieAsync extends AsyncTask<String, String, String> {
 
     }
 
-
-
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        progressBar.setVisibility(View.INVISIBLE);
-
-    }
-    public static String sha256(String base) {
-        try{
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(base.getBytes("UTF-8"));
-            StringBuffer hexString = new StringBuffer();
-
-            for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]).toUpperCase();
-                if(hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-
-            return hexString.toString();
-        } catch(Exception ex){
-            throw new RuntimeException(ex);
-        }
     }
 
 
-    private String sprawdzenieDanych(){
+
+    private String sprawdzenieDanych() {
+        String newEmail = email.getText().toString();
         String wiadomosc = "";
-
-        String logi = login.getText().toString();
-        String hasl = haslo.getText().toString();
-
-
-        if(logi.isEmpty() || hasl.isEmpty())
+        if(!isValidEmailAddress(newEmail))
         {
-            wiadomosc = wiadomosc + "Wszystkie pola muszą być uzupełnione";
+            wiadomosc = "Wpisany e-mail jest niepoprawny";
             Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
+            return wiadomosc;
         }
-        else {
-            String token = "";
-            String wynik = laczenie();
-            //odczytanie jsona
-            if (wynik != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(wynik);
-                    JSONObject objectjso = jsonObj.getJSONObject("login");
-                    token = objectjso.getString("token");
-                    //String a = GlobalValue.getLoginGlobal();
+
+        String status = "";
+        String wynik = laczenie();
 
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        if (wynik != null) {
+            try {
+                JSONObject jsonObj = new JSONObject(wynik);
+                JSONObject objectjso = jsonObj.getJSONObject("mail");
+                status = objectjso.getString("status");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-            if (token.equals("error") || token.length() < 10) {
-                wiadomosc = wiadomosc + "Zły login lub hasło";
-                Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
-                return wiadomosc;
-            } else {
-                GlobalValue.setTokenGlobal(token);
-                Intent intent = new Intent(activity, menuActivity.class);
-                activity.startActivity(intent);
-            }
-
         }
+
+        if (status.equals("error") || status.length() > 3) {
+            wiadomosc = wiadomosc + "Błąd operacji";
+            Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
+            return wiadomosc;
+        } else {
+            Intent intent = new Intent(activity, logowanieActivity.class);
+            activity.startActivity(intent);
+        }
+
         return wiadomosc;
     }
 
     public String laczenie(){
-        String requestURL = "http://192.168.137.1:8000/api/login/";
+        String newEmail = email.getText().toString();
+        String requestURL = "http://192.168.137.1:8000/api/change_mail/";
         URL url;
         String response = "";
         try {
@@ -154,14 +122,15 @@ public class LogowanieAsync extends AsyncTask<String, String, String> {
 
 
             Uri.Builder builder = new Uri.Builder()
-                    .appendQueryParameter("username", login.getText().toString())
-                    .appendQueryParameter("password", haslo.getText().toString());
+                    .appendQueryParameter("token", GlobalValue.getTokenGlobal())
+                    .appendQueryParameter("email", newEmail);
 
             String query = builder.build().getEncodedQuery();
 
             OutputStream os = conn.getOutputStream();
             BufferedWriter writer = new BufferedWriter(
                     new OutputStreamWriter(os, "UTF-8"));
+
 
             writer.write(query);
             writer.flush();
@@ -185,6 +154,13 @@ public class LogowanieAsync extends AsyncTask<String, String, String> {
         }
 
         return response;
+    }
+
+    private boolean isValidEmailAddress(String email) {  // sprawdzenie czy wprowadzono poprawny adres email
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
     }
 }
 

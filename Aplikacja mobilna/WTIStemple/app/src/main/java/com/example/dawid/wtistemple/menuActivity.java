@@ -88,8 +88,7 @@ public class menuActivity extends AppCompatActivity
             startActivity(intent);
         }
         else if (id == R.id.nav_send) {
-            intent = new Intent(menuActivity.this, logowanieActivity.class);
-            startActivity(intent);
+            new WylogowanieAsync(this).execute();
         }
 
 
@@ -159,7 +158,8 @@ public class menuActivity extends AppCompatActivity
 
     public void sprawdzClick(View w)
     {
-        new SprawdzAsync(this).execute();
+        Snackbar.make(getCurrentFocus(), GlobalValue.getTokenGlobal(), Snackbar.LENGTH_LONG).show();
+       // new SprawdzAsync(this).execute();
         //new JsonTask(this).execute("http://192.168.137.1:8000/api/test_get/");
     }
 }

@@ -39,13 +39,11 @@ import static android.R.attr.theme;
  * Created by Dawid on 29.04.2017.
  */
 
-public class LogowanieAsync extends AsyncTask<String, String, String> {
+public class UsuniecieKontaAsync extends AsyncTask<String, String, String> {
 
     private Activity activity;
-    private ProgressBar progressBar;
-    private EditText login, haslo;
 
-    public LogowanieAsync(Activity activity)
+    public UsuniecieKontaAsync(Activity activity)
     {
         this.activity = activity;
     }
@@ -53,12 +51,6 @@ public class LogowanieAsync extends AsyncTask<String, String, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressBar = (ProgressBar) activity.findViewById(R.id.logowaniePB);
-        progressBar.setVisibility(View.VISIBLE);
-        login = (EditText) activity.findViewById(R.id.loginLogowanie);
-
-        haslo = (EditText) activity.findViewById(R.id.hasloLogowanie);
-
 
     }
 
@@ -69,78 +61,43 @@ public class LogowanieAsync extends AsyncTask<String, String, String> {
 
     }
 
-
-
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        progressBar.setVisibility(View.INVISIBLE);
-
     }
-    public static String sha256(String base) {
-        try{
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(base.getBytes("UTF-8"));
-            StringBuffer hexString = new StringBuffer();
 
-            for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]).toUpperCase();
-                if(hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-
-            return hexString.toString();
-        } catch(Exception ex){
-            throw new RuntimeException(ex);
-        }
-    }
 
 
     private String sprawdzenieDanych(){
         String wiadomosc = "";
+        String status = "";
+        String wynik = laczenie();
 
-        String logi = login.getText().toString();
-        String hasl = haslo.getText().toString();
+        if (wynik != null) {
+            try {
+                JSONObject jsonObj = new JSONObject(wynik);
+                JSONObject objectjso = jsonObj.getJSONObject("del");
+                status = objectjso.getString("status");
 
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
-        if(logi.isEmpty() || hasl.isEmpty())
-        {
-            wiadomosc = wiadomosc + "Wszystkie pola muszą być uzupełnione";
+        if (status.equals("error") || status.length() > 3) {
+            wiadomosc = wiadomosc + "Błąd operacji";
             Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
+            return wiadomosc;
+        } else {
+            Intent intent = new Intent(activity, logowanieActivity.class);
+            activity.startActivity(intent);
         }
-        else {
-            String token = "";
-            String wynik = laczenie();
-            //odczytanie jsona
-            if (wynik != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(wynik);
-                    JSONObject objectjso = jsonObj.getJSONObject("login");
-                    token = objectjso.getString("token");
-                    //String a = GlobalValue.getLoginGlobal();
 
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (token.equals("error") || token.length() < 10) {
-                wiadomosc = wiadomosc + "Zły login lub hasło";
-                Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
-                return wiadomosc;
-            } else {
-                GlobalValue.setTokenGlobal(token);
-                Intent intent = new Intent(activity, menuActivity.class);
-                activity.startActivity(intent);
-            }
-
-        }
         return wiadomosc;
     }
 
     public String laczenie(){
-        String requestURL = "http://192.168.137.1:8000/api/login/";
+        String requestURL = "http://192.168.137.1:8000/api/del_account/";
         URL url;
         String response = "";
         try {
@@ -154,8 +111,7 @@ public class LogowanieAsync extends AsyncTask<String, String, String> {
 
 
             Uri.Builder builder = new Uri.Builder()
-                    .appendQueryParameter("username", login.getText().toString())
-                    .appendQueryParameter("password", haslo.getText().toString());
+                    .appendQueryParameter("token", GlobalValue.getTokenGlobal());
 
             String query = builder.build().getEncodedQuery();
 
