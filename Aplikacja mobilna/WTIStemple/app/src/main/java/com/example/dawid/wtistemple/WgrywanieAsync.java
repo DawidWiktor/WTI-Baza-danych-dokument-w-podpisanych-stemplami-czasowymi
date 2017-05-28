@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
@@ -25,6 +26,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.security.Security;
+import java.util.List;
 import java.util.Objects;
 
 import javax.crypto.KeyAgreement;
@@ -72,7 +74,7 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
         String wiadomosc = "";
 
         String haszPliku = "";
-
+        upload(plikPath);
         try {
             haszPliku = AlgorytmSHA256.hashFile(plikPath);
         } catch (NoSuchAlgorithmException e) {
@@ -82,7 +84,7 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
         }
 
 
-        Snackbar snackbar =  Snackbar.make(activity.getCurrentFocus(), "hasz pliku: " + haszPliku,Snackbar.LENGTH_INDEFINITE);
+        Snackbar snackbar =  Snackbar.make(activity.getCurrentFocus(), "hasz pliku: " + GlobalValue.getTokenGlobal(),Snackbar.LENGTH_INDEFINITE);
         View snackbarView = snackbar.getView();
         TextView tv= (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
         tv.setMaxLines(30);
@@ -94,11 +96,37 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
 
 
 
+    public static void upload(String pathFile){
+        String charset = "UTF-8";
+        File uploadFile1 = new File(pathFile);
 
+        String requestURL = "http://192.168.137.1:8000/api/upload/";
+
+        try {
+            MultipartUtility multipart = new MultipartUtility(requestURL, charset);
+
+           // multipart.addHeaderField("token", GlobalValue.getTokenGlobal());
+
+
+            multipart.addFormField("token", GlobalValue.getTokenGlobal());
+           // multipart.addFormField("keywords", "Java,upload,Spring");
+
+            multipart.addFilePart("file", uploadFile1);
+
+
+            List<String> response = multipart.finish();
+
+            System.out.println("SERVER REPLIED:");
+
+            for (String line : response) {
+                System.out.println(line);
+            }
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+    }
 
 
 
 
 }
-
-

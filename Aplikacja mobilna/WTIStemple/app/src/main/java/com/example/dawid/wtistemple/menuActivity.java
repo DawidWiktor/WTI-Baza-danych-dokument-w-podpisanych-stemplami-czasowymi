@@ -1,8 +1,11 @@
 package com.example.dawid.wtistemple;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
@@ -22,8 +25,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 
 public class menuActivity extends AppCompatActivity
@@ -98,6 +109,7 @@ public class menuActivity extends AppCompatActivity
     }
 
 /////////////////////////////////////////file manager////////////////////////////////////////////////
+Uri path;
 
     private static final String TAG = "MainActivity";
 
@@ -153,6 +165,9 @@ public class menuActivity extends AppCompatActivity
 
     public void wgrajClick(View v)
     {
+       // new Upload(menuActivity.this, path).execute();
+
+
         new WgrywanieAsync(this).execute(plikPath);
     }
 
@@ -163,3 +178,78 @@ public class menuActivity extends AppCompatActivity
         //new JsonTask(this).execute("http://192.168.137.1:8000/api/test_get/");
     }
 }
+
+
+class Upload extends AsyncTask<Void, Void, Void> {
+    private ProgressDialog pd;
+    private Context c;
+    private Uri path;
+
+    public Upload(Context c, Uri path) {
+        this.c = c;
+        this.path = path;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        pd = ProgressDialog.show(c, "Uploading", "Please Wait");
+    }
+
+    @Override
+    protected void onPostExecute(Void result) {
+        super.onPostExecute(result);
+        pd.dismiss();
+    }
+
+    @Override
+    protected Void doInBackground(Void... params) {
+        String url_path = "http://192.168.137.1:8000/api/upload/";
+        HttpURLConnection conn = null;
+
+        int maxBufferSize = 1024;
+        try {
+            URL url = new URL(url_path);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setUseCaches(false);
+            conn.setDoInput(true);
+            conn.setChunkedStreamingMode(1024);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Content-Type", "multipart/form-data");
+
+            OutputStream outputStream = conn.getOutputStream();
+            InputStream inputStream = c.getContentResolver().openInputStream(path);
+
+            int bytesAvailable = inputStream.available();
+            int bufferSize = Math.min(bytesAvailable, maxBufferSize);
+            byte[] buffer = new byte[bufferSize];
+
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer, 0, bufferSize)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            outputStream.flush();
+            inputStream.close();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    conn.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Log.i("result", line);
+            }
+            reader.close();
+            conn.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+        return null;
+    }
+}
+
