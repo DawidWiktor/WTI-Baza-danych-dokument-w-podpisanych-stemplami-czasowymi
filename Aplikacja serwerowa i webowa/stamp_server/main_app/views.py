@@ -186,7 +186,7 @@ def api_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
-        if user is None or not user.is_active:
+        if user is None:
             return JsonResponse({"login": {"token": "error"}})
 
         tok, created = Tokens.objects.get_or_create(user=user)
