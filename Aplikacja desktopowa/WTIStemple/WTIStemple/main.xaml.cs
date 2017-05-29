@@ -19,9 +19,11 @@ namespace WTIStemple
     /// </summary>
     public partial class main : Window
     {
-        public main()
+        string sessionToken;
+        public main(string token)
         {
             InitializeComponent();
+            sessionToken = token;
         }
 
         private void UserControl1_Loaded(object sender, RoutedEventArgs e)
