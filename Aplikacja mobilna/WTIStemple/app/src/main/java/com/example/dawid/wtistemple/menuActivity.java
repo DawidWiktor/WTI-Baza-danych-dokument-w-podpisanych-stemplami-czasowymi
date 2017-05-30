@@ -165,91 +165,14 @@ Uri path;
 
     public void wgrajClick(View v)
     {
-       // new Upload(menuActivity.this, path).execute();
-
-
         new WgrywanieAsync(this).execute(plikPath);
     }
 
     public void sprawdzClick(View w)
     {
-        Snackbar.make(getCurrentFocus(), GlobalValue.getTokenGlobal(), Snackbar.LENGTH_LONG).show();
-       // new SprawdzAsync(this).execute();
+        new SprawdzAsync(this).execute(plikPath);
+
         //new JsonTask(this).execute("http://192.168.137.1:8000/api/test_get/");
-    }
-}
-
-
-class Upload extends AsyncTask<Void, Void, Void> {
-    private ProgressDialog pd;
-    private Context c;
-    private Uri path;
-
-    public Upload(Context c, Uri path) {
-        this.c = c;
-        this.path = path;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        pd = ProgressDialog.show(c, "Uploading", "Please Wait");
-    }
-
-    @Override
-    protected void onPostExecute(Void result) {
-        super.onPostExecute(result);
-        pd.dismiss();
-    }
-
-    @Override
-    protected Void doInBackground(Void... params) {
-        String url_path = "http://192.168.137.1:8000/api/upload/";
-        HttpURLConnection conn = null;
-
-        int maxBufferSize = 1024;
-        try {
-            URL url = new URL(url_path);
-            conn = (HttpURLConnection) url.openConnection();
-            conn.setDoOutput(true);
-            conn.setUseCaches(false);
-            conn.setDoInput(true);
-            conn.setChunkedStreamingMode(1024);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Connection", "Keep-Alive");
-            conn.setRequestProperty("Content-Type", "multipart/form-data");
-
-            OutputStream outputStream = conn.getOutputStream();
-            InputStream inputStream = c.getContentResolver().openInputStream(path);
-
-            int bytesAvailable = inputStream.available();
-            int bufferSize = Math.min(bytesAvailable, maxBufferSize);
-            byte[] buffer = new byte[bufferSize];
-
-            int bytesRead;
-            while ((bytesRead = inputStream.read(buffer, 0, bufferSize)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
-            outputStream.flush();
-            inputStream.close();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    conn.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                Log.i("result", line);
-            }
-            reader.close();
-            conn.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            if (conn != null) {
-                conn.disconnect();
-            }
-        }
-        return null;
     }
 }
 

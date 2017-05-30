@@ -361,7 +361,7 @@ def api_upload_file(request):
     if request.method == 'POST' and request.FILES['file']:
         tok = Tokens.objects.get(key=request.POST.get('token'))
         if tok is None:
-            return JsonResponse({"status": "error"})
+            return JsonResponse({"upload":{"status": "error"}})
         user = tok.user
 
         name = request.FILES['file'].name
@@ -369,7 +369,7 @@ def api_upload_file(request):
         name = name.replace(" ","_")
 
         if Documents.objects.filter(file=str(user.id) + "/" + name).exists():
-            return JsonResponse({"status": "file exists"})
+            return JsonResponse({"upload":{"status": "file exists"}})
 
         # zapisywanie pliku i generowania hasha
         h = handle_uploaded_file(request.FILES['file'], user)
@@ -384,9 +384,9 @@ def api_upload_file(request):
         tmp = Documents.objects.create(owner=user, file=str(user.id)+"/"+request.FILES['file'].name,
                                        hash=hash_h_ts, timestamp=ts_orig)
         tmp.save()
-        return JsonResponse({"status": "ok"})
+        return JsonResponse({"upload": {"status": "ok"}})
     else:
-        return JsonResponse({"status": "error"})
+        return JsonResponse({"upload": {"status": "error"}})
 
 @csrf_exempt
 def api_download_magnet_file(request):
@@ -419,7 +419,7 @@ def api_magnet_file(request):
     if request.method == 'POST' and request.FILES['file']:
         tok = Tokens.objects.get(key=request.POST.get('token'))
         if tok is None:
-            return JsonResponse({"status": "error"})
+            return JsonResponse({"magnet":{"status": "error"}})
 
         lancuch = request.FILES['file'].read()
         lancuch = lancuch.decode("utf-8")  # konwersja kodowania z bytes na string utf-8
@@ -429,7 +429,7 @@ def api_magnet_file(request):
         try:
             signed_hash = signer.unsign(lancuch)
         except BadSignature:
-            return JsonResponse({"status": "bad sign"})
+            return JsonResponse({"magnet":{"status": "bad sign"}})
 
         doc = Documents.objects.filter(hash=signed_hash).first()  # szukam pliku do ktorego kieruje magnet
         if doc and os.path.isfile("media/" + doc.file.name):
@@ -441,7 +441,7 @@ def api_magnet_file(request):
             }
             return JsonResponse(data)
         else:
-            return JsonResponse({"status": "file not exists"})
+            return JsonResponse({"magnet":{"status": "file not exists"}})
 
 @csrf_exempt
 def api_download_file(request):

@@ -23,6 +23,6 @@ urlpatterns = [
     url(r'^api/del_file/$', views.api_delete_file, name='api_delete_file'),
     url(r'^api/upload/$', views.api_upload_file, name='api_upload_file'),
     url(r'^api/download_magnet/$', views.api_download_magnet_file, name='api_download_magnet_file'),
-    url(r'^api/magnet/$', views.api_magnet_file, name='api_magnet_file'),
+    url(r'^api/check_magnet/$', views.api_magnet_file, name='api_magnet_file'),
     url(r'^api/download_file/$', views.api_download_file, name='api_download_file'),
 ]

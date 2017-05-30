@@ -14,6 +14,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -74,7 +77,42 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
         String wiadomosc = "";
 
         String haszPliku = "";
-        upload(plikPath);
+        String wynik = upload(plikPath);
+        String status ="";
+        if(!wynik.equals(""))
+        {
+            JSONObject jsonObj = null;
+            try {
+                jsonObj = new JSONObject(wynik);
+                JSONObject objectjso = jsonObj.getJSONObject("upload");
+                status = objectjso.getString("status");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if(status.equals("error"))
+            {
+                wiadomosc = wiadomosc + "Błąd operacji";
+                Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
+                return wiadomosc;
+            }
+            else if(status.equals("file exists"))
+            {
+                wiadomosc = "Taki plik już istnieje:\n" + plikPath;
+                Snackbar snackbar = Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_INDEFINITE);
+                View snackbarView = snackbar.getView();
+                TextView tv= (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                tv.setMaxLines(30);
+                snackbar.show();
+                return wiadomosc;
+            }
+            else if(status.equals("ok"))
+            {
+                wiadomosc = wiadomosc + "Plik został podpisany stemplem czasowym";
+                Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
+                return wiadomosc;
+            }
+        }
         try {
             haszPliku = AlgorytmSHA256.hashFile(plikPath);
         } catch (NoSuchAlgorithmException e) {
@@ -83,50 +121,33 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         }
 
-
-        Snackbar snackbar =  Snackbar.make(activity.getCurrentFocus(), "hasz pliku: " + GlobalValue.getTokenGlobal(),Snackbar.LENGTH_INDEFINITE);
+        Snackbar snackbar =  Snackbar.make(activity.getCurrentFocus(), wynik,Snackbar.LENGTH_INDEFINITE);
         View snackbarView = snackbar.getView();
         TextView tv= (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
         tv.setMaxLines(30);
         snackbar.show();
-        // TODO: polaczenie z serwerem
-
         return wiadomosc;
     }
 
 
-
-    public static void upload(String pathFile){
+    public static String upload(String pathFile){
         String charset = "UTF-8";
         File uploadFile1 = new File(pathFile);
-
+        String wynik = "";
         String requestURL = "http://192.168.137.1:8000/api/upload/";
 
         try {
             MultipartUtility multipart = new MultipartUtility(requestURL, charset);
-
-           // multipart.addHeaderField("token", GlobalValue.getTokenGlobal());
-
-
             multipart.addFormField("token", GlobalValue.getTokenGlobal());
-           // multipart.addFormField("keywords", "Java,upload,Spring");
-
             multipart.addFilePart("file", uploadFile1);
 
-
             List<String> response = multipart.finish();
-
-            System.out.println("SERVER REPLIED:");
-
             for (String line : response) {
-                System.out.println(line);
+                wynik = wynik + line;
             }
         } catch (IOException ex) {
             System.err.println(ex);
         }
+        return  wynik;
     }
-
-
-
-
 }
