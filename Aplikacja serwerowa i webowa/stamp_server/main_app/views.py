@@ -415,7 +415,7 @@ def api_download_magnet_file(request):
             return JsonResponse({"status": "bad file id"})
 
 @csrf_exempt
-def api_magnet_file(request):
+def api_check_magnet(request):
     if request.method == 'POST' and request.FILES['file']:
         tok = Tokens.objects.get(key=request.POST.get('token'))
         if tok is None:
@@ -423,6 +423,10 @@ def api_magnet_file(request):
 
         lancuch = request.FILES['file'].read()
         lancuch = lancuch.decode("utf-8")  # konwersja kodowania z bytes na string utf-8
+
+        # --
+        print(string_sha256(lancuch.encode('utf-8')))
+        # --
 
         # sprawdzenie podpisu
         signer = Signer()  # salt='jakas_sol'
