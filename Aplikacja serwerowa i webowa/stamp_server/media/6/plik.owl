@@ -1,0 +1,1706 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="http://www.MyUri.com/myOntology"/>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Deskrypcja">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#ObiektInformacyjny"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWyrazonaPrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPodzielanaPrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytSchematyczny"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Description</rdfs:label>
+    <rdfs:label xml:lang="pl">Deskrypcja</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaPacjensywna">
+    <rdfs:label xml:lang="en">Patient role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola pacjensywna</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Rola"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#WiazkaPlanowINorm">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Plan"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Norma"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Norm and plan bundle</rdfs:label>
+    <rdfs:label xml:lang="pl">Wiazka Planow i Norm</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Wiazka"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#KolektywWiedzy">
+    <rdfs:label xml:lang="en">Knowledge collective</rdfs:label>
+    <rdfs:label xml:lang="pl">Kolektyw wiedzy</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#NormatywnyKolektywIntencjonalny"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#WspolnotaWiedzy"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#AgentFizyczny">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Physical Agent</rdfs:label>
+    <rdfs:label xml:lang="pl">Agent Fizyczny</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#ReprezentacjaWewnetrzna">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Internal representation</rdfs:label>
+    <rdfs:label xml:lang="pl">Reprezentacja wewnetrzna</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaWiedzy">
+    <rdfs:label xml:lang="en">Knowledge role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola wiedzy</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Rola"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Paradygmat">
+    <rdfs:label xml:lang="en">Paradigmat</rdfs:label>
+    <rdfs:label xml:lang="pl">Paradygmat</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Wiazka"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#WplywPoznawczy">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Paradygmat"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Epistemic influence</rdfs:label>
+    <rdfs:label xml:lang="pl">Wplyw poznawczy</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#WiazkaPlanowINorm"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#SkutekRozpoczynanyWykonaniemZadania">
+    <rdfs:label xml:lang="en">Initiated result of an execution of a task</rdfs:label>
+    <rdfs:label xml:lang="pl">Skutek rozpoczynany wykonaniem zadania</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaWynikowa"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Cel">
+    <rdfs:label xml:lang="en">Goal</rdfs:label>
+    <rdfs:label xml:lang="pl">Cel</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Pragnienie"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#D-s">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#I-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWyrazanaPrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#A-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPodzielanaPrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#S-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestSpelniony"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">D-SituationOf</rdfs:label>
+    <rdfs:label xml:lang="pl">D-Sytuacji</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Stan">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#OpisStanu"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestKlasyfikowanyPrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">State</rdfs:label>
+    <rdfs:label xml:lang="pl">Stan</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Dzialanie">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Action Accomplishment (Dolce), Culminated Process (OntoSTIT+, R. Trypuz</rdfs:label>
+    <rdfs:label xml:lang="pl">Dzialanie</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Organizacja">
+    <rdfs:label xml:lang="en">Organization</rdfs:label>
+    <rdfs:label xml:lang="pl">Organizacja</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#ZbiorAgentow">
+    <rdfs:label xml:lang="en">Agent collection</rdfs:label>
+    <rdfs:label xml:lang="pl">Zbior agentow</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Zbior"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Substancja">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Substance</rdfs:label>
+    <rdfs:label xml:lang="pl">Substancja</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#WykonaniePlanu">
+    <rdfs:label xml:lang="en">Plan execution</rdfs:label>
+    <rdfs:label xml:lang="pl">Wykonanie planu</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Sytuacja"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Zbior">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestZjednoczonyPrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Pojecie"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPojeciowoPokrywanyPrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytSchematyczny"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Collection</rdfs:label>
+    <rdfs:label xml:lang="pl">Zbior</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Sytuacja">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#spelnia"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytSchematyczny"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Situation</rdfs:label>
+    <rdfs:label xml:lang="pl">Sytuacja</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Jakosc">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Quality</rdfs:label>
+    <rdfs:label xml:lang="pl">Jakosc</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Zadanie">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaAgentywna"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCelemDzialania"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="pl">Zadanie</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaPacjensa-Obiektu"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoObiektDzialania"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaAblatywna"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoOkreslenieKierunkuSkad"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaLokacyjna"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoLokalizacjeDzialania"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Pojecie"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaAdlatywna"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoOkreslenieKierunkuDokad"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Task</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaPacjensa-Beneficjenta"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoBeneficjenta"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#CelPlanufdf">
+    <rdfs:label xml:lang="en">PurposeOfThePlan</rdfs:label>
+    <rdfs:label xml:lang="pl">CelPlanufdf</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Plansdf"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestGlownymCelem"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#D-s"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#PrzedzialCzasowy">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Time interval</rdfs:label>
+    <rdfs:label xml:lang="pl">Przedzial czasowy</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Zdarzenie">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Event, Achievement (DOLCE)</rdfs:label>
+    <rdfs:label xml:lang="pl">Zdarzenie</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Obiekt">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Object</rdfs:label>
+    <rdfs:label xml:lang="pl">Obiekt</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaSposobuWykonania">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Plan"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWykorzystaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestSposobemDzialania"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Manner role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola sposobu wykonania</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Rola"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Rola">
+    <rdfs:label xml:lang="en">Role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Pojecie"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#K-s">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#A-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzlonka"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">K-SituationOf</rdfs:label>
+    <rdfs:label xml:lang="pl">K-Sytuacji</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#C-s">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#E-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#klasyfikuje"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">C-SituationOf</rdfs:label>
+    <rdfs:label xml:lang="pl">C-Sytuacji</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaPerlatywna">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#okreslaPrzejscie"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Plan"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWykorzystaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Perlative role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola perlatywna</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaReifikujaca">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#klasyfikuje"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestZreifikowanaCzynnoscia"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Plan"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWykorzystaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Reifying role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola reifikujaca</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#cDnSPL-Sytuacji">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#E-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">cDnSPL-SituationOf</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#C-s"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#D-s"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#K-s"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#A-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#I-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#S-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="pl">cDnSPL-Sytuacji</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#TD-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#TS-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Parametr">
+    <rdfs:label xml:lang="en">Parametr</rdfs:label>
+    <rdfs:label xml:lang="pl">Parameter</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Pojecie"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#cDnSPL-Sytuacji"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Element-cDnSPL-SituationOf</rdfs:label>
+    <rdfs:label xml:lang="pl">Element-cDnSPL-Sytuacji</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#S-s">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#D-s"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#spelnia"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#E-s"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestUstanawianePrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">S-SituationOf</rdfs:label>
+    <rdfs:label xml:lang="pl">S-Sytuacji</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaPacjensa-Beneficjenta">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Plan"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWykorzystaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestBeneficjentemDzialania"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Patient-beneficiary role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola pacjensa-beneficenta</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#RolaPacjensywna"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Plan">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#wykorzystuje"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#wykorzystuje"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Plan</rdfs:label>
+    <rdfs:label xml:lang="pl">Plan</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaInstrumentalna">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWykorzystaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestInstrumentemWDzialaniu"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Instrumental role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola instrumentalna</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#OpisStanu">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Stan"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#klasyfikuje"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">State description</rdfs:label>
+    <rdfs:label xml:lang="pl">Opis stanu</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#Pojecie"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaWynikowa">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestZdefiniowaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWynikiemDzialania"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Resulting role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola wynikowa</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Wiazka">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Bundle</rdfs:label>
+    <rdfs:label xml:lang="pl">Wiazka</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Pragnienie">
+    <rdfs:label xml:lang="en">Desire</rdfs:label>
+    <rdfs:label xml:lang="pl">Pragnienie</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#AgentSpoleczny">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#podziela"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWprowadzonyPrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.MyUri.com/myOntology#Byt"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#dzialaPoprzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytSchematyczny"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Social Agent</rdfs:label>
+    <rdfs:label xml:lang="pl">Agent Spoleczny</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#SytuacjaSpelniajacaCel">
+    <rdfs:label xml:lang="en">Goal situation</rdfs:label>
+    <rdfs:label xml:lang="pl">Sytuacja spelniajaca cel</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#AplikacjaNormy">
+    <rdfs:label xml:lang="en">Norm application</rdfs:label>
+    <rdfs:label xml:lang="pl">Aplikacja normy</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#KolektywIntencjonalny">
+    <rdfs:label xml:lang="en">Intentional collective </rdfs:label>
+    <rdfs:label xml:lang="pl">Kolektyw intercjonalny</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#WspolnotaWiedzy"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaLokacyjna">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestLokalizacjaDzialania"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWykorzystaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Locative role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola lokacyjna</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Byt">
+    <rdfs:label xml:lang="en">Entity</rdfs:label>
+    <rdfs:label xml:lang="pl">Byt</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#SkutekKonczonyWykonaniemZadania">
+    <rdfs:label xml:lang="en">Terminated result of a task execution</rdfs:label>
+    <rdfs:label xml:lang="pl">Skutek konczony wykonaniem zadania</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#RolaWynikowa"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytSchematyczny">
+    <rdfs:label xml:lang="en">Schematic entity</rdfs:label>
+    <rdfs:label xml:lang="pl">Byt schematyczny</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#TS-s">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">TS-SituationOf</rdfs:label>
+    <rdfs:label xml:lang="pl">TS-Sytuacji</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Plansdf">
+    <rdfs:label xml:lang="en">PlanOf</rdfs:label>
+    <rdfs:label xml:lang="pl">Plansdf</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#CelPlanufdf"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCelGlowny"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#D-s"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RelizacjaInformacji">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Information realization</rdfs:label>
+    <rdfs:label xml:lang="pl">Realizacja informacji</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Pojecie">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestZdefiniowaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#BytSchematyczny"/>
+    <rdfs:label xml:lang="en">Concept</rdfs:label>
+    <rdfs:label xml:lang="pl">Pojecie</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#ObiektInformacyjny">
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#BytSchematyczny"/>
+    <rdfs:label xml:lang="en">Information object</rdfs:label>
+    <rdfs:label xml:lang="pl">ObiektInformacyjny</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#A-s">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#K-s"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzlonkiem"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#D-s"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#podziela"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">A-SituationOf</rdfs:label>
+    <rdfs:label xml:lang="pl">A-Sytuacji</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#NormatywnyKolektywIntencjonalny">
+    <rdfs:label xml:lang="en">Normative intentional collective</rdfs:label>
+    <rdfs:label xml:lang="pl">Normatywny kolektyw intencjonalny</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.MyUri.com/myOntology#WspolnotaWiedzy"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#DeskrypcjaKonstytuujaca">
+    <rdfs:label xml:lang="en">Constitutive description</rdfs:label>
+    <rdfs:label xml:lang="pl">Deskrypcja konsrytuujaca</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RelacjaSpoleczna">
+    <rdfs:label xml:lang="en">Social relation</rdfs:label>
+    <rdfs:label xml:lang="pl">Relacja spoleczna</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#WplywPoznawczy"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#I-s">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#D-s"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#wyraza"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">I-SituationOf</rdfs:label>
+    <rdfs:label xml:lang="pl">I-Sytuacji</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#BytBazowy">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#ustanawia"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestKlasyfikowanyPrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Ground entity</rdfs:label>
+    <rdfs:label xml:lang="pl">Byt bazowy</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#E-s">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#S-s"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#ustanawia"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#C-s"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestKlasyfikowanyPrzez"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">E-SituationOf</rdfs:label>
+    <rdfs:label xml:lang="pl">E-Sytuacji</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaAgentywna">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestAgensem"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Agentive role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola agentywna</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaAdlatywna">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#okreslaKierunekDokad"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWykorzystaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Adlative role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola adlatywna</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#TD-s">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">TD-SituationOf</rdfs:label>
+    <rdfs:label xml:lang="pl">TD-Sytuacji</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Element-cDnSPL-Sytuacji"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#WspolnotaWiedzy">
+    <rdfs:label xml:lang="en">Knowledge community</rdfs:label>
+    <rdfs:label xml:lang="pl">Wspolnota wiedzy</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#ZbiorAgentow"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaAblatywna">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#okreslaKierunekSkad"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWykorzystaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Ablative role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola ablatywna</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#ObszarPrzestrzeni">
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#BytBazowy"/>
+    <rdfs:label xml:lang="en">Space region</rdfs:label>
+    <rdfs:label xml:lang="pl">Obszar Przestrzeni</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#RolaPacjensa-Obiektu">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWykorzystaneW"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestObiektemDzialania"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Patient-object/theme role</rdfs:label>
+    <rdfs:label xml:lang="pl">Rola pacjensa-obiektu</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#RolaPacjensywna"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Norma">
+    <rdfs:label xml:lang="en">Norm</rdfs:label>
+    <rdfs:label xml:lang="pl">Norma</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.MyUri.com/myOntology#Konfiguracja">
+    <rdfs:label xml:lang="en">Configuration</rdfs:label>
+    <rdfs:label xml:lang="pl">Konfiguracja</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.MyUri.com/myOntology#Zbior"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPonownieOpisywanaPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#ponownieOpisuje"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#pozostajeWZakresie">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCharakteryzowanyPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zbior"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPlanemPrzyjmowanymPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#przyjmujePlan"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPodzielanaPrzez"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestTworzonaPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AgentFizyczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#ReprezentacjaWewnetrzna"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#tworzy"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPodrzednymCelem">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoPodrzednyCel"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPodrzednymPlanem">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maPodrzednyPlan"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#okreslaKierunekDokad">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaAdlatywna"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoOkreslenieKierunkuDokad"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCelemPrzyjmowanymPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#przyjmujeCel"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPrzyjmowanaPrzez"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestZjednoczonyPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zbior"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestLokalizacjaDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaLokacyjna"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoLokalizacjeDzialania"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#wplywaNa">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoObiektDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaPacjensa-Obiektu"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestZawartyWZakresie">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#zawieraWZakresie"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoSkutekRozpoczynany">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#SkutekRozpoczynanyWykonaniemZadania"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoWynikDzialania"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jednoczy">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zbior"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#jestZjednoczonyPrzez"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestSpelnionaPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#spelnia"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestTworzonaPrzezIndywiduumJako">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#ReprezentacjaWewnetrzna"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#stanowiUtworzonaPrzezIndywiduum"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoWynikDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaWynikowa"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#przyjmujeCel">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#przyjmuje"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#okreslaPrzejscie">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaPerlatywna"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#specjalizuje">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#BytSchematyczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#BytSchematyczny"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#posiadaWZakresie">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#pozostajeWZakresie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#przyjmujePlan">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#przyjmuje"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCelDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPojeciowoPokrywanyPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zbior"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#pojeciowoPokrywa"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoOkreslenieKierunkuSkad">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaAblatywna"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestZdefiniowaneW">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#definiuje">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#jestZdefiniowaneW"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoAgensa">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaAgentywna"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestAgensem"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCelemDzialania"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestObiektemDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaPacjensa-Obiektu"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#maJakoObiektDzialania"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoSkutekKonczony">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#SkutekKonczonyWykonaniemZadania"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.MyUri.com/myOntology#maJakoWynikDzialania"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestSposobemDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaSposobuWykonania"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoSposobDzialania"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzlonka">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zbior"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#realizuje">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#ObiektInformacyjny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RelizacjaInformacji"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWykorzystaneW">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#wykorzystuje"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoGlownyCel">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPodzielanaPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#podziela"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestBeneficjentemDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaPacjensa-Beneficjenta"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoBeneficjenta"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#podpadaPod">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Norma"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#WykonaniePlanu"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestNormaOpisujaca">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#WykonaniePlanu"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Norma"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#podpadaPod"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#zawieraWZakresie">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzlonkiem">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zbior"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#maJakoCzlonka"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maPodrzednyPlan">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestGlownymCelem">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Plan"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#maJakoGlownyCel"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#podziela">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#wprowadza">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoLokalizacjeDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaLokacyjna"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestSkutkiemRozpoczynanym">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#SkutekRozpoczynanyWykonaniemZadania"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#maJakoSkutekRozpoczynany"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWynikiemDzialania"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#spelnia">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestSpecjalizowanyPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#BytSchematyczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#BytSchematyczny"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#specjalizuje"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoPodrzednyCel">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#wykorzystuje">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestInstrumentemWDzialaniu">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaInstrumentalna"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoInstrumentDzialania"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWyrazonaPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#ObiektInformacyjny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#wyraza"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCelemDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#maJakoCelDzialania"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestUogolniajacoZjednoczonyPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#uogolniajacoJednoczy"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestKlasyfikowanyPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#klasyfikuje"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#powodujeZaistnienie">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#KolektywIntencjonalny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#zaistanialZPowodu"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestStosowanaDo">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AplikacjaNormy"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Norma"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestZastosowaniem"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="http://www.MyUri.com/myOntology#jestSpelnionaPrzez"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestZastosowaniem">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Norma"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AplikacjaNormy"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.MyUri.com/myOntology#spelnia"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWprowadzonyPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#wprowadza"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#wyraza">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#ObiektInformacyjny"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#stanowiUtworzonaPrzezIndywiduum">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#ReprezentacjaWewnetrzna"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maPredyspozycjeDo">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Rola"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#klasyfikuje">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#ponownieOpisuje">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoSposobDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaSposobuWykonania"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoInstrumentDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaInstrumentalna"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#ustanawia">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#tworzy">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#ReprezentacjaWewnetrzna"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentFizyczny"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#dzialaPoprzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestCzesciaWlasciwa">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#podlegaWplywowi">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Cel"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#wplywaNa"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestAgensem">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaAgentywna"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.MyUri.com/myOntology#maJakoCelDzialania"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoBeneficjenta">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaPacjensa-Beneficjenta"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestDelegowanePrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#interpretuje">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#BytBazowy"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestInterpretowanyPrzez"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoOkresleniePrzejscia">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaPerlatywna"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#okreslaPrzejscie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestRealizowanyPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RelizacjaInformacji"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#ObiektInformacyjny"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#realizuje"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestZreifikowanaCzynnoscia">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaReifikujaca"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoZreifikowanaCzynnosc"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestSkutkiemKonczonym">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#SkutekKonczonyWykonaniemZadania"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#maJakoSkutekKonczony"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWynikiemDzialania"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestPrzyjmowanaPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#przyjmujePlan"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.MyUri.com/myOntology#jestPodzielanaPrzez"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#pojeciowoPokrywa">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zbior"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#uogolniajacoJednoczy">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#zaistanialZPowodu">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#KolektywIntencjonalny"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoCzescWlasciwa">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestUstanawianaPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Sytuacja"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#ustanawia"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#dzialaNaRzecz">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#dzialaPoprzez"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#charakteryzuje">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zbior"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#jestCharakteryzowanyPrzez"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestWynikiemDzialania">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaWynikowa"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#maJakoWynikDzialania"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoOkreslenieKierunkuDokad">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaAdlatywna"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#deleguje">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Pojecie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#jestDelegowanePrzez"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#maJakoZreifikowanaCzynnosc">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#RolaReifikujaca"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#przyjmuje">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Deskrypcja"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.MyUri.com/myOntology#podziela"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#jestInterpretowanyPrzez">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#AgentSpoleczny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#BytBazowy"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#okreslaKierunekSkad">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Zadanie"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#RolaAblatywna"/>
+    <owl:inverseOf rdf:resource="http://www.MyUri.com/myOntology#maJakoOkreslenieKierunkuSkad"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#traktujeO">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#ObiektInformacyjny"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#znajdujeOdniesienieW"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.MyUri.com/myOntology#znajdujeOdniesienieW">
+    <rdfs:range rdf:resource="http://www.MyUri.com/myOntology#ObiektInformacyjny"/>
+    <rdfs:domain rdf:resource="http://www.MyUri.com/myOntology#Byt"/>
+  </owl:ObjectProperty>
+</rdf:RDF>

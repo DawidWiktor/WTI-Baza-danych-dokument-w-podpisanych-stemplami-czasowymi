@@ -365,8 +365,10 @@ def api_upload_file(request):
         user = tok.user
 
         name = request.FILES['file'].name
+        print("nazwa pliku " + name)
         name = name.replace(" ","_")
-        if Documents.objects.filter(file=name).exists():
+
+        if Documents.objects.filter(file=str(user.id) + "/" + name).exists():
             return JsonResponse({"status": "file exists"})
 
         # zapisywanie pliku i generowania hasha
