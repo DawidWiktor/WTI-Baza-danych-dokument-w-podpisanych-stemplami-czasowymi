@@ -49,7 +49,7 @@ namespace WTIStemple
 
 
                 //wysylanie wiadomosci 
-                WebRequest request = WebRequest.Create("http://localhost/test.php");
+                WebRequest request = WebRequest.Create("http://127.0.0.1:8000/api/register/");
                 request.Method = "POST";
                 byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
                 request.ContentType = "application/x-www-form-urlencoded";

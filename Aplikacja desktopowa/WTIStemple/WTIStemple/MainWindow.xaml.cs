@@ -64,7 +64,7 @@ namespace WTIStemple
 
 
             //wysylanie wiadomosci 
-            WebRequest request = WebRequest.Create("http://localhost/test.php");
+            WebRequest request = WebRequest.Create("http://127.0.0.1:8000/api/login/");
             request.Method = "POST";
             byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
             request.ContentType = "application/x-www-form-urlencoded";
@@ -82,10 +82,12 @@ namespace WTIStemple
             dataStream.Close();
             response.Close();
             JObject json = JObject.Parse(responseFromServer);
+           
 
-            if ((string)json["token"] != "error")
+            if (json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None) != "error")
             {
-                main wnd2 = new main((string)json["token"]);
+                MessageBox.Show(responseFromServer);
+                main wnd2 = new main(json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Length-2));
                 wnd2.Show();
                 this.Close();
             }

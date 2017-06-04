@@ -19,6 +19,7 @@ using System.Net.Http;
 using System.Collections.Specialized;
 using System.Web;
 using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace WTIStemple
 {
@@ -27,7 +28,8 @@ namespace WTIStemple
     /// </summary>
     public partial class addfileControl : UserControl
     {
-       
+        FileStream fs = null;
+        string filename = null;
         public addfileControl()
         {
             InitializeComponent();
@@ -40,18 +42,14 @@ namespace WTIStemple
             byte[] hashValue;
             if (result==true)
             {
-                string filename = openFileDialog.FileName;
+                filename = openFileDialog.FileName;
                 SHA256 mySHA256 = SHA256Managed.Create();
 
-                FileStream fs = File.Open(filename, FileMode.Open);
-                fs.Position = 0;
-                hashValue = mySHA256.ComputeHash(fs);
-                File.WriteAllBytes("testowy.txt", hashValue);
+                fs = File.Open(filename, FileMode.Open);
 
 
-                PrintByteArray(hashValue);
+               
                 // Close the file.
-               fs.Close();
             }
         }
         public static void PrintByteArray(byte[] array)
@@ -65,35 +63,51 @@ namespace WTIStemple
             }
             MessageBox.Show(message);
         }
-    
+
+
+        private string Upload(string actionUrl, string paramString, string fileName, Stream paramFileStream)
+        {
+            HttpContent stringContent = new StringContent(paramString);
+            HttpContent fileStreamContent = new StreamContent(paramFileStream);
+            string returnresult=null;
+            using (var client = new HttpClient())
+            using (var formData = new MultipartFormDataContent())
+            {
+                formData.Add(stringContent,  "token");
+                formData.Add(fileStreamContent, "file", fileName);
+                var response = client.PostAsync(actionUrl, formData).Result;
+                using (var res = response.Content)
+                {
+                    returnresult =  res.ToString();
+                    return returnresult;
+                }
+
+            }
+        }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //przygotowanie wiadomosci do wyslania
-            NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-            outgoingQueryString.Add("imie", "a");
-            outgoingQueryString.Add("nazwisko", "b");
-            string postdata = outgoingQueryString.ToString();
+
+            if (fs != null)
+            {
 
 
-            //wysylanie wiadomosci 
-            WebRequest request = WebRequest.Create("http://localhost/test.php");
-            request.Method = "POST";
-            byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
-            request.ContentType = "application/x-www-form-urlencoded";
-             request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
 
-            //otrzymywanie wiadomosci zwrotnej
-            WebResponse response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            MessageBox.Show("otrzymana odpowiedz: " + responseFromServer);
-            reader.Close();
-            dataStream.Close();
-            response.Close();
+
+
+                Upload("http://127.0.0.1:8000/api/upload/", container.sessiontoken, filename, fs);
+                //if ((string)json["status"] == "ok")
+               // {
+                    MessageBox.Show("Plik zostalpomyslnie zuploadowany");
+                    fs.Close();
+                    fs = null;
+               // }
+            }
+            else
+            {
+                MessageBox.Show("Nie wybrano pliku");
+            }
+
 
         }
     }
