@@ -93,7 +93,7 @@ public class MultipartUtility {
                 .append(LINE_FEED);
         writer.append(
                 "Content-Type: "
-                        + URLConnection.guessContentTypeFromName(fileName))
+                        + "application/octet-stream")
                 .append(LINE_FEED);
         writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
         writer.append(LINE_FEED);
@@ -108,7 +108,7 @@ public class MultipartUtility {
         outputStream.flush();
         inputStream.close();
 
-        writer.append(LINE_FEED);
+        //writer.append(LINE_FEED);
         writer.flush();
     }
 

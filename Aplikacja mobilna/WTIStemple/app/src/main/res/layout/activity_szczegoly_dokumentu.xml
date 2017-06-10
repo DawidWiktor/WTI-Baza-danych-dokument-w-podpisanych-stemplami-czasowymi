@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dawid.wtistemple.SzczegolyDokumentuActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+    android:id="@+id/scrollView3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/nazwaTemplate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nazwa pliku"
+                android:layout_marginTop="75dp"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/nazwaArtykuluTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:id="@+id/dataTemplate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data podpisania pliku"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/timestampTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <Button
+                android:id="@+id/pobierzBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pobierz"
+                android:layout_marginTop="20dp"
+                android:onClick="pobierzClick"/>
+
+            <Button
+                android:id="@+id/pobierzPlikMagnetycznyBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pobierz plik magnetyczny"
+                android:layout_marginTop="20dp"
+                android:onClick="pobierzPlikMagnetycznyClick"/>
+
+            <Button
+                android:id="@+id/usunPlikBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Usuń"
+                android:layout_marginTop="20dp"
+                android:onClick="usunClick"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

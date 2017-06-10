@@ -79,7 +79,7 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
         String haszPliku = "";
         String wynik = upload(plikPath);
         String status ="";
-        if(!wynik.equals(""))
+        if(wynik.equals(""))
         {
             JSONObject jsonObj = null;
             try {
@@ -121,11 +121,12 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         }
 
-        Snackbar snackbar =  Snackbar.make(activity.getCurrentFocus(), wynik,Snackbar.LENGTH_INDEFINITE);
+        Snackbar snackbar =  Snackbar.make(activity.getCurrentFocus(), haszPliku,Snackbar.LENGTH_INDEFINITE);
         View snackbarView = snackbar.getView();
         TextView tv= (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
         tv.setMaxLines(30);
         snackbar.show();
+
         return wiadomosc;
     }
 

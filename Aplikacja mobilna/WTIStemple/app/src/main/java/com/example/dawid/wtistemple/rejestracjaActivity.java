@@ -35,20 +35,6 @@ public class rejestracjaActivity extends AppCompatActivity{
     public void click(View view) {
 
         new RejestracjaAsync(this).execute();
-       /* String h = haslo.getText().toString();
-        String ph = phaslo.getText().toString();
-        String em = email.getText().toString();
-
-
-        if(Objects.equals(h, ph) ) { // sprawdzenie czy hasla sa identyczne oraz email
-
-            Intent intent = new Intent(rejestracjaActivity.this, menuActivity.class);
-            startActivity(intent);
-        }*/
 
     }
-
-
-
-
 }

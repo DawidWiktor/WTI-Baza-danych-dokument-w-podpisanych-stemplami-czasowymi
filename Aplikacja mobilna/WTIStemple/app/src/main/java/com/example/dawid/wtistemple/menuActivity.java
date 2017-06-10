@@ -36,6 +36,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class menuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -90,7 +91,8 @@ public class menuActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent;
         if (id == R.id.nav_camera) {
-
+            GlobalValue.listaArchiwum = new ArrayList<SzczegolyDokumentow>();
+            new ArchiwumAsync(this).execute("cos");
             intent = new Intent(menuActivity.this, ArchwiwumActivity.class);
             startActivity(intent);
         }

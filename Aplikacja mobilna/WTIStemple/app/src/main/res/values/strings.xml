@@ -33,7 +33,6 @@
     <string name="title_activity_archwiwum">Archiwum</string>
 
 
-
     # activity_moj_profil
     <string name="title_activity_moj_profil">Mój profil</string>
     <string name="zmianaHasla">Zmiana hasła</string>
@@ -44,5 +43,6 @@
     <string name="email">E-mail:</string>
     <string name="zmienEmail">Zmien e-mail</string>
     <string name="usunKonto">Usuń konto</string>
+    <string name="title_activity_szczegoly_dokumentu">SzczegolyDokumentuActivity</string>
 
 </resources>

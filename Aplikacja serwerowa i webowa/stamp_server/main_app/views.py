@@ -319,13 +319,13 @@ def api_delete_file(request):
     if request.method == 'POST':
         tok = Tokens.objects.get(key=request.POST.get('token'))
         if tok is None:
-            return JsonResponse({"status": "error"})
+            return JsonResponse({"del":{"status": "error"}})
         user = tok.user
 
         file_id = request.POST.get('file_id')
         doc = Documents.objects.filter(pk=file_id).first()
         if doc is None or doc.owner != user:
-            return JsonResponse({"status": "error"})
+            return JsonResponse({"del":{"status": "error"}})
 
         path = 'media/' + str(user.id)  # katalog w ktorym sa pliki
 
@@ -344,8 +344,8 @@ def api_delete_file(request):
         if os.path.isfile(doc_path):
             # usuniecie dokumentu z dysku
             os.remove(doc_path)
-        return JsonResponse({"status": "ok"})
-    return JsonResponse({"status": "error"})
+        return JsonResponse({"del":{"status": "ok"}})
+    return JsonResponse({"del":{"status": "error"}})
 
 def handle_uploaded_file(f, user):
     hasher = hashlib.sha256()
@@ -424,6 +424,8 @@ def api_check_magnet(request):
         lancuch = request.FILES['file'].read()
         lancuch = lancuch.decode("utf-8")  # konwersja kodowania z bytes na string utf-8
 
+
+        print(lancuch)
         # --
         print(string_sha256(lancuch.encode('utf-8')))
         # --
