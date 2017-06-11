@@ -25,4 +25,6 @@ urlpatterns = [
     url(r'^api/download_magnet/$', views.api_download_magnet_file, name='api_download_magnet_file'),
     url(r'^api/check_magnet/$', views.api_check_magnet, name='api_check_magnet'),
     url(r'^api/download_file/$', views.api_download_file, name='api_download_file'),
+    url(r'^api/check_magnet2/$', views.api_check_magnet2, name='api_check_magnet2'),
+    url(r'^api/download_file2/$', views.api_download_file2, name='api_download_file2'),
 ]

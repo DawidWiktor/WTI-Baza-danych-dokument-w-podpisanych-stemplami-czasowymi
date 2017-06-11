@@ -454,7 +454,7 @@ def api_download_file(request):
     if request.method == 'POST' and request.FILES['file']:
         tok = Tokens.objects.get(key=request.POST.get('token'))
         if tok is None:
-            return JsonResponse({"status": "error"})
+            return JsonResponse({"magnet":{"status": "error"}})
 
         lancuch = request.FILES['file'].read()
         lancuch = lancuch.decode("utf-8")  # konwersja kodowania z bytes na string utf-8
@@ -464,11 +464,63 @@ def api_download_file(request):
         try:
             signed_hash = signer.unsign(lancuch)
         except BadSignature:
-            return JsonResponse({"status": "bad sign"})
+            return JsonResponse({"magnet":{"status": "bad sign"}})
 
         doc = Documents.objects.filter(hash=signed_hash).first()  # szukam pliku do ktorego kieruje magnet
         path = "media/" + doc.file.name
         if doc and os.path.isfile(path):
             return FileResponse(open(path, 'rb'))
         else:
-            return JsonResponse({"status": "file not exists"})
+            return JsonResponse({"magnet":{"status": "file not exists"}})
+
+
+@csrf_exempt
+def api_check_magnet2(request):
+    if request.method == 'POST' and request.FILES['file']:
+        lancuch = request.FILES['file'].read()
+        lancuch = lancuch.decode("utf-8")  # konwersja kodowania z bytes na string utf-8
+
+
+        print(lancuch)
+        # --
+        print(string_sha256(lancuch.encode('utf-8')))
+        # --
+
+        # sprawdzenie podpisu
+        signer = Signer()  # salt='jakas_sol'
+        try:
+            signed_hash = signer.unsign(lancuch)
+        except BadSignature:
+            return JsonResponse({"magnet":{"status": "bad sign"}})
+
+        doc = Documents.objects.filter(hash=signed_hash).first()  # szukam pliku do ktorego kieruje magnet
+        if doc and os.path.isfile("media/" + doc.file.name):
+            data = {
+                "id": str(doc.id),
+                "nazwa": str(doc.file).split("/")[1],
+                "timestamp": str(doc.timestamp),
+                "autor": str(doc.owner.username)
+            }
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"magnet":{"status": "file not exists"}})
+
+@csrf_exempt
+def api_download_file2(request):
+    if request.method == 'POST' and request.FILES['file']:
+        lancuch = request.FILES['file'].read()
+        lancuch = lancuch.decode("utf-8")  # konwersja kodowania z bytes na string utf-8
+
+        # sprawdzenie podpisu
+        signer = Signer()
+        try:
+            signed_hash = signer.unsign(lancuch)
+        except BadSignature:
+            return JsonResponse({"magnet":{"status": "bad sign"}})
+
+        doc = Documents.objects.filter(hash=signed_hash).first()  # szukam pliku do ktorego kieruje magnet
+        path = "media/" + doc.file.name
+        if doc and os.path.isfile(path):
+            return FileResponse(open(path, 'rb'))
+        else:
+            return JsonResponse({"magnet":{"status": "file not exists"}})
