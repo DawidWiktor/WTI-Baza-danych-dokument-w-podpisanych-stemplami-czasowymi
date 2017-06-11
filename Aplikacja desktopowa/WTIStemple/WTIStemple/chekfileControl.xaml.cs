@@ -26,6 +26,7 @@ namespace WTIStemple
     public partial class chekfileControl : UserControl
     {
         FileStream fs = null;
+        FileStream copyfs = null;
         string filename = null;
         public string fileid = null;
         public chekfileControl()
@@ -50,13 +51,17 @@ namespace WTIStemple
         {
             try
             {
+                fs.CopyTo(copyfs);
                 HttpContent stringContent = new StringContent(paramString);
+                
                 HttpContent fileStreamContent = new StreamContent(paramFileStream);
                 string returnresult = null;
                 using (var client = new HttpClient())
                 using (var formData = new MultipartFormDataContent())
                 {
-                    formData.Add(stringContent, "token");
+                    
+                        formData.Add(stringContent, "token");
+                    
                     formData.Add(fileStreamContent, "file", fileName);
                     var response = client.PostAsync(actionUrl, formData).Result;
                     var res = response.Content.ReadAsStringAsync().Result;
@@ -67,6 +72,32 @@ namespace WTIStemple
             catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); return null; }
 
         }
+
+
+        private Stream Upload2(string actionUrl,  string fileName, Stream paramFileStream)
+        {
+
+
+            HttpContent stringContent = new StringContent("x");
+
+            HttpContent fileStreamContent = new StreamContent(paramFileStream);
+            string returnresult = null;
+            using (var client = new HttpClient())
+            using (var formData = new MultipartFormDataContent())
+            {
+
+                formData.Add(stringContent, "token");
+
+                formData.Add(fileStreamContent, "file", fileName);
+                var response = client.PostAsync(actionUrl, formData).Result;
+                var res = response.Content.ReadAsStreamAsync().Result;
+                
+                return res;
+            }
+           
+            
+        }
+
 
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -87,11 +118,13 @@ namespace WTIStemple
                         fileid = json["id"].ToString();
                         describeTB.Visibility = Visibility.Visible;
                         downloadButton.Visibility = Visibility.Visible;
+                        filename = json["nazwa"].ToString();
                     }
                 }
-                catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); }
-
-            }
+                catch (Exception exc) { }
+                }
+               
+           
             else
             {
                 MessageBox.Show("Nie wybrano pliku");
@@ -102,37 +135,26 @@ namespace WTIStemple
         {
             var dialog = new SaveFileDialog();
             dialog.Filter = "wszystkie pliki (*.*)|*.*";
+            dialog.FileName = filename;
             var result = dialog.ShowDialog(); //shows save file dialog
 
-            try
-            {
-                //przygotowanie wiadomosci do wyslania
+           
+
                 NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-                outgoingQueryString.Add("token", container.sessiontoken);
-                outgoingQueryString.Add("file_id", fileid);
-                string postdata = outgoingQueryString.ToString();
-
-                //wysylanie wiadomosci 
-                WebRequest request = WebRequest.Create(container.addresweb + "/api/download_magnet/");
-                request.Method = "POST";
-                byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = byteArray.Length;
-                Stream dataStream = request.GetRequestStream();
-                dataStream.Write(byteArray, 0, byteArray.Length);
-                dataStream.Close();
-
-                //otrzymana odpowiedz
-                WebResponse response = request.GetResponse();
-                dataStream = response.GetResponseStream();
-                using (Stream output = System.IO.File.OpenWrite(dialog.FileName))
-                using (Stream input = dataStream)
+                var response = Upload2(container.addresweb + "/api/download_file2/",  filename, copyfs);
+                if (response != null)
                 {
-                    input.CopyTo(output);
+                //otrzymana odpowiedz
+
+                Stream dataStream = response;
+                    using (Stream output = System.IO.File.OpenWrite(dialog.FileName))
+                    using (Stream input = dataStream)
+                    {
+                        input.CopyTo(output);
+                    }
                 }
             }
-            catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); }
-
+            
         }
     }
-}
+
