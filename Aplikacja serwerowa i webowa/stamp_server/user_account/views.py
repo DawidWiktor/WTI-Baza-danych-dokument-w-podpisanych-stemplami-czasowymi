@@ -148,6 +148,8 @@ def change_email(request):
 def account_delete(request):
     user = get_object_or_404(User, username=request.user)
     user.is_active = False  # TODO: usuwac czy deaktywowac uzytkownika??
+    user.save()
     # user.delete()  # usuwa uzytkownika i wszystkie dane z nim powiazane
+    logout(request)
     messages.success(request, 'Usunięto konto.')
     return redirect('main_app:start_page')
