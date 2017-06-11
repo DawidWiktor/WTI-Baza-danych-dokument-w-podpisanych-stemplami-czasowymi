@@ -19,6 +19,7 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 
 namespace WTIStemple
 {
@@ -34,6 +35,10 @@ namespace WTIStemple
 
     public partial class MainWindow : Window
     {
+        FileStream fs = null;
+        FileStream copyfs = null;
+        string filename = null;
+        string filenamemagnetic = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -44,7 +49,14 @@ namespace WTIStemple
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
+            var result = openFileDialog.ShowDialog();
+
+            if (result == true)
+            {
+                filenamemagnetic = openFileDialog.FileName;
+                fs = File.Open(filenamemagnetic, FileMode.Open);
+                filenameTB.Text ="Nazwa wybranego pliku: \n"+ System.IO.Path.GetFileName(fs.Name);
+            }
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -99,6 +111,108 @@ namespace WTIStemple
             }
             catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); }
 
+        }
+
+        private string Upload(string actionUrl, string paramString, string fileName, Stream paramFileStream)
+        {
+            try
+            {
+                HttpContent fileStreamContent = new StreamContent(paramFileStream);
+                string returnresult = null;
+                using (var client = new HttpClient())
+                using (var formData = new MultipartFormDataContent())
+                {
+                    formData.Add(fileStreamContent, "file", fileName);
+                    var response = client.PostAsync(actionUrl, formData).Result;
+                    var res = response.Content.ReadAsStringAsync().Result;
+                    returnresult = res.ToString();
+                    return returnresult;
+                    
+                }
+              
+            }
+            catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); return null; }
+
+        }
+
+        private Stream Upload2(string actionUrl, string fileName, Stream paramFileStream)
+        {
+
+            copyfs = File.Open(filenamemagnetic, FileMode.Open);
+
+            HttpContent fileStreamContent = new StreamContent(copyfs);
+            string returnresult = null;
+            using (var client = new HttpClient())
+            using (var formData = new MultipartFormDataContent())
+            {
+
+
+                formData.Add(fileStreamContent, "file", fileName);
+                var response = client.PostAsync(actionUrl, formData).Result;
+                var res = response.Content.ReadAsStreamAsync().Result;
+
+                return res;
+            }
+
+
+        }
+
+        private void downloadFilefromMagnet(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SaveFileDialog();
+            dialog.Filter = "wszystkie pliki (*.*)|*.*";
+            dialog.FileName = filename;
+            var result = dialog.ShowDialog(); //shows save file dialog
+
+
+            try
+            {
+                NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
+                var response = Upload2(container.addresweb + "/api/download_file2/", filename, copyfs);
+                if (response != null)
+                {
+                    //otrzymana odpowiedz
+
+                    Stream dataStream = response;
+                    using (Stream output = System.IO.File.OpenWrite(dialog.FileName))
+                    using (Stream input = dataStream)
+                    {
+                        input.CopyTo(output);
+                    }
+                }
+            }
+            catch (Exception exc) { MessageBox.Show("Wystapil blad podczas polaczenia z serwerem"); }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (fs != null)
+            {
+                try
+                {
+                    NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
+                    string response = Upload(container.addresweb + "/api/check_magnet2/", container.sessiontoken, filenamemagnetic, fs);
+                    MessageBox.Show("otrzymana wiadomosc " + response);
+                    if (response != null)
+                    {
+                        JObject json = JObject.Parse(response);
+
+                        describeTB.Text = "ID: " + json["id"].ToString() + "\nNazwa: "
+                            + json["nazwa"].ToString() + "\nAutor: " + json["autor"].ToString() + "\nCzas dodania: " +
+                            json["timestamp"].ToString();
+                        describeTB.Visibility = Visibility.Visible;
+                        downloadButton.Visibility = Visibility.Visible;
+                        filename = json["nazwa"].ToString();
+                    }
+                }
+                catch (Exception exc) { }
+            }
+
+
+            else
+            {
+                MessageBox.Show("Nie wybrano pliku");
+            }
         }
     }
 }

@@ -28,6 +28,7 @@ namespace WTIStemple
         FileStream fs = null;
         FileStream copyfs = null;
         string filename = null;
+        string filenamemagnetic = null;
         public string fileid = null;
         public chekfileControl()
         {
@@ -41,17 +42,21 @@ namespace WTIStemple
 
             if (result == true)
             {
-                filename = openFileDialog.FileName;
-                fs = File.Open(filename, FileMode.Open);
+                filenamemagnetic = openFileDialog.FileName;
+                fs = File.Open(filenamemagnetic, FileMode.Open);
+                fileopenTB.Text = "Nazwa otwartego pliku:\n" + System.IO.Path.GetFileName(fs.Name);
+
             }
         }
 
 
         private string Upload(string actionUrl, string paramString, string fileName, Stream paramFileStream)
         {
+           
+
             try
             {
-                fs.CopyTo(copyfs);
+                
                 HttpContent stringContent = new StringContent(paramString);
                 
                 HttpContent fileStreamContent = new StreamContent(paramFileStream);
@@ -77,10 +82,10 @@ namespace WTIStemple
         private Stream Upload2(string actionUrl,  string fileName, Stream paramFileStream)
         {
 
-
+            copyfs = File.Open(filenamemagnetic, FileMode.Open);
             HttpContent stringContent = new StringContent("x");
 
-            HttpContent fileStreamContent = new StreamContent(paramFileStream);
+            HttpContent fileStreamContent = new StreamContent(copyfs);
             string returnresult = null;
             using (var client = new HttpClient())
             using (var formData = new MultipartFormDataContent())
@@ -107,7 +112,7 @@ namespace WTIStemple
                 try
                 {
                     NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-                    string response = Upload(container.addresweb + "/api/check_magnet/", container.sessiontoken, filename, fs);
+                    string response = Upload(container.addresweb + "/api/check_magnet/", container.sessiontoken, filenamemagnetic, fs);
                     if (response != null)
                     {
                         JObject json = JObject.Parse(response);
@@ -138,21 +143,24 @@ namespace WTIStemple
             dialog.FileName = filename;
             var result = dialog.ShowDialog(); //shows save file dialog
 
-           
 
+            try
+            {
                 NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-                var response = Upload2(container.addresweb + "/api/download_file2/",  filename, copyfs);
+                var response = Upload2(container.addresweb + "/api/download_file2/", filename, copyfs);
                 if (response != null)
                 {
-                //otrzymana odpowiedz
+                    //otrzymana odpowiedz
 
-                Stream dataStream = response;
+                    Stream dataStream = response;
                     using (Stream output = System.IO.File.OpenWrite(dialog.FileName))
                     using (Stream input = dataStream)
                     {
                         input.CopyTo(output);
                     }
                 }
+            }
+            catch (Exception exc) { MessageBox.Show("Wystapil blad podczas polaczenia z serwerem"); }
             }
             
         }

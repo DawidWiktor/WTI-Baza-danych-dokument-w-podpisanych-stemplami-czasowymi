@@ -43,6 +43,7 @@ namespace WTIStemple
             {
                 filename = openFileDialog.FileName;
                 fs = File.Open(filename, FileMode.Open);
+                fileopenTB.Text = "Nazwa otwartego pliku: "+System.IO.Path.GetFileName(fs.Name);
             }
         }
       
@@ -62,6 +63,7 @@ namespace WTIStemple
                 using (var res = response.Content)
                 {
                     returnresult =  res.ToString();
+                    fileopenTB.Text = "";
                     return returnresult;
                 }
             }
