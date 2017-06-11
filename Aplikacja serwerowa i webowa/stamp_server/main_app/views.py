@@ -238,6 +238,8 @@ def api_del_account(request):
         return JsonResponse({"del":{"status": "error"}})
     user = tok.user
     user.is_active = False
+    user.save()
+    tok.delete()
     # user.delete()  # usuwa uzytkownika i wszystkie dane z nim powiazane
     return JsonResponse({"del":{"status": "ok"}})
 
