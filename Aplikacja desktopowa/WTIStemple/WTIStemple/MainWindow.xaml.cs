@@ -49,6 +49,7 @@ namespace WTIStemple
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "plik magnetyczny (*.magnetic)|*.magnetic|wszystkie pliki (*.*)|*.*";
             var result = openFileDialog.ShowDialog();
 
             if (result == true)
@@ -97,7 +98,7 @@ namespace WTIStemple
                 response.Close();
                 JObject json = JObject.Parse(responseFromServer);
 
-                if (json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None) != "error")
+                if (json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Length - 2) != "error")
                 {
                     container.sessiontoken = json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
                     main wnd2 = new main();

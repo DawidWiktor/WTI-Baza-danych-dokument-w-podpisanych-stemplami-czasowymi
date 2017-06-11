@@ -11,6 +11,7 @@
 
         <ListBox IsSynchronizedWithCurrentItem="True"
         Name="tbFile" ItemsSource="{Binding}"
+                 SelectedItem="BackgrounColor=white"
          Margin="19,87,20,12" RenderTransformOrigin="0.5,0.5" >
             <ListBox.RenderTransform>
                 <TransformGroup>

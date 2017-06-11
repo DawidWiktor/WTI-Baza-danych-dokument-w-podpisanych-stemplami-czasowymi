@@ -82,7 +82,7 @@ namespace WTIStemple
          
             var dialog = new SaveFileDialog();
             dialog.FileName = file.name;
-            dialog.Filter = "PDF (*.pdf)|*.pdf|wszystkie pliki (*.*)|*.*|txt (*.txt)|*.txt|rar (*.rar)|*.rar|docx (*.docx)|*.docx";
+            dialog.Filter = "PDF (*.pdf)|*.pdf|wszystkie pliki (*.*)|*.*|txt (*.txt)|*.txt|rar (*.rar)|*.rar|docx (*.docx)|*.docx|plikmagnetyczny (*.magnetic)|*.magnetic";
             var result = dialog.ShowDialog(); //shows save file dialog
             try
             {
@@ -99,7 +99,7 @@ namespace WTIStemple
             FileFromSerwer file = (FileFromSerwer)button.DataContext;
 
             var dialog = new SaveFileDialog();
-            dialog.FileName = file.name+".mag";
+            dialog.FileName = file.name+"-"+file.timestamp+".magnetic";
             dialog.Filter = "plik magnetyczny (*.magnetic)|*.magnetic|wszystkie pliki (*.*)|*.*";
             var result = dialog.ShowDialog(); //shows save file dialog
 

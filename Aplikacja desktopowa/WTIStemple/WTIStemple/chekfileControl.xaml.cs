@@ -139,7 +139,7 @@ namespace WTIStemple
         private void downloadFilefromMagnet(object sender, RoutedEventArgs e)
         {
             var dialog = new SaveFileDialog();
-            dialog.Filter = "wszystkie pliki (*.*)|*.*";
+            dialog.Filter = "PDF (*.pdf)|*.pdf|wszystkie pliki (*.*)|*.*|txt (*.txt)|*.txt|rar (*.rar)|*.rar|docx (*.docx)|*.docx|plikmagnetyczny (*.magnetic)|*.magnetic";
             dialog.FileName = filename;
             var result = dialog.ShowDialog(); //shows save file dialog
 
