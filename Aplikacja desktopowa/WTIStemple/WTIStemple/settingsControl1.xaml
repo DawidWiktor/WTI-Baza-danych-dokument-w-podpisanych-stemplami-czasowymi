@@ -12,14 +12,17 @@
         <Label Content="stare hasło" HorizontalAlignment="Left" Margin="30,150,0,0" VerticalAlignment="Top"/>
         <Label Content="powtórz nowe hasło" HorizontalAlignment="Left" Margin="30,286,0,0" VerticalAlignment="Top"/>
         <Label Content="nowe hasło" HorizontalAlignment="Left" Margin="30,218,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.732,1.626"/>
-        <TextBlock HorizontalAlignment="Left" Margin="382,103,0,0" TextWrapping="Wrap" Text="zmiana adresu e-mail" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="nowy adres e-mail" HorizontalAlignment="Left" Margin="382,150,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="382,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="30,181,0,0" VerticalAlignment="Top" Width="144"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="30,249,0,0" VerticalAlignment="Top" Width="144"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="30,317,0,0" VerticalAlignment="Top" Width="144"/>
-        <Button Content="usuń konto" HorizontalAlignment="Left" Margin="702,113,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="zmień" HorizontalAlignment="Left" Margin="30,350,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock HorizontalAlignment="Left" Margin="293,103,0,0" TextWrapping="Wrap" Text="zmiana adresu e-mail" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="nowy adres e-mail" HorizontalAlignment="Left" Margin="293,150,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="emailinput"  HorizontalAlignment="Left" Height="23" Margin="293,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox Name="oldPassword" HorizontalAlignment="Left" Margin="30,181,0,0" VerticalAlignment="Top" Width="144"/>
+        <PasswordBox Name="newPassword1" HorizontalAlignment="Left" Margin="30,249,0,0" VerticalAlignment="Top" Width="144"/>
+        <PasswordBox Name="newPassword2" HorizontalAlignment="Left" Margin="30,317,0,0" VerticalAlignment="Top" Width="144"/>
+        <Button Content="usuń konto" HorizontalAlignment="Left" Margin="680,159,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.156,0.734" Click="Button_Click_2"/>
+        <Button Content="zmień" HorizontalAlignment="Left" Margin="30,350,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="zmień" HorizontalAlignment="Left" Margin="293,248,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.141,0.497" Click="Button_Click_1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="583,103,0,0" TextWrapping="Wrap" Text="usunięcie konta" VerticalAlignment="Top" FontSize="20"/>
+        <RadioButton Name="deletaccountRB" Content="chce usunąć" HorizontalAlignment="Left" Margin="583,162,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

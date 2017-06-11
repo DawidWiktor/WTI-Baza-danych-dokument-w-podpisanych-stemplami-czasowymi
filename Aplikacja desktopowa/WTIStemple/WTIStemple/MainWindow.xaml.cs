@@ -28,7 +28,7 @@ namespace WTIStemple
         public static string sessiontoken = null;
         public static ObservableCollection<FileFromSerwer> filelist;
         public static ListBox lb;
-
+        public static main window;
     }
 
     public partial class MainWindow : Window

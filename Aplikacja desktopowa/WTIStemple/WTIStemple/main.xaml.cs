@@ -29,7 +29,7 @@ namespace WTIStemple
         public main()
         {
             InitializeComponent();
-           
+            container.window = this;
          
         }
 
