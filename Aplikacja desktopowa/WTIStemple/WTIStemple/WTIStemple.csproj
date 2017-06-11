@@ -82,6 +82,7 @@
     <Compile Include="chekfileControl.xaml.cs">
       <DependentUpon>chekfileControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FileFromSerwer.cs" />
     <Compile Include="main.xaml.cs">
       <DependentUpon>main.xaml</DependentUpon>
     </Compile>

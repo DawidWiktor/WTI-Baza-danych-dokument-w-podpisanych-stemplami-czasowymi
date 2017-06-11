@@ -39,17 +39,10 @@ namespace WTIStemple
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             var result= openFileDialog.ShowDialog();
-            byte[] hashValue;
             if (result==true)
             {
                 filename = openFileDialog.FileName;
-                SHA256 mySHA256 = SHA256Managed.Create();
-
                 fs = File.Open(filename, FileMode.Open);
-
-
-               
-                // Close the file.
             }
         }
       
@@ -71,34 +64,24 @@ namespace WTIStemple
                     returnresult =  res.ToString();
                     return returnresult;
                 }
-
             }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
             if (fs != null)
             {
-
-
                 NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-
-                Upload("http://127.0.0.1:8000/api/upload/", container.sessiontoken, filename, fs);
-                //if ((string)json["status"] == "ok")
-               // {
+                Upload(container.addresweb + "/api/upload/", container.sessiontoken, filename, fs);
                     MessageBox.Show("Plik zostal pomyslnie zuploadowany");
                     fs.Close();
                     fs = null;
-
                 outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-
                 outgoingQueryString.Add("token", container.sessiontoken);
-
                 string postdata = outgoingQueryString.ToString();
 
                 //wysylanie wiadomosci 
-                WebRequest request = WebRequest.Create("http://127.0.0.1:8000/api/archives/");
+                WebRequest request = WebRequest.Create(container.addresweb + "/api/archives/");
                 request.Method = "POST";
                 byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
                 request.ContentType = "application/x-www-form-urlencoded";
@@ -117,37 +100,24 @@ namespace WTIStemple
                 response.Close();
                 JObject json = JObject.Parse(responseFromServer);
 
-
                 JArray items = (JArray)json["docs"];
                 for (int i = 0; i < items.Count; i++)
                 {
                     string id = json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-
                     string name = json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-
                     string timestamp = json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-
                     string author = json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-
                     string downloadlink = json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-
                     container.filelist.Add(new FileFromSerwer() { id = id, name = name, timestamp = timestamp, author = author, download_link = downloadlink });
-
                 }
 
                 InitializeComponent();
-               container.lb.DataContext = container.filelist;
-
-
-
-                // }
+                container.lb.DataContext = container.filelist;
             }
             else
             {
                 MessageBox.Show("Nie wybrano pliku");
             }
-
-
         }
     }
 }

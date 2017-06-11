@@ -29,6 +29,7 @@ namespace WTIStemple
         public static ObservableCollection<FileFromSerwer> filelist;
         public static ListBox lb;
         public static main window;
+        public static string addresweb = "http://127.0.0.1:8000";
     }
 
     public partial class MainWindow : Window
@@ -38,21 +39,16 @@ namespace WTIStemple
             InitializeComponent();
         }
 
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e){}
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
-        {
-           
+        {  
             register wnd = new register();
             wnd.Owner = this;
             wnd.Show();
@@ -61,17 +57,14 @@ namespace WTIStemple
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-
-
             //przygotowanie wiadomosci do wyslania
             NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
             outgoingQueryString.Add("username", loginTextBox.Text);
             outgoingQueryString.Add("password", passwordBox.Password.ToString());
             string postdata = outgoingQueryString.ToString();
 
-
             //wysylanie wiadomosci 
-            WebRequest request = WebRequest.Create("http://127.0.0.1:8000/api/login/");
+            WebRequest request = WebRequest.Create(container.addresweb+"/api/login/");
             request.Method = "POST";
             byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
             request.ContentType = "application/x-www-form-urlencoded";
@@ -90,7 +83,6 @@ namespace WTIStemple
             response.Close();
             JObject json = JObject.Parse(responseFromServer);
            
-
             if (json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None) != "error")
             {
                 container.sessiontoken = json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
