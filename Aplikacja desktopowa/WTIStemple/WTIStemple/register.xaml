@@ -12,10 +12,10 @@
         <Label x:Name="label1" Content="hasło:" HorizontalAlignment="Left" Margin="19,122,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label2" Content="powtórz hasło:" HorizontalAlignment="Left" Margin="19,165,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.313,-0.002"/>
         <Label x:Name="label3" Content="adres e-mail:" HorizontalAlignment="Left" Margin="23,215,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="141,79,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Margin="141,130,0,0" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="141,173,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Height="23" Margin="141,218,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="141,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="passwrdTextBox" HorizontalAlignment="Left" Margin="141,130,0,0" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="passwordTextBox1" HorizontalAlignment="Left" Margin="141,173,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Height="23" Margin="141,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="button" Content="zarejestruj się" HorizontalAlignment="Left" Margin="186,314,0,0" VerticalAlignment="Top" Width="75" Height="21" Click="button_Click"/>
         <Button x:Name="button1" Content="wstecz" HorizontalAlignment="Left" Margin="32,314,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
     </Grid>

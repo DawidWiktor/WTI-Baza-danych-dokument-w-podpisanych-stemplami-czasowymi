@@ -48,19 +48,24 @@ namespace WTIStemple
 
         private string Upload(string actionUrl, string paramString, string fileName, Stream paramFileStream)
         {
-            HttpContent stringContent = new StringContent(paramString);
-            HttpContent fileStreamContent = new StreamContent(paramFileStream);
-            string returnresult = null;
-            using (var client = new HttpClient())
-            using (var formData = new MultipartFormDataContent())
+            try
             {
-                formData.Add(stringContent, "token");
-                formData.Add(fileStreamContent, "file", fileName);
-                var response = client.PostAsync(actionUrl, formData).Result;
-                var res = response.Content.ReadAsStringAsync().Result;
-                returnresult = res.ToString();
-                return returnresult;
+                HttpContent stringContent = new StringContent(paramString);
+                HttpContent fileStreamContent = new StreamContent(paramFileStream);
+                string returnresult = null;
+                using (var client = new HttpClient())
+                using (var formData = new MultipartFormDataContent())
+                {
+                    formData.Add(stringContent, "token");
+                    formData.Add(fileStreamContent, "file", fileName);
+                    var response = client.PostAsync(actionUrl, formData).Result;
+                    var res = response.Content.ReadAsStringAsync().Result;
+                    returnresult = res.ToString();
+                    return returnresult;
+                }
             }
+            catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); return null; }
+
         }
 
 
@@ -68,16 +73,24 @@ namespace WTIStemple
         {
             if (fs != null)
             {
-                NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-                string  response = Upload(container.addresweb + "/api/check_magnet/", container.sessiontoken, filename, fs);
-                JObject json = JObject.Parse(response);
+                try
+                {
+                    NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
+                    string response = Upload(container.addresweb + "/api/check_magnet/", container.sessiontoken, filename, fs);
+                    if (response != null)
+                    {
+                        JObject json = JObject.Parse(response);
 
-                describeTB.Text ="ID: "+ json["id"].ToString()+"\nNazwa: "
-                    + json["nazwa"].ToString()+"\nAutor: " + json["autor"].ToString()+"\nCzas dodania: "+
-                    json["timestamp"].ToString();
-                fileid = json["id"].ToString();
-                describeTB.Visibility= Visibility.Visible;
-                downloadButton.Visibility= Visibility.Visible;
+                        describeTB.Text = "ID: " + json["id"].ToString() + "\nNazwa: "
+                            + json["nazwa"].ToString() + "\nAutor: " + json["autor"].ToString() + "\nCzas dodania: " +
+                            json["timestamp"].ToString();
+                        fileid = json["id"].ToString();
+                        describeTB.Visibility = Visibility.Visible;
+                        downloadButton.Visibility = Visibility.Visible;
+                    }
+                }
+                catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); }
+
             }
             else
             {
@@ -91,30 +104,35 @@ namespace WTIStemple
             dialog.Filter = "wszystkie pliki (*.*)|*.*";
             var result = dialog.ShowDialog(); //shows save file dialog
 
-            //przygotowanie wiadomosci do wyslania
-            NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-            outgoingQueryString.Add("token", container.sessiontoken);
-            outgoingQueryString.Add("file_id", fileid);
-            string postdata = outgoingQueryString.ToString();
-
-            //wysylanie wiadomosci 
-            WebRequest request = WebRequest.Create(container.addresweb + "/api/download_magnet/");
-            request.Method = "POST";
-            byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-
-            //otrzymana odpowiedz
-            WebResponse response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-            using (Stream output = System.IO.File.OpenWrite(dialog.FileName))
-            using (Stream input = dataStream)
+            try
             {
-                input.CopyTo(output);
+                //przygotowanie wiadomosci do wyslania
+                NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
+                outgoingQueryString.Add("token", container.sessiontoken);
+                outgoingQueryString.Add("file_id", fileid);
+                string postdata = outgoingQueryString.ToString();
+
+                //wysylanie wiadomosci 
+                WebRequest request = WebRequest.Create(container.addresweb + "/api/download_magnet/");
+                request.Method = "POST";
+                byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = byteArray.Length;
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
+
+                //otrzymana odpowiedz
+                WebResponse response = request.GetResponse();
+                dataStream = response.GetResponseStream();
+                using (Stream output = System.IO.File.OpenWrite(dialog.FileName))
+                using (Stream input = dataStream)
+                {
+                    input.CopyTo(output);
+                }
             }
+            catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); }
+
         }
     }
 }

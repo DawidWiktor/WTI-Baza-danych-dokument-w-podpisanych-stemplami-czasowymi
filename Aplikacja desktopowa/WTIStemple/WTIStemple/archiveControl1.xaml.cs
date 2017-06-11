@@ -30,43 +30,46 @@ namespace WTIStemple
     {
         public archiveControl1()
         {
-            //przygotowanie wiadomosci do wyslania
-            NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-            outgoingQueryString.Add("token", container.sessiontoken);
-            string postdata = outgoingQueryString.ToString();
-
-            //wysylanie wiadomosci 
-            WebRequest request = WebRequest.Create(container.addresweb + "/api/archives/");
-            request.Method = "POST";
-            byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-
-            //otrzymywanie wiadomosci zwrotnej
-            WebResponse response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            JObject json = JObject.Parse(responseFromServer);
-
-            JArray items = (JArray)json["docs"];
-            container.filelist = new ObservableCollection<FileFromSerwer>();
-            for (int i = 0; i < items.Count; i++)
+            try
             {
-                string id= json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                string name = json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                string timestamp = json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                string author = json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                string downloadlink = json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                container.filelist.Add(new FileFromSerwer() { id = id, name=name, timestamp=timestamp, author=author, download_link=downloadlink });             
-        }
+                //przygotowanie wiadomosci do wyslania
+                NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
+                outgoingQueryString.Add("token", container.sessiontoken);
+                string postdata = outgoingQueryString.ToString();
 
+                //wysylanie wiadomosci 
+                WebRequest request = WebRequest.Create(container.addresweb + "/api/archives/");
+                request.Method = "POST";
+                byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = byteArray.Length;
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
+
+                //otrzymywanie wiadomosci zwrotnej
+                WebResponse response = request.GetResponse();
+                dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                JObject json = JObject.Parse(responseFromServer);
+
+                JArray items = (JArray)json["docs"];
+                container.filelist = new ObservableCollection<FileFromSerwer>();
+                for (int i = 0; i < items.Count; i++)
+                {
+                    string id = json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                    string name = json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                    string timestamp = json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                    string author = json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                    string downloadlink = json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                    container.filelist.Add(new FileFromSerwer() { id = id, name = name, timestamp = timestamp, author = author, download_link = downloadlink });
+                }
+            }
+            catch (Exception exc) { MessageBox.Show("wystapil problem z serwerem"); }
             InitializeComponent();
             tbFile.DataContext = container.filelist;
             container.lb = tbFile;
@@ -81,8 +84,12 @@ namespace WTIStemple
             dialog.FileName = file.name;
             dialog.Filter = "PDF (*.pdf)|*.pdf|wszystkie pliki (*.*)|*.*|txt (*.txt)|*.txt|rar (*.rar)|*.rar|docx (*.docx)|*.docx";
             var result = dialog.ShowDialog(); //shows save file dialog
-            var wClient = new WebClient();
-            wClient.DownloadFile("http://"+file.download_link, dialog.FileName);
+            try
+            {
+                var wClient = new WebClient();
+                wClient.DownloadFile("http://" + file.download_link, dialog.FileName);
+            }
+            catch (Exception exc) { MessageBox.Show("wystapil problem podczas sciagania pliku"); }
         }
 
 
@@ -101,26 +108,28 @@ namespace WTIStemple
             outgoingQueryString.Add("token", container.sessiontoken);
             outgoingQueryString.Add("file_id",file.id);            
             string postdata = outgoingQueryString.ToString();
-
-            //wysylanie wiadomosci 
-            WebRequest request = WebRequest.Create(container.addresweb + "/api/download_magnet/");
-            request.Method = "POST";
-            byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-    
-            //otrzymana odpowiedz
-            WebResponse response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-            using (Stream output = System.IO.File.OpenWrite(dialog.FileName))
-            using (Stream input = dataStream) 
+            try
             {
-                input.CopyTo(output);  //zapisywanie pliku 
-            }
+                //wysylanie wiadomosci 
+                WebRequest request = WebRequest.Create(container.addresweb + "/api/download_magnet/");
+                request.Method = "POST";
+                byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = byteArray.Length;
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
 
+                //otrzymana odpowiedz
+                WebResponse response = request.GetResponse();
+                dataStream = response.GetResponseStream();
+                using (Stream output = System.IO.File.OpenWrite(dialog.FileName))
+                using (Stream input = dataStream)
+                {
+                    input.CopyTo(output);  //zapisywanie pliku 
+                }
+            }
+            catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); }
 
         }
 
@@ -134,27 +143,30 @@ namespace WTIStemple
             outgoingQueryString.Add("token", container.sessiontoken);
             outgoingQueryString.Add("file_id", file.id);
             string postdata = outgoingQueryString.ToString();
+            try
+            {
+                //wysylanie wiadomosci 
+                WebRequest request = WebRequest.Create(container.addresweb + "/api/del_file/");
+                request.Method = "POST";
+                byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = byteArray.Length;
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
 
-            //wysylanie wiadomosci 
-            WebRequest request = WebRequest.Create(container.addresweb + "/api/del_file/");
-            request.Method = "POST";
-            byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
+                WebResponse response = request.GetResponse();
+                dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                JObject json = JObject.Parse(responseFromServer);
+                container.filelist.Remove(file);
+                tbFile.DataContext = container.filelist;
+            }catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); }
 
-            WebResponse response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            JObject json = JObject.Parse(responseFromServer);
-            container.filelist.Remove(file);
-            tbFile.DataContext = container.filelist;
         }
     }
 }

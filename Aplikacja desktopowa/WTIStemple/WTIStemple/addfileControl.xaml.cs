@@ -69,55 +69,59 @@ namespace WTIStemple
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (fs != null)
+            try
             {
-                NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-                Upload(container.addresweb + "/api/upload/", container.sessiontoken, filename, fs);
+                if (fs != null)
+                {
+                    NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
+                    Upload(container.addresweb + "/api/upload/", container.sessiontoken, filename, fs);
                     MessageBox.Show("Plik zostal pomyslnie zuploadowany");
                     fs.Close();
                     fs = null;
-                outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-                outgoingQueryString.Add("token", container.sessiontoken);
-                string postdata = outgoingQueryString.ToString();
+                    outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
+                    outgoingQueryString.Add("token", container.sessiontoken);
+                    string postdata = outgoingQueryString.ToString();
 
-                //wysylanie wiadomosci 
-                WebRequest request = WebRequest.Create(container.addresweb + "/api/archives/");
-                request.Method = "POST";
-                byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = byteArray.Length;
-                Stream dataStream = request.GetRequestStream();
-                dataStream.Write(byteArray, 0, byteArray.Length);
-                dataStream.Close();
+                    //wysylanie wiadomosci 
+                    WebRequest request = WebRequest.Create(container.addresweb + "/api/archives/");
+                    request.Method = "POST";
+                    byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.ContentLength = byteArray.Length;
+                    Stream dataStream = request.GetRequestStream();
+                    dataStream.Write(byteArray, 0, byteArray.Length);
+                    dataStream.Close();
 
-                //otrzymywanie wiadomosci zwrotnej
-                WebResponse response = request.GetResponse();
-                dataStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(dataStream);
-                string responseFromServer = reader.ReadToEnd();
-                reader.Close();
-                dataStream.Close();
-                response.Close();
-                JObject json = JObject.Parse(responseFromServer);
+                    //otrzymywanie wiadomosci zwrotnej
+                    WebResponse response = request.GetResponse();
+                    dataStream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(dataStream);
+                    string responseFromServer = reader.ReadToEnd();
+                    reader.Close();
+                    dataStream.Close();
+                    response.Close();
+                    JObject json = JObject.Parse(responseFromServer);
 
-                JArray items = (JArray)json["docs"];
-                for (int i = 0; i < items.Count; i++)
-                {
-                    string id = json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                    string name = json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                    string timestamp = json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                    string author = json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                    string downloadlink = json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                    container.filelist.Add(new FileFromSerwer() { id = id, name = name, timestamp = timestamp, author = author, download_link = downloadlink });
+                    JArray items = (JArray)json["docs"];
+                    for (int i = 0; i < items.Count; i++)
+                    {
+                        string id = json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                        string name = json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                        string timestamp = json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                        string author = json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                        string downloadlink = json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                        container.filelist.Add(new FileFromSerwer() { id = id, name = name, timestamp = timestamp, author = author, download_link = downloadlink });
+                    }
+
+                    InitializeComponent();
+                    container.lb.DataContext = container.filelist;
                 }
-
-                InitializeComponent();
-                container.lb.DataContext = container.filelist;
+                else
+                {
+                    MessageBox.Show("Nie wybrano pliku");
+                }
             }
-            else
-            {
-                MessageBox.Show("Nie wybrano pliku");
-            }
+            catch (Exception exc) { MessageBox.Show("Wystapilproblem z serwerem"); }
         }
     }
 }

@@ -57,44 +57,48 @@ namespace WTIStemple
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            //przygotowanie wiadomosci do wyslania
-            NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-            outgoingQueryString.Add("username", loginTextBox.Text);
-            outgoingQueryString.Add("password", passwordBox.Password.ToString());
-            string postdata = outgoingQueryString.ToString();
-
-            //wysylanie wiadomosci 
-            WebRequest request = WebRequest.Create(container.addresweb+"/api/login/");
-            request.Method = "POST";
-            byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-
-            //otrzymywanie wiadomosci zwrotnej
-            WebResponse response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            JObject json = JObject.Parse(responseFromServer);
-           
-            if (json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None) != "error")
+            try
             {
-                container.sessiontoken = json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                main wnd2 = new main();
-                wnd2.Show();
-                this.Close();
+                //przygotowanie wiadomosci do wyslania
+                NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
+                outgoingQueryString.Add("username", loginTextBox.Text);
+                outgoingQueryString.Add("password", passwordBox.Password.ToString());
+                string postdata = outgoingQueryString.ToString();
+
+                //wysylanie wiadomosci 
+                WebRequest request = WebRequest.Create(container.addresweb + "/api/login/");
+                request.Method = "POST";
+                byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = byteArray.Length;
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
+
+                //otrzymywanie wiadomosci zwrotnej
+                WebResponse response = request.GetResponse();
+                dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                JObject json = JObject.Parse(responseFromServer);
+
+                if (json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None) != "error")
+                {
+                    container.sessiontoken = json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                    main wnd2 = new main();
+                    wnd2.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Podano bledny login lub wystapila awaraia serwera");
+                }
             }
-            else
-            {
-                MessageBox.Show("Podano bledny login lub wystapila awaraia serwera");
-            }
-           
+            catch (Exception exc) { MessageBox.Show("Wystapil problem podczas polaczenia z serwerem"); }
+
         }
     }
 }
