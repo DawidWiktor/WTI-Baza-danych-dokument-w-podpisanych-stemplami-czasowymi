@@ -5,12 +5,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +18,8 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -40,11 +42,11 @@ import static android.R.attr.theme;
  * Created by Dawid on 29.04.2017.
  */
 
-public class UsunPlikAsync extends AsyncTask<String, String, String> {
-    boolean cofnij = false;
+public class download1 extends AsyncTask<String, String, String> {
+
     private Activity activity;
 
-    public UsunPlikAsync(Activity activity)
+    public download1(Activity activity)
     {
         this.activity = activity;
     }
@@ -52,6 +54,7 @@ public class UsunPlikAsync extends AsyncTask<String, String, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+
     }
 
 
@@ -61,69 +64,37 @@ public class UsunPlikAsync extends AsyncTask<String, String, String> {
 
     }
 
+
+
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        if(cofnij == true) {
-            Toast.makeText(activity, "Plik został usunięty", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(activity, ArchwiwumActivity.class);
-            activity.startActivity(intent);
-            ((Activity) activity).finish();
-        }
 
     }
+
+
 
     private String sprawdzenieDanych(){
         String wiadomosc = laczenie();
 
 
-
-        if(wiadomosc == null)
-        {
-            wiadomosc = "Błąd w nawiązywaniu połączenia";
-            Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
-        }
-        else {
-            String status = "";
-            //odczytanie jsona
-            if (wiadomosc != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(wiadomosc);
-                    JSONObject objectjso = jsonObj.getJSONObject("del");
-                    status = objectjso.getString("status");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(!status.equals("error"))
-            {
-                GlobalValue.listaArchiwum.remove(GlobalValue.WybranyDokument);
-                cofnij = true;
-            }else
-            {
-                wiadomosc = "Błąd w trakcie usuwania pliku";
-                Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
-            }
-
-        }
         return wiadomosc;
     }
 
     public String laczenie(){
-        String requestURL = "http://192.168.137.1:8000/api/del_file/";
+        String requestURL = "http://192.168.137.1:8000/api/download_magnet/";
+        InputStream input = null;
+        OutputStream output = null;
         URL url;
         String response = "";
         try {
             url = new URL(requestURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(15000);
-            conn.setConnectTimeout(15000);
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
             conn.setDoOutput(true);
 
             Integer id = GlobalValue.listaArchiwum.get(GlobalValue.WybranyDokument).id;
-
             Uri.Builder builder = new Uri.Builder()
                     .appendQueryParameter("token", GlobalValue.getTokenGlobal())
                     .appendQueryParameter("file_id", id.toString());
@@ -139,21 +110,28 @@ public class UsunPlikAsync extends AsyncTask<String, String, String> {
             writer.close();
             os.close();
             int responseCode=conn.getResponseCode();
-
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-                String line;
-                BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                while ((line=br.readLine()) != null) {
-                    response+=line;
+
+
+                File sdcard = Environment.getExternalStorageDirectory();
+                File file = new File(sdcard, "filename.ext");
+
+                FileOutputStream fileOutput = new FileOutputStream(file);
+                InputStream inputStream = conn.getInputStream();
+
+                byte[] buffer = new byte[1024];
+                int bufferLength = 0;
+
+                while ( (bufferLength = inputStream.read(buffer)) > 0 ) {
+                    fileOutput.write(buffer, 0, bufferLength);
                 }
-            }
-            else {
-                response="";
+                fileOutput.close();
 
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         return response;
     }

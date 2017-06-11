@@ -46,7 +46,11 @@ public class ArchwiwumActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        try {
+            Thread.sleep(120);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         final String elementyListy[] = new String[GlobalValue.listaArchiwum.size()];

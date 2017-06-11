@@ -1,6 +1,8 @@
 package com.example.dawid.wtistemple;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 public class SzczegolyDokumentuActivity extends AppCompatActivity {
     TextView nazwa, timestamp;
@@ -22,15 +26,19 @@ public class SzczegolyDokumentuActivity extends AppCompatActivity {
         nazwa.setText(GlobalValue.listaArchiwum.get(GlobalValue.WybranyDokument).nazwa);
         timestamp.setText(GlobalValue.listaArchiwum.get(GlobalValue.WybranyDokument).timestamp);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
 
     public void pobierzClick(View view) {
 
+        new PobieraniePlikuAsync(this).execute("aba");
 
 
     }
     public void pobierzPlikMagnetycznyClick(View view) {
+
+        new PobieraniePlikuMagnetycznegoAsync(this).execute("aba");
 
 
 
