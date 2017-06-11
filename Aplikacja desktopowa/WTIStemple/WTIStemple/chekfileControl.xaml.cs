@@ -22,9 +22,7 @@ using System.Windows.Shapes;
 
 namespace WTIStemple
 {
-    /// <summary>
-    /// Logika interakcji dla klasy chekfileControl.xaml
-    /// </summary>
+  
     public partial class chekfileControl : UserControl
     {
         FileStream fs = null;
@@ -43,12 +41,7 @@ namespace WTIStemple
             if (result == true)
             {
                 filename = openFileDialog.FileName;
-
                 fs = File.Open(filename, FileMode.Open);
-
-
-
-                // Close the file.
             }
         }
 
@@ -65,12 +58,8 @@ namespace WTIStemple
                 formData.Add(fileStreamContent, "file", fileName);
                 var response = client.PostAsync(actionUrl, formData).Result;
                 var res = response.Content.ReadAsStringAsync().Result;
-                
-                    
-                    returnresult = res.ToString();
-                    return returnresult;
-                
-
+                returnresult = res.ToString();
+                return returnresult;
             }
         }
 
@@ -79,11 +68,8 @@ namespace WTIStemple
         {
             if (fs != null)
             {
-
-
                 NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-                string  response = Upload("http://127.0.0.1:8000/api/check_magnet/", container.sessiontoken, filename, fs);
-                //zrobic do jsona i wyswietlic 
+                string  response = Upload(container.addresweb + "/api/check_magnet/", container.sessiontoken, filename, fs);
                 JObject json = JObject.Parse(response);
 
                 describeTB.Text ="ID: "+ json["id"].ToString()+"\nNazwa: "
@@ -102,21 +88,17 @@ namespace WTIStemple
         private void downloadFilefromMagnet(object sender, RoutedEventArgs e)
         {
             var dialog = new SaveFileDialog();
-            
             dialog.Filter = "wszystkie pliki (*.*)|*.*";
             var result = dialog.ShowDialog(); //shows save file dialog
 
-
             //przygotowanie wiadomosci do wyslania
             NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-
             outgoingQueryString.Add("token", container.sessiontoken);
             outgoingQueryString.Add("file_id", fileid);
-
             string postdata = outgoingQueryString.ToString();
 
             //wysylanie wiadomosci 
-            WebRequest request = WebRequest.Create("http://127.0.0.1:8000/api/download_magnet/");
+            WebRequest request = WebRequest.Create(container.addresweb + "/api/download_magnet/");
             request.Method = "POST";
             byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
             request.ContentType = "application/x-www-form-urlencoded";
@@ -125,7 +107,7 @@ namespace WTIStemple
             dataStream.Write(byteArray, 0, byteArray.Length);
             dataStream.Close();
 
-
+            //otrzymana odpowiedz
             WebResponse response = request.GetResponse();
             dataStream = response.GetResponseStream();
             using (Stream output = System.IO.File.OpenWrite(dialog.FileName))

@@ -19,64 +19,37 @@ using System.Windows.Shapes;
 
 namespace WTIStemple
 {
-  
-
-    
-
 
     public partial class main : Window
     {
         public main()
         {
             InitializeComponent();
-            container.window = this;
-         
+            container.window = this;         
         }
 
-        private void UserControl1_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void UserControl1_Loaded(object sender, RoutedEventArgs e){}
 
-        }
+        private void chekfileControl_Loaded(object sender, RoutedEventArgs e){}
 
-        private void chekfileControl_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void archiveControl1_Loaded(object sender, RoutedEventArgs e){}
 
-        }
+        private void settingsControl1_Loaded(object sender, RoutedEventArgs e){}
 
-        private void archiveControl1_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void addfileControl_Loaded(object sender, RoutedEventArgs e){}
 
-        }
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e){}
 
-        private void settingsControl1_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void addfileControl_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-           
-        }
+        private void Button_Click(object sender, RoutedEventArgs e){}
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
             outgoingQueryString.Add("token", container.sessiontoken);
-
             string postdata = outgoingQueryString.ToString();
 
-
-            WebRequest request = WebRequest.Create("http://127.0.0.1:8000/api/logout/");
+            //wysylanie wiadomosci
+            WebRequest request = WebRequest.Create(container.addresweb + "/api/logout/");
             request.Method = "POST";
             byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
             request.ContentType = "application/x-www-form-urlencoded";

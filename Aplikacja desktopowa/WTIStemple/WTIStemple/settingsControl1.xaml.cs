@@ -51,16 +51,13 @@ namespace WTIStemple
                 if (newPassword1.Password.ToString() == newPassword2.Password.ToString())
                 {
                     NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-
                     outgoingQueryString.Add("old_password", oldPassword.Password.ToString());
                     outgoingQueryString.Add("new_pass", newPassword1.Password.ToString());
                     outgoingQueryString.Add("token", container.sessiontoken);
-
-
                     string postdata = outgoingQueryString.ToString();
 
                     //wysylanie wiadomosci 
-                    WebRequest request = WebRequest.Create("http://127.0.0.1:8000/api/change_password/");
+                    WebRequest request = WebRequest.Create(container.addresweb+"/api/change_password/");
                     request.Method = "POST";
                     byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
                     request.ContentType = "application/x-www-form-urlencoded";
@@ -69,6 +66,7 @@ namespace WTIStemple
                     dataStream.Write(byteArray, 0, byteArray.Length);
                     dataStream.Close();
 
+                    //otrzymana odpowiedz
                     WebResponse response = request.GetResponse();
                     dataStream = response.GetResponseStream();
                     StreamReader reader = new StreamReader(dataStream);
@@ -109,7 +107,6 @@ namespace WTIStemple
         }
 
         //zmiana adresu email
-       
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try
@@ -117,16 +114,12 @@ namespace WTIStemple
                 if (IsValidEmail(emailinput.Text))
                 {
                     NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
-
                     outgoingQueryString.Add("email", emailinput.Text);
-
                     outgoingQueryString.Add("token", container.sessiontoken);
-
-
                     string postdata = outgoingQueryString.ToString();
 
                     //wysylanie wiadomosci 
-                    WebRequest request = WebRequest.Create("http://127.0.0.1:8000/api/change_mail/");
+                    WebRequest request = WebRequest.Create(container.addresweb + "/api/change_mail/");
                     request.Method = "POST";
                     byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
                     request.ContentType = "application/x-www-form-urlencoded";
@@ -135,6 +128,7 @@ namespace WTIStemple
                     dataStream.Write(byteArray, 0, byteArray.Length);
                     dataStream.Close();
 
+                    //otrzymana odpowiedz
                     WebResponse response = request.GetResponse();
                     dataStream = response.GetResponseStream();
                     StreamReader reader = new StreamReader(dataStream);

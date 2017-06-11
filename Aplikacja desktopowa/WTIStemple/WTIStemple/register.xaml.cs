@@ -19,9 +19,7 @@ using System.Web;
 
 namespace WTIStemple
 {
-    /// <summary>
-    /// Logika interakcji dla klasy register.xaml
-    /// </summary>
+
     public partial class register : Window
     {
         public register()
@@ -35,7 +33,6 @@ namespace WTIStemple
             this.Hide();
         }
 
-
         private void button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -47,9 +44,8 @@ namespace WTIStemple
                 outgoingQueryString.Add("email", emailTextBox.Text);
                 string postdata = outgoingQueryString.ToString();
 
-
                 //wysylanie wiadomosci 
-                WebRequest request = WebRequest.Create("http://127.0.0.1:8000/api/register/");
+                WebRequest request = WebRequest.Create(container.addresweb + "/api/register/");
                 request.Method = "POST";
                 byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
                 request.ContentType = "application/x-www-form-urlencoded";
