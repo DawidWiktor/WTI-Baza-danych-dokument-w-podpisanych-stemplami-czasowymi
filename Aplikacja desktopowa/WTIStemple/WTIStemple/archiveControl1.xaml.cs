@@ -99,7 +99,7 @@ namespace WTIStemple
             FileFromSerwer file = (FileFromSerwer)button.DataContext;
 
             var dialog = new SaveFileDialog();
-            dialog.FileName = file.name+"-"+file.timestamp+".magnetic";
+            dialog.FileName = file.name+".magnetic";
             dialog.Filter = "plik magnetyczny (*.magnetic)|*.magnetic|wszystkie pliki (*.*)|*.*";
             var result = dialog.ShowDialog(); //shows save file dialog
 
