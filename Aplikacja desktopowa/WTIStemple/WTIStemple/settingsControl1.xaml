@@ -5,20 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WTIStemple"
              mc:Ignorable="d" 
-             d:DesignHeight="380" d:DesignWidth="490" Background="White">
+             d:DesignHeight="380" d:DesignWidth="800" Background="White">
     <Grid>
         <Label Content="Ustawienia" HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Left" Margin="30,103,0,0" TextWrapping="Wrap" Text="Zmiana hasla" VerticalAlignment="Top" FontSize="20"/>
         <Label Content="stare hasło" HorizontalAlignment="Left" Margin="30,150,0,0" VerticalAlignment="Top"/>
         <Label Content="powtórz nowe hasło" HorizontalAlignment="Left" Margin="30,286,0,0" VerticalAlignment="Top"/>
         <Label Content="nowe hasło" HorizontalAlignment="Left" Margin="30,218,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.732,1.626"/>
-        <TextBlock HorizontalAlignment="Left" Margin="277,103,0,0" TextWrapping="Wrap" Text="zmiana adresu e-mail" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="nowy adres e-mail" HorizontalAlignment="Left" Margin="277,150,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="277,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="382,103,0,0" TextWrapping="Wrap" Text="zmiana adresu e-mail" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="nowy adres e-mail" HorizontalAlignment="Left" Margin="382,150,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="382,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <PasswordBox HorizontalAlignment="Left" Margin="30,181,0,0" VerticalAlignment="Top" Width="144"/>
         <PasswordBox HorizontalAlignment="Left" Margin="30,249,0,0" VerticalAlignment="Top" Width="144"/>
         <PasswordBox HorizontalAlignment="Left" Margin="30,317,0,0" VerticalAlignment="Top" Width="144"/>
-        <Button Content="usuń konto" HorizontalAlignment="Left" Margin="335,315,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="usuń konto" HorizontalAlignment="Left" Margin="702,113,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="zmień" HorizontalAlignment="Left" Margin="30,350,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </UserControl>

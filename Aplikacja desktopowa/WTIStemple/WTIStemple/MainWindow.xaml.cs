@@ -18,12 +18,19 @@ using System.Web;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Collections.ObjectModel;
 
 namespace WTIStemple
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
+
+    public static class container
+    {
+        public static string sessiontoken = null;
+        public static ObservableCollection<FileFromSerwer> filelist;
+        public static ListBox lb;
+
+    }
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -86,8 +93,8 @@ namespace WTIStemple
 
             if (json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None) != "error")
             {
-                MessageBox.Show(responseFromServer);
-                main wnd2 = new main(json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Length-2));
+                container.sessiontoken = json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["login"]["token"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                main wnd2 = new main();
                 wnd2.Show();
                 this.Close();
             }

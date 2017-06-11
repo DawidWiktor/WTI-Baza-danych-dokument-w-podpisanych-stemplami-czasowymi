@@ -52,17 +52,7 @@ namespace WTIStemple
                 // Close the file.
             }
         }
-        public static void PrintByteArray(byte[] array)
-        {
-            string message = "";
-            int i;
-            for (i = 0; i < array.Length; i++)
-            {
-                message = message + String.Format("{0:X2}", array[i]);
-                if ((i % 4) == 3) message = message + " ";
-            }
-            MessageBox.Show(message);
-        }
+      
 
 
         private string Upload(string actionUrl, string paramString, string fileName, Stream paramFileStream)
@@ -92,16 +82,65 @@ namespace WTIStemple
             {
 
 
-
-
+                NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
 
                 Upload("http://127.0.0.1:8000/api/upload/", container.sessiontoken, filename, fs);
                 //if ((string)json["status"] == "ok")
                // {
-                    MessageBox.Show("Plik zostalpomyslnie zuploadowany");
+                    MessageBox.Show("Plik zostal pomyslnie zuploadowany");
                     fs.Close();
                     fs = null;
-               // }
+
+                outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
+
+                outgoingQueryString.Add("token", container.sessiontoken);
+
+                string postdata = outgoingQueryString.ToString();
+
+                //wysylanie wiadomosci 
+                WebRequest request = WebRequest.Create("http://127.0.0.1:8000/api/archives/");
+                request.Method = "POST";
+                byte[] byteArray = Encoding.UTF8.GetBytes(postdata);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = byteArray.Length;
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
+
+                //otrzymywanie wiadomosci zwrotnej
+                WebResponse response = request.GetResponse();
+                dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                JObject json = JObject.Parse(responseFromServer);
+
+
+                JArray items = (JArray)json["docs"];
+                for (int i = 0; i < items.Count; i++)
+                {
+                    string id = json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+
+                    string name = json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+
+                    string timestamp = json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+
+                    string author = json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+
+                    string downloadlink = json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+
+                    container.filelist.Add(new FileFromSerwer() { id = id, name = name, timestamp = timestamp, author = author, download_link = downloadlink });
+
+                }
+
+                InitializeComponent();
+               container.lb.DataContext = container.filelist;
+
+
+
+                // }
             }
             else
             {

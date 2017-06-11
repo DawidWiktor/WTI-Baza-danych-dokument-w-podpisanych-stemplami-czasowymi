@@ -21,19 +21,16 @@ namespace WTIStemple
 {
   
 
-    public static class container
-    {
-       public static string sessiontoken = null;
-    }
+    
 
 
     public partial class main : Window
     {
-        public main(string token)
+        public main()
         {
             InitializeComponent();
-            container.sessiontoken = token;
-            MessageBox.Show(token);
+           
+         
         }
 
         private void UserControl1_Loaded(object sender, RoutedEventArgs e)

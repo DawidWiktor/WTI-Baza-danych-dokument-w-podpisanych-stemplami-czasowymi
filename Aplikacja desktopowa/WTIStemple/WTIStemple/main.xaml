@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WTIStemple"
         mc:Ignorable="d"
-        Title="main" Height="400" Width="525">
+        Title="main" Height="500" Width="825">
 
 
     <Grid>
-        <Button Content="wyloguj" HorizontalAlignment="Left" Margin="419,-1,-0.176,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <TabControl Margin="0,0,0.16,-20" Height="371" VerticalAlignment="Bottom" SelectionChanged="TabControl_SelectionChanged">
+        <Button Content="wyloguj" HorizontalAlignment="Left" Margin="732,0,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <TabControl Margin="0,0,0.16,-20" Height="450" VerticalAlignment="Bottom" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="dodaj plik">
                 <local:addfileControl Loaded="addfileControl_Loaded" />
             </TabItem>
