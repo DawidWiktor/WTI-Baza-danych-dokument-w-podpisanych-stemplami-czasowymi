@@ -351,7 +351,10 @@ def api_delete_file(request):
 
 def handle_uploaded_file(f, user):
     hasher = hashlib.sha256()
-    with open(MEDIA_ROOT+"/"+str(user.id)+"/"+f.name, 'wb+') as destination:
+    directory = MEDIA_ROOT+"/"+str(user.id)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    with open(directory + "/" + f.name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
             hasher.update(chunk)
