@@ -2,3 +2,8 @@
 *.bak*
 *.lck
 *.pyc
+*.aux
+*.log
+Dokumentacja projektowa/Dokumentacja.out
+*.gz
+Dokumentacja projektowa/Dokumentacja.toc
