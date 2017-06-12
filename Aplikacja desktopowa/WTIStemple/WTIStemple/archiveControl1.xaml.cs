@@ -63,7 +63,7 @@ namespace WTIStemple
                 {
                     string id = json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
                     string name = json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["nazwa"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
-                    string timestamp = json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
+                    string timestamp = json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["timestamp"].ToString(Newtonsoft.Json.Formatting.None).Length - 15);
                     string author = json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["autor"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
                     string downloadlink = json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["pobierz"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);
                     container.filelist.Add(new FileFromSerwer() { id = id, name = name, timestamp = timestamp, author = author, download_link = downloadlink });

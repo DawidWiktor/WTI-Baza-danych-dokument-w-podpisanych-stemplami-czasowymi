@@ -105,6 +105,8 @@ namespace WTIStemple
                     JObject json = JObject.Parse(responseFromServer);
 
                     JArray items = (JArray)json["docs"];
+                    container.filelist.Clear();
+
                     for (int i = 0; i < items.Count; i++)
                     {
                         string id = json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Substring(1, json["docs"][i]["id"].ToString(Newtonsoft.Json.Formatting.None).Length - 2);

@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WTIStemple"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="500" Background="White">
+             d:DesignHeight="300" d:DesignWidth="500" Background="#EEEEEE">
     <Grid>
         <Label Content="Sprawdź plik" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" FontSize="24"/>
         <Button Content="wybierz plik" HorizontalAlignment="Left" Margin="20,113,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Button Content="sprawdź" HorizontalAlignment="Left" Margin="20,225,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <Button Name="downloadButton"  Content="Pobierz" Background="Green" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="234,219,0,0" Click="downloadFilefromMagnet" Visibility="Hidden"/>
+        <Button Name="downloadButton"  Content="Pobierz" Background="#5cb85c" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="234,219,0,0" Click="downloadFilefromMagnet" Visibility="Hidden"/>
         <TextBlock Name="describeTB" HorizontalAlignment="Left" Margin="234,113,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="88" Width="256" Visibility="Hidden" />
         <Label Content="Sprawdzony plik" HorizontalAlignment="Left" Margin="234,50,0,0" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock Name="fileopenTB" HorizontalAlignment="Left" Margin="20,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="61" Width="143"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WTIStemple"
         mc:Ignorable="d"
-        Title="register" Height="500" Width="525">
+        Title="register" Height="500" Width="525" Background="#EEEEEE">
     <Grid>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="21,24,0,0" TextWrapping="Wrap" Text="Rejestracja" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
         <Label x:Name="label" Content="login:" HorizontalAlignment="Left" Margin="21,76,0,0" VerticalAlignment="Top"/>

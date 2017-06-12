@@ -38,6 +38,8 @@ namespace WTIStemple
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Plikmagnetyczny (*.magnetic)|*.magnetic|wszystkie pliki (*.*)|*.*";
+
             var result =openFileDialog.ShowDialog();
 
             if (result == true)
@@ -119,7 +121,7 @@ namespace WTIStemple
 
                         describeTB.Text = "ID: " + json["id"].ToString() + "\nNazwa: "
                             + json["nazwa"].ToString() + "\nAutor: " + json["autor"].ToString() + "\nCzas dodania: " +
-                            json["timestamp"].ToString();
+                            json["timestamp"].ToString().Substring(0, json["timestamp"].ToString().Length-13);
                         fileid = json["id"].ToString();
                         describeTB.Visibility = Visibility.Visible;
                         downloadButton.Visibility = Visibility.Visible;

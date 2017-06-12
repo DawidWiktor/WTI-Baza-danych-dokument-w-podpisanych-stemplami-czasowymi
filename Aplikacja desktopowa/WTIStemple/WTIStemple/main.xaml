@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WTIStemple"
         mc:Ignorable="d"
-        Title="main" Height="500" Width="825">
+        Title="main" Height="500" Width="825" Background="#EEEEEE">
 
 
     <Grid>

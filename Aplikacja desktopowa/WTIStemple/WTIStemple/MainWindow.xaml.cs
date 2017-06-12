@@ -161,7 +161,7 @@ namespace WTIStemple
         private void downloadFilefromMagnet(object sender, RoutedEventArgs e)
         {
             var dialog = new SaveFileDialog();
-            dialog.Filter = "wszystkie pliki (*.*)|*.*";
+            dialog.Filter = "Plikmagnetyczny (*.magnetic)|*.magnetic|wszystkie pliki (*.*)|*.*";
             dialog.FileName = filename;
             var result = dialog.ShowDialog(); //shows save file dialog
 
@@ -193,14 +193,13 @@ namespace WTIStemple
                 {
                     NameValueCollection outgoingQueryString = HttpUtility.ParseQueryString(String.Empty);
                     string response = Upload(container.addresweb + "/api/check_magnet2/", container.sessiontoken, filenamemagnetic, fs);
-                    MessageBox.Show("otrzymana wiadomosc " + response);
                     if (response != null)
                     {
                         JObject json = JObject.Parse(response);
 
                         describeTB.Text = "ID: " + json["id"].ToString() + "\nNazwa: "
                             + json["nazwa"].ToString() + "\nAutor: " + json["autor"].ToString() + "\nCzas dodania: " +
-                            json["timestamp"].ToString();
+                            json["timestamp"].ToString().Substring(0, json["timestamp"].ToString().Length-13);
                         describeTB.Visibility = Visibility.Visible;
                         downloadButton.Visibility = Visibility.Visible;
                         filename = json["nazwa"].ToString();
