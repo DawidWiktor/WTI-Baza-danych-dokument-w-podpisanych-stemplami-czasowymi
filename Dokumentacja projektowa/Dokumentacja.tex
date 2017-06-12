@@ -316,29 +316,241 @@
 		\label{diagram:diagram relacji}
 	\end{figure}
 
-\chapter{Diagramy klas}
-	\section{Aplikacja serwerowa}
-
-	\section{Aplikacja webowa}
-	
-	\section{Aplikacja desktopowa}
-	
-	\section{Aplikacja mobilna}
-
 \chapter{Implementacja}
 	Kod ürÛd≥owy systemu wraz z postÍpami pracy znajduje siÍ w \textcolor{blue}{\href{https://github.com/wapet1995/WTI---Baza-danych-dokument-w-podpisanych-stemplami-czasowymi}{Repozytorium GitHub}}.
 
 \chapter{Widok graficzny systemu, obs≥uga interfejsu}
 	W tym rozdziale przedstawione zostanπ interfejsy graficzne modu≥Ûw wraz z ich objaúnieniem.
 
+\newpage
 \section{Aplikacja webowa}
+	Widokiem po wejúciu na stronÍ, gdzie uruchomiona jest aplikacja webowa, pojawia siÍ okno g≥Ûwnie systemu (Rys. \ref{zrzut:web_okno glowne}). W centrum okna znajduje siÍ nazwa systemu (lewa strona) oraz okno pozwalajπce wczytaÊ plik magnetyczny w celu weryfikacji poprawnoúci stempla czasowego. 
 	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{www1.png}
+		\caption{Okno g≥Ûwne aplikacji webowej}
+		\label{zrzut:web_okno glowne}
+	\end{figure}
 
+	Po prawej stronie, w gÛrnym naroøniku znajdujπ siÍ przyciski logowania i rejestracji. Po wybraniu opcji rejestracji pojawia siÍ arkusz (Rys. \ref{zrzut:web_okno rejestracji}). Naleøy podaÊ login uøytkownika (nazwa), adres e-mail oraz has≥o. Po klikniÍciu zarejestruj wys≥ana zostaje wiadomoúÊ e-mail na podany adres w celu aktywacji konta.
+	
+\begin{figure}[h]
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=7cm]{www2.png}
+		\caption{Okno rejestracji aplikacji webowej}
+		\label{zrzut:web_okno rejestracji}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=8cm]{www3.png}
+		\caption{Okno logowania aplikacji webowej}
+		\label{zrzut:web_okno logowania}
+	\end{minipage}
+\end{figure}
+
+	Wybierajπc opcjÍ logowania pojawia siÍ arkusz z danymi logowania (Rys. \ref{zrzut:web_okno logowania}). Naleøy podaÊ login (nazwÍ) uøytkownika oraz has≥o. 
+	
+	Po zalogowaniu przechodzimy do widoku zarzπdzania plikami (Rys. \ref{zrzut:web_strona glowna}). W centrum pojawiajπ siÍ dwa obszary, jeden odpowiedzialny za wczytanie nowego pliku oraz dodanie do repozytorium (lewa strona), drugi zaú za weryfikacjÍ pliku magnetycznego tak jak w oknie g≥Ûwny, bez zalogowania. W przypadku prÛby wczytania b≥Ídnego pliku lub nie zostanie on w ogÛle wybrany, pojawi siÍ komunikat o b≥Ídzie (Rys. \ref{zrzut:web_blad pliku}).
+\newpage
+	\begin{figure}[!h]
+		\centering
+		\vspace{1cm}
+		\includegraphics[width=15cm]{www4.png}
+		\caption{Okno g≥Ûwne zalogowanego uøytkownika aplikacji webowej}
+		\label{zrzut:web_strona glowna}
+	\end{figure}
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{www5.png}
+		\caption{B≥πd wczytania pliku aplikacji webowej}
+		\label{zrzut:web_blad pliku}
+	\end{figure}
+
+	W pasku nawigacji, w gÛrnym lewym rogu znajdujπ siÍ zak≥adki: opisana wczeúniej Strona g≥Ûwna, Archiwum, MÛj profil oraz Wyloguj.
+
+	Archiwum (Rys. \ref{zrzut:web_archiwum}) udostÍpnia listÍ wszystkich naszych dokumentÛw znajdujπcych siÍ w repozytorium oraz zarzπdzanie nimi. Zielony przycisk umoøliwia pobranie pliku z repozytorium do pamiÍci komputera, niebieski przycisk pobiera plik magnetyczny s≥uøπcy do udostÍpniania pliku innym uøytkownikom oraz czerwony do usuwania pliku.
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{www8.png}
+		\caption{Okno archiwum aplikacji webowej}
+		\label{zrzut:web_archiwum}
+	\end{figure}
+	
+	Zak≥adka MÛj profil (Rys. \ref{zrzut:web_moj profil}) s≥uøy do zmiany danych konta. Pierwsze linie pozwalajπ zmieniÊ has≥o, lecz wymagane jest podanie starego (aktualnego) has≥a a nastÍpnie dwukrotnie podaÊ nowe. Zapisanie zmian odbywa siÍ dopiero po wciúniÍciu przycisku ,,ZmieÒ has≥o''. Wiesz poniøej s≥uøy do modyfikacji adresu e-mail. Operacja ta wymaga ponownej aktywacji konta w celu uwierzytelnienia osoby. Przycisk na samym koÒcu formularza s≥uøy do usuwania konta.
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{www9.png}
+		\caption{Zak≥adka MÛj profil aplikacji webowej}
+		\label{zrzut:web_moj profil}
+	\end{figure}
+	
+\newpage	
+	Ostania zak≥adka ,,Wyloguj'' s≥uøy do wylogowania uøytkownika, zostajemy z powrotem przekierowani do strony g≥Ûwnej (Rys. \ref{zrzut:web_strona glowna}).
+	
+\newpage
 \section{Aplikacja desktopowa}
-	
+	Po uruchomieniu aplikacji pojawia siÍ g≥Ûwne okno (Rys. \ref{zrzut:desk_okno glowne}). Po lewej stronie znajduje siÍ obszar logowania z moøliwoúciπ utworzenie nowego konta po klikniÍciu przycisku ,,Zarejestruj''. Po prawej stronie, obszar sprawdzania pliku, pozwala bez potrzeby logowania zweryfikowaÊ plik. Uøytkownik wybiera plik, jeúli wybÛr bÍdzie niew≥aúciwy pojawi siÍ komunikat o b≥Ídzie (Rys. \ref{zrzut:desk_blad}). 
 
-\section{Aplikacja mobilna}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{d1.png}
+		\caption{Okno g≥Ûwne aplikacji desktopowej}
+		\label{zrzut:desk_okno glowne}
+	\end{figure}
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{d3.png}
+		\caption{Okno b≥Ídnego wyboru pliku aplikacji desktopowej}
+		\label{zrzut:desk_blad}
+	\end{figure}
+
+	Chcπc utworzyÊ konto naleøy kliknπÊ przycisk ,,Zarejestruj'' znajdujπcy siÍ pod formularzem logowania, przejdziemy wÛwczas do okna z arkuszem rejestracji (Rys. \ref{zrzut:desk_rejestracja}). W oknie naleøny podaÊ w odpowiednie pola login, dwukrotnie has≥o oraz adres e-mail uøytkownika. Po klikniÍciu przycisku ,,zarejestruj siÍ'' zostaje wys≥ane zg≥oszenie do serwera, a nastÍpnie z serwera wys≥ana wiadomoúÊ e-mail z linkiem aktywacyjnym konta.
+
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=13cm]{d2.png}
+	\caption{Okno rejestracji aplikacji desktopowej}
+	\label{zrzut:desk_rejestracja}
+	\end{figure}
+\newpage
+	Po utworzeniu konta, aby siÍ zalogowaÊ naleøy podaÊ login (nazwÍ) uøytkownika oraz has≥o, wÛwczas po klikniÍciu ,,zaloguj'' pojawi siÍ okno dodawania nowego pliku do repozytorium (Rys. \ref{zrzut:desk_dodaj plik}). Wpierw naleøy wczytaÊ plik z dysku, a nastÍpnie wys≥aÊ na serwer przyciskiem ,,wyúlij''.
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=13cm]{d4.png}
+		\caption{Okno dodawania pliku aplikacji desktopowej}
+		\label{zrzut:desk_dodaj plik}
+	\end{figure}
+\newpage
+	Dokument po pozytywnym dodaniu pojawi siÍ w zak≥adce archiwum (Rys. \ref{zrzut:desk_archiwum}), gdzie moøna pobraÊ plik magnetyczny w celu udostÍpnienia pliku innym uøytkownikom, pobraÊ ponownie plik na dysk lub usunπÊ z repozytorium. 
 	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=13cm]{d6.png}
+		\caption{Archiwum aplikacji desktopowej}
+		\label{zrzut:desk_archiwum}
+	\end{figure}
+
+	Zak≥adka sprawdü plik (Rys. \ref{zrzut:desk_sprawdz}) ma na celu wczytanie pliku magnetycznego w celu weryfikacji poprawnoúci stempla czasowego.
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{d5.png}
+		\caption{Zak≥adka sprawdü plik aplikacji desktopowej}
+		\label{zrzut:desk_sprawdz}
+	\end{figure}
+
+	Zak≥adka ,,ustawienia'' (Rys. \ref{zrzut:desk_ustawienia}) umoøliwia zmianÍ has≥a oraz adresu e-mail uøytkownika. Zmiana has≥a wymaga podania starego has≥a oraz dwukrotnie nowego. Zmiany zostajπ zatwierdzone i wys≥ane na serwer dopiero po wciúniÍciu przycisku ,,zmieÒ''. 
+	
+	Skrajnie po prawej stronie okna znajduje siÍ przycisk ,,usuÒ konto'', s≥uøy on do usuwania konta, lecz aby to zrobiÊ naleøny zaznaczyÊ obok checkbox w celu zabezpieczenia przed nieumyúlnym klikniÍciem. 
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{d7.png}
+		\caption{Ustawienia aplikacji desktopowej}
+		\label{zrzut:desk_ustawienia}
+	\end{figure}
+\newpage
+	W lewym gÛrnym rogu znajduje siÍ przycisk ,,wyloguj'' s≥uøπcy do wylogowania uøytkownika oraz przejúciu do widoku g≥Ûwnego.
+	
+\newpage
+\section{Aplikacja mobilna}
+	Uruchamiajπc aplikacjÍ mobilnπ, na poczπtku uruchamia siÍ ekran logowania ( Rys. \ref{zrzut:mob logowanie}). Nie posiadajπc konta zak≥ada siÍ je poprzez klikniÍcie przycisku ,,Rejestracja'', przechodzi siÍ wÛwczas do okna rejestracji (Rys. \ref{zrzut:mob rejestracja}). W formularzu naleøy podaÊ login (nazwÍ), adres e-mail oraz dwukrotnie has≥o uøytkownika. Po klikniÍciu przycisku ,,ZAREJESTRUJ SI '' zostaje wys≥any formularz do serwera, skπd wysy≥ana zostaje wiadomoúÊ e-mail z linkiem aktywacyjnym.
+	
+	Po utworzeniu i aktywacji konta, aby siÍ zalogowaÊ naleøy podaÊ login (nazwÍ) uøytkownika, po czym kliknπÊ przycisk ,,ZALOGUJ SI ''.
+
+\begin{figure}[h]
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=6cm]{logowanie.PNG}
+		\caption{Ekran logowania aplikacji mobilnej}
+		\label{zrzut:mob logowanie}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=6cm]{rejestracja}
+		\caption{Ekran rejestracji aplikacji mobilnej}
+		\label{zrzut:mob rejestracja}
+	\end{minipage}
+\end{figure}
+\newpage
+	 Po zalogowaniu siÍ ukazuje siÍ widok g≥Ûwnego menu (Rys. \ref{zrzut:mob glowny}). Mianowicie sπ to trzy przyciski umoøliwiajπce wybranie pliku z pamiÍci urzπdzenia a nastÍpnie wykonanie na nim sprawdzenia poprawnoúci ( SPRAWDè) lub dodania do repozytorium (WGRAJ).
+	 
+	 Wybierajπc opcjÍ sprawdzenia ukazuje siÍ nowy ekran przedstawiajπcy szczegÛ≥y dotyczπce dokumentu (Rys. \ref{zrzut:mob sprawdz}), tzn. nazwÍ, kto jest w≥aúcicielem oraz datÍ podpisania przez system. Z poziomu tego widoku moøna rÛwnieø pobraÊ dany plik do pamiÍci urzπdzenia.
+
+\begin{figure}[h]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=6cm]{menu}
+		\caption{Ekran g≥Ûwny aplikacji mobilnej}
+		\label{zrzut:mob glowny}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=6cm]{sprawdzeniePlikumagnetycznego}
+		\caption{Ekran sprawdzenia pliku magnetycznego aplikacji mobilnej}
+		\label{zrzut:mob sprawdz}
+	\end{minipage}
+\end{figure}
+\newpage
+
+	Przesuwajπc palcem w prawπ stronÍ po ekranie, z boku wysunie siÍ panel boczny (Rys. \ref{zrzut:mob boczny}) zwierajπcy przyciski przejúcia do dwÛch dodatkowych widokÛw, Archiwum oraz Mojego profilu. Trzeci przycisk powoduje wylogowanie z konta uøytkownika oraz przejúcie do panelu logowania (Rys. \ref{zrzut:mob logowanie}).
+	
+	Widok Archiwum (Rys. \ref{zrzut:mob archiwum}) przedstawia listÍ plikÛw obecnie znajdujπcych siÍ w repozytorium. Klikajπc na nazwÍ pliku przechodzi siÍ do okna szczegÛ≥u dokumentu (Rys. \ref{zrzut:mob szczegoly}).
+
+\begin{figure}[h]
+	\begin{minipage}{0.5\textwidth}
+			\centering
+		\includegraphics[width=6cm]{drawer}
+		\caption{Panel boczny aplikacji mobilnej}
+		\label{zrzut:mob boczny}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=6cm]{archiwum}
+		\caption{Ekran archiwum aplikacji mobilnej}
+		\label{zrzut:mob archiwum}
+	\end{minipage}
+\end{figure}
+\newpage
+	Widok szczegÛ≥Ûw dokumentu pozwala pobraÊ dany plik (zielony przycisk), pobraÊ plik magnetyczny s≥uøπcy do udostÍpniania dokumentu innym uøytkownikom (niebieski przycisk) oraz usunπÊ dokument z repozytorium (czerwony przycisk).
+	
+	Wysuwajπc ponownie panel boczny (Rys. \ref{zrzut:mob boczny}) a nastÍpnie wybierajπc pozycjÍ ,,MÛj profil'' ukaøe nam siÍ widok edycji profilu (Rys. \ref{zrzut:web_moj profil}). MÛj profil umoøliwia zmianÍ has≥a uøytkownika poprzez podanie obecnego has≥a oraz dwukrotnie nowego. OperacjÍ edycji finalizuje przycisk ,,ZMIE— HAS£O''. Poniøej moøna zmodyfikowaÊ adres e-mail. Zmiana adresu wymaga ponownej aktywacji konta. Przycisk na dole ekranu powoduje usuniÍcie konta, a wiÍc rÛwnieø wylogowanie i przejúcie do ekranu logowania.
+
+\begin{figure}[h]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=6cm]{szczegolyDokumentuWArchiwum}
+		\caption{Ekran szczegÛ≥Ûw dokumentu z archiwum aplikacji mobilnej}
+		\label{zrzut:mob szczegoly}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+			\centering
+		\includegraphics[width=6cm]{mojProfil}
+		\caption{Ekran profilu aplikacji mobilnej}
+		\label{zrzut:mob profil}
+	\end{minipage}
+\end{figure}
+
+\newpage
+\section{Aplikacja serwerowa}
+	Aplikacja serwerowa jest programem w pe≥ni konsolowym, uruchamiana poleceniem ,,python manage.py runserver /\textit{adres ip}/:/\textit{port}/''. Jeúli adres oraz port sπ dostÍpne, to program zostanie uruchomiony i pojawiπ siÍ komunikaty o stanie serwera (Rys. \ref{zrzut:serwer uruchomienie}). W trakcie pracy, w zaleønoúci od zg≥oszonych øπdaÒ do serwera, pojawiπ siÍ dodatkowe komunikaty o wykonywanych przez aplikacjÍ czynnoúciach (Rys. \ref{zrzut:serwer komunikat}).
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{server1.png}
+		\caption{Uruchomienie serwera}
+		\label{zrzut:serwer uruchomienie}
+	\end{figure}
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{server.png}
+		\caption{Komunikaty serwera}
+		\label{zrzut:serwer komunikat}
+	\end{figure}
 	
 \chapter{Perspektywy rozwoju}
 	System na stan obecny ogranicza uøytkownika do korzystania z systemu Android, jeúli chodzi o aplikacjÍ mobilnπ oraz wymusza korzystanie z systemu Windows w celu uøycia aplikacji desktopowej. W przysz≥oúci moøna rozszerzyÊ modu≥y o kompatybilnoúÊ z systemami IOS i Linux.
@@ -346,7 +558,5 @@
 	Dodatkowπ funkcjonalnoúÊ systemu jakπ naleøy rozwaøyÊ w perspektywach rozwoju jest dodawanie wielu plikÛw jednoczeúnie, jak rÛwnieø wprowadzenie \linebreak moøliwoúÊ dodawania dokumentÛw wymaganych wielu podpisÛw przez rÛønych uøytkownikÛw.
 	
 	System z scentralizowanπ bazπ danych moøe byÊ naraøony na przeciπøenia oraz przepe≥nienie pamiÍci. Rozwiπzaniem jest zastosowanie rozproszonych bazy danych.
-	
-	
 	
 \end{document}
