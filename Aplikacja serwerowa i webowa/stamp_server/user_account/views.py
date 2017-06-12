@@ -61,7 +61,7 @@ def register_view(request):
             \npotwierdz e-mail klikajac w link
             \n{}/account/activate/{}/{}/
             \nMasters of Masters
-            """.format(username, HOST_NAME, username, activation_code))
+            """.format(username, request.get_host(), username, activation_code))
 
         send_mail(subject, text, EMAIL_HOST_USER, [email], fail_silently=False)  # wyslanie maila
         messages.info(request,'Kliknij w link aktywacyjny wysłany na podany adres e-mail.')
@@ -133,7 +133,7 @@ def change_email(request):
             \npotwierdz e-mail klikajac w link
             \n{}/account/activate/{}/{}/
             \nMasters of Masters
-            """.format(username, HOST_NAME, username, activation_code))
+            """.format(username, request.get_host(), username, activation_code))
 
         send_mail(subject,text,EMAIL_HOST_USER,[new_email],fail_silently=False)  # wyslanie maila
         logout(request)

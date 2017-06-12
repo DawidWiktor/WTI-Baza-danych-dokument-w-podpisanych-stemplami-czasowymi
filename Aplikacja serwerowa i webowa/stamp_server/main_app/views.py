@@ -19,7 +19,6 @@ import django.utils.timezone as timezone  # data i czas
 from django.http import FileResponse  # zwracanie pliku - API
 
 from stamp_server.settings import EMAIL_HOST_USER  # import maila tej apki
-HOST_NAME = "127.0.0.1:8000"  # potrzebne podczas generowanie linku aktywacyjnego przy rejestracji
 
 def start_page(request):
     if request.user.is_authenticated:
@@ -226,7 +225,7 @@ def api_register(request):
             \npotwierdz e-mail klikajac w link
             \n{}/account/activate/{}/{}/
             \nMasters of Masters
-            """.format(username, HOST_NAME, username, activation_code))
+            """.format(username, request.get_host(), username, activation_code))
 
         send_mail(subject, text, EMAIL_HOST_USER, [email], fail_silently=False)  # wyslanie maila
         return JsonResponse({"register": {"status": "ok"}})
@@ -265,7 +264,7 @@ def api_change_mail(request):
             \npotwierdz e-mail klikajac w link
             \n{}/account/activate/{}/{}/
             \nMasters of Masters
-            """.format(username, HOST_NAME, username, activation_code))
+            """.format(username, request.get_host(), username, activation_code))
 
         send_mail(subject,text,EMAIL_HOST_USER,[new_email],fail_silently=False)  # wyslanie maila
         tok.delete()
