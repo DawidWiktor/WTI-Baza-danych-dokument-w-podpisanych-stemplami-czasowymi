@@ -34,7 +34,7 @@
 \makeatletter
 \newcommand{\linia}{\rule{\linewidth}{0.4mm}}
 \renewcommand{\maketitle}{\begin{titlepage}
-		\vspace*{-2.5cm}
+		\vspace*{-4cm}
 		\begin{center}\small
 			Politechnika Poznañska\\
 			Wydzia³ Elektryczny\\
@@ -43,13 +43,14 @@
 		\vspace{5cm}
 		\noindent\linia
 		\begin{center}
-			\LARGE \textsc{Baza danych dokumentów podpisanych stemplami czasowymi}\\
+			\LARGE \textsc{Projekt Zespo³owy}\\
+			\Large {Inteligentny zamek}
 		\end{center}
 		\linia
-		\vspace{0.1cm}
+		\vspace{1cm}
 		\begin{flushright}
 			\begin{minipage}{7cm}
-				\textit{\small Autorzy:}\\
+				\textit{\small Autorzy:}\\\\
 				\normalsize \textsc{Maciej Marciniak}\\
 				\normalsize nr indeksu: 121996\\
 				\normalsize e mail: \\
@@ -68,23 +69,23 @@
 				dawid.wiktorski@student.put.poznan.pl \par
 			\end{minipage}
 		\end{flushright}
-		\vspace{\stretch{6}}
+		\vspace*{\stretch{7}}
 		\begin{center}
 			\@date
 		\end{center}
-	\end{titlepage}%
+	\end{titlepage}
 }
 \makeatother
 \usepackage[none]{hyphenat}
-\renewcommand{\figurename}{Rysunek}
+\renewcommand*{\tablename}{Tabela}
+\renewcommand*{\figurename}{Rys.} 
 \definecolor{lightgray}{RGB}{230,230,230}
 \begin{document}
-	\sloppy
 	\maketitle
 	\newpage 
 	\tableofcontents
-	\chapter{Ogólny opis systemu}
-	System ten bêdzie s³u¿yæ do uzyskiwania podpisów cyfrowych ze stemplem czasowym, który bêdzie wiarygodny poprzez zastosowanie urzêdu certyfikacyjnego w postaci serwera po³¹czonego z baz¹ danych. U¿ytkownik przy pomocy aplikacji lub strony internetowej bêdzie przesy³a³ dokument wraz z funkcj¹ skrótu, nastêpnie serwer bêdzie swoim w³asnym podpisem dawa³ stempel czasowy, który bêdzie umieszcza³ w bazie danych i odsy³a³ u¿ytkownikowi (do aplikacji lub strony WWW) dokument wraz z podpisem cyfrowym zawieraj¹cym stempel czasowy. Dziêki temu dokumenty bêd¹ mia³y wiarygodny stempel czasowy pozwalaj¹cy okreœliæ dok³adn¹ godzinê zatwierdzenia dokumentu w systemie autentykacji.
+\chapter{Wstêp}
+	System ten bêdzie s³u¿yæ do uzyskiwania podpisów cyfrowych ze stemplem czasowym, który bêdzie wiarygodny poprzez zastosowanie urzêdu certyfikacyjnego w postaci serwera po³¹czonego z baz¹ danych. U¿ytkownik przy pomocy aplikacji lub strony internetowej bêdzie przesy³a³ dokument wraz z funkcj¹ skrótu, nastêpnie serwer bêdzie swoim w³asnym podpisem dawa³ stempel czasowy, który bêdzie umieszcza³ w bazie danych i odsy³a³ u¿ytkownikowi tak zwany plik magnetyczny \footnote{Plik s³u¿acy do pobrania dokumentu z repozytorium serwera, utworzony na podstawie skrótu dokumentu oryginalnego oraz znacznika czasowego} wraz znacznikiem czasowy. Posiadaj¹c plik magnetyczny  Dziêki temu dokumenty bêd¹ mia³y wiarygodny znacznik daty podpisu pozwalaj¹cy okreœliæ dok³adn¹ godzinê zatwierdzenia dokumentu w systemie autentykacji.
 	
 	W sk³ad systemu bêdzie wchodziæ:
 	\begin{itemize*}
@@ -93,8 +94,8 @@
 		\item aplikacja mobilna,
 		\item aplikacja desktopowa.
 	\end{itemize*}
-	
-	\chapter{Organizacja pracy}
+
+\chapter{Organizacja pracy}
 	\section{Podzia³ zadañ}
 	Realizacja projektu odbywaæ siê bêdzie w modu³ach tworzonych wspó³bie¿nie: 
 	\begin{itemize*}
@@ -105,7 +106,7 @@
 		\item tworzenia aplikacji desktopowej,
 		\item mechanizm uwierzytelniania.
 	\end{itemize*}
-
+	
 	Wyszczególniony podzia³ modu³ów pomiêdzy cz³onków zespo³u przedstawiony zosta³ w Tabeli \ref{tab:podzial_prac}.
 	
 	\begin{longtable}[!ht]{|p{3.5cm}|p{7.5cm}|} 
@@ -113,20 +114,25 @@
 		\label{tab:podzial_prac}\\
 		\hline	
 		\rowcolor{BrickRed}Osoba & Rola\\	\hline
-		\rowcolor{lightgray} \textcolor{red}{Maciej Marciniak} & \textcolor{red}{Kierownik, programista: dokumentacja, organizacja zespo³u, aplikacja serwerowa}\\ \hline
+		\rowcolor{lightgray} \textcolor{red}{Maciej Marciniak} & \textcolor{red}{Kierownik, programista: dokumentacja, organizacja zespo³u}\\ \hline
 		\rowcolor{lightgray} Dawid Wiktorski & Programista: aplikacja mobilna na system Android, aplikacja serwerowa\\ \hline
 		\rowcolor{lightgray} Krzysztof £uczak & Programista: aplikacja webowa, aplikacja serwerowa, mechanizm uwierzytelniania \\ \hline
 		\rowcolor{lightgray} Damian Filipowicz & Programista, aplikacja desktopowa, aplikacja serwerowa\\ \hline
 	\end{longtable}
-
-	\section{Harmonogram pracy}
-	Harmonogram pracy zespo³u przedstawiony zosta³ na wykresie Gantta, który znajduje siê w linku poni¿ej do arkusza Google:
-	\textcolor{blue}{\href{https://docs.google.com/spreadsheets/d/1y5tACI1IHK5rfhLSwWZuGVoh0uXH1JwH9xcQJ_xenw0/edit?usp=sharing}{Harmonogram prac}}
 	
-	\section{Repozytiorium GitHub}
-		\textcolor{blue}{\href{https://github.com/wapet1995/WTI---Baza-danych-dokument-w-podpisanych-stemplami-czasowymi}{Repozytorium GitHub}}
-		
-	\chapter{Schemat idei stempli czasowych}
+	\section{Harmonogram pracy}
+	Harmonogram pracy zespo³u przedstawiony zosta³ na wykresie Gantta, który znajduje siê na Rys. 
+	
+	\begin{landscape}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=23cm]{Wykres_Gantta.PNG}
+		\caption{Diagram weryfikacja stempli czasowych}
+		\label{wykres:wykres gantta}
+	\end{figure}
+	\end{landscape}
+
+\chapter{Idea stempli czasowych}
 	Na dokument podpisany stemplem czasowym sk³adaj¹ siê trzy pliki:
 	\begin{itemize*}
 		\item podpisywany dokument,
@@ -136,7 +142,7 @@
 	\section*{Tworzenie dokumentu podpisanego stemplem czasowym}
 		Tworzenie certyfikatu odbywa siê po stronie zaufanego urzêdu poprzez dodanie do funkcji skrótu podpisywanego dokumentu, stempla czasowego, a nastêpnie z utworzonej paczki ponownie tworzy siê funkcjê skrótu. Ostatecznie skrót obu plików szyfruje siê kluczem prywatnym i przesy³a siê z powrotem do u¿ytkownika.
 
-		Schemat przebiegu tworzenia dokumentu przedstawiony jest na Rysunku \ref{diagram:diagram tworzenia stempli}. 
+		Schemat przebiegu tworzenia dokumentu przedstawiony jest na Rys. \ref{diagram:diagram tworzenia stempli}. 
 		
 		\begin{figure}[!ht]
 			\vspace{-1.5cm}
@@ -149,35 +155,84 @@
 	\section*{Weryfikacja dokumentu podpisanego stemplem czasowym}
 		Weryfikacja certyfikatu odbywa siê po stronie u¿ytkownika poprzez wykonanie funkcji skrótu dokumentu, nastêpnie dodanie do niej do³¹czonego stempla czasowego i ponowne wykonanie funkcji skrótu. Certyfikat nale¿y odszyfrowaæ kluczem publicznym u¿ytkownika, po czym porównaæ utworzone ci¹gi znaków. Je¿eli otrzymane pliki s¹ identyczne, to dokument zosta³ podpisany o podanej godzinie, która umieszczona jest w do³¹czonym pliku stempla czasowego.
 		
-		Schemat przebiegu weryfikacji dokumentu przedstawiony jest na Obrazie \ref{diagram:diagram weryfikacji stempli}.
+		Schemat przebiegu weryfikacji dokumentu przedstawiony jest na Rys. \ref{diagram:diagram weryfikacji stempli}.
 		
 		\begin{figure}[!h]
 			\centering
 			\includegraphics[width=13cm]{weryfikacja_stempli_wiki.png}
 			\caption{Diagram weryfikacja stempli czasowych}
 			\label{diagram:diagram weryfikacji stempli}
-		\end{figure}	
+		\end{figure}
+		
+\chapter{Aktorzy systemu}
+	W systemie wyró¿niamy nastêpuj¹cych aktorów:
+	\begin{itemize*}
+		\item \textbf{Serwer} --- g³ówna inteligencja systemu operuj¹ca na bazie danych, pe³ni funkcjê urzêdu certyfikuj¹cego,
+		\item \textbf{Aplikacja webowa} --- aplikacja internetowa dzia³aj¹ca wraz z serwerem udostêpniaj¹ca interfejs graficzny dla u¿ytkownika,
+		\item \textbf{Aplikacja mobilna} --- aplikacja kliencka zainstalowana na urz¹dzeniu mobilnym z systemem android,
+		\item \textbf{Aplikacja desktopowa} --- aplikacja kliencka znajduj¹ca siê na komputerze PC z systemem operacyjnym Windows,
+		\item \textbf{U¿ytkownik} --- osoba fizyczna operuj¹ca aplikacj¹ klienck¹, chc¹ca podpisaæ lub odczytaæ dokument,
+		\item \textbf{Goœæ} --- osoba fizyczna niezalogowana do systemu.
+	\end{itemize*}
+
+\chapter{Opis sk³adowych systemu}
+	\section{Aplikacja serwerowa}
+	Aplikacja serwerowa spe³nia g³ówn¹ rolê w systemie. Jest urzêdem podpisuj¹cym dokumenty stemplem czasowym oraz repozytorium dla plików. Wymagania funkcjonalne stawiane aplikacji serwerowej przedstawiono w Tabeli \ref{tab:wymagania_aplikacja_serwerowa}.
 	
-	\chapter{Diagramy UML systemu}
+	\begin{longtable}[!ht]{|m{3.5cm}|m{7.5cm}|m{3.7cm}|} 
+		\caption{Tabela wymagañ funkcjonalnych aplikacji serwerowej}
+		\label{tab:wymagania_aplikacja_serwerowa}\\
+		\hline	
+		\rowcolor{lightgray}Funkcja & Opis & Aktorzy \\	\hline
+		Odbieranie plików & Umo¿liwienie odbierania plików z dokumentami wysy³anych z poziomu aplikacji klienta & Aplikacja serwerowa, Aplikacja kliencka \\ \hline
+		Podpisanie pliku stemplem czasowym & Utworzenie sygnatury potwierdzaj¹cej podpisanie pliku o danej godzinie & Aplikacja serwerowa \\ \hline
+		Dodanie pliku do repozytorium & Umieszczenie plików wraz z stemplem czasowym na dysk serwera & Aplikacja serwerowa \\ \hline
+		Udostêpnianie pliku z repozytorium & Pobranie konkretnego pliku z repozytorium oraz udostêpnienie go u¿ytkownikowi & Aplikacja serwerowa, Aplikacja kliencka \\ \hline
+		Rejestracja u¿ytkowników & Weryfikacja poprawnoœci danych oraz dodawanie nowych u¿ytkowników do systemu & Aplikacja serwerowa, Aplikacja kliencka \\ \hline
+		Logowanie u¿ytkowników & Uwierzytelnianie u¿ytkownika, tworzenie tokenów sesji & Aplikacja serwerowa, Aplikacja kliencka \\ \hline
+	\end{longtable}
+
+	\section[Aplikacja webowa]{Aplikacja kliencka --- webowa, mobilna i desktopowa}
+	Aplikacja kliencka znajduje siê po stronie klienta w postaci interfejsu graficznego. Wymagania funkcjonalne stawiane aplikacji webowej przedstawiono w Tabeli \ref{tab:wymagania_aplikacja_kliencka}.
 	
-	\section{Diagram przypadków u¿ycia}
+	\begin{longtable}[!ht]{|m{3.5cm}|m{7.5cm}|m{3.7cm}|} 
+		\caption{Tabela wymagañ funkcjonalnych aplikacji klienckiej}
+		\label{tab:wymagania_aplikacja_kliencka}\\
+		\hline	
+		\rowcolor{lightgray}Funkcja & Opis & Aktorzy \\	\hline
+		Odbieranie plików z aplikacji serwerowej & Pobierania plików z dokumentami znajduj¹cych siê w repozytorium serwera & Aplikacja serwerowa, Aplikacja kliencka \\ \hline
+		Wysy³anie plików & Dodanie plików do repozytorium dokumentów & Aplikacja serwerowa, aplikacja kliencka \\ \hline
+		Weryfikacja stempla czasowego & Sprawdzenie wiarygodnoœci stempla czasowego & Aplikacja kliencka, Aplikacja serwerowa \\ \hline
+		Wykonanie skrótu dokumentu & U¿ycie funkcji skrótu na dokumencie & Aplikacja kliencka \\ \hline
+		Logowanie u¿ytkownika & Mo¿liwoœæ uzyskania uprawnieñ u¿ytkownika zalogowanego & Aplikacja kliencka, Aplikacja serwerowa \\ \hline
+		Rejestracja u¿ytkownika & Mo¿liwoœæ utworzenia konta u¿ytkownika w systemie & Aplikacja kliencka, Aplikacja serwerowa \\ \hline
+		Listowanie dostêpnych plików & Wyœwietlenie dostêpnych w repozytorium plików & Aplikacja kliencka, Aplikacja serwerowa \\ \hline
+	\end{longtable}
+
+\chapter{Diagram przypadków u¿ycia}
+	Diagram przypadków u¿ycia (funkcjonalnoœci) systemu wraz z opowiadaj¹cymi aktorami przedstawiono na Rys. \ref{diagram:diagram przypadkow uzycia}.
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=15.17cm]{diagram_przypadkow_uzycia.png}
+		\includegraphics[width=14.6cm]{diagram_przypadkow_uzycia.png}
 		\caption{Diagram przypadków u¿ycia}
 		\label{diagram:diagram przypadkow uzycia}
 	\end{figure}
 
-	\section{Diagramy sekwencji}
-	\subsection*{Rejestracja u¿ytkownika}
+\chapter{Diagramy sekwencji}
+	Diagramy przedstawione w tym rozdziale maj¹ na celu przybli¿enie ogólnego dzia³ania systemu. Schematy nie s¹ odzwierciedleniem poszczególnych przypadków u¿ycia, mog¹ zawieraæ szcz¹tkowe odniesienia do wielu z nich. 
+	
+	\section*{Rejestracja u¿ytkownika}
+	Diagram znajduj¹cy siê na Rys. \ref{diagram:diagram seq rejestracja uzytkownika} przedstawia sekwencje akcji wykonywanych podczas rejestracji u¿ytkownika.
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=15cm]{diagram_seq_rejestracja_uzytkownika.png}
+		\includegraphics[width=13cm]{diagram_seq_rejestracja_uzytkownika.png}
 		\caption{Diagram sekwencji rejestracji u¿ytkownika}
 		\label{diagram:diagram seq rejestracja uzytkownika}
 	\end{figure}
 	\newpage
-	\subsection*{Logowanie u¿ytkownika}
+	
+	\section*{Logowanie u¿ytkownika}
+	Diagram znajduj¹cy siê na Rys. \ref{diagram:diagram seq logowanie uzytkownika} przedstawia sekwencje akcji wykonywanych podczas logowania u¿ytkownika.
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=15cm]{diagram_seq_logowanie_uzytkownika.png}
@@ -185,7 +240,9 @@
 		\label{diagram:diagram seq logowanie uzytkownika}
 	\end{figure}
 	\newpage
-	\subsection*{Podpis pliku stemplem czasowym}
+	
+	\section*{Podpis pliku stemplem czasowym}
+	Diagram znajduj¹cy siê na Rys. \ref{diagram:diagram seq podpis pliku stemplem} przedstawia sekwencje akcji wykonywanych przy podpisywaniu pliku stemplem czasowym.
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=15cm]{diagram_seq_podpis_pliku_semplem.png}
@@ -193,7 +250,9 @@
 		\label{diagram:diagram seq podpis pliku stemplem}
 	\end{figure}
 	\newpage
-	\subsection*{Weryfikacja stempla czasowego}
+	
+	\section*{Weryfikacja stempla czasowego}
+	Diagram znajduj¹cy siê na Rys. \ref{diagram:diagram seq weryfikacja stempla} przedstawia sekwencje akcji wykonywanych podczas weryfikacji wiarygodnoœci stempla czasowego.
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=15cm]{diagram_seq_weryfikacja_sempla.png}
@@ -201,4 +260,91 @@
 		\label{diagram:diagram seq weryfikacja stempla}
 	\end{figure}
 
+\chapter{Projekt bazy danych}
+	Baza danych sk³ada siê z 3 u¿ytkowych tabel. Projekt zawiera wiêcej pozycji, lecz s¹ one definiowane domyœlnie przez aplikacjê serwerow¹ zaimplementowan¹ w Django i nie s¹ wykorzystywane. Tabele u¿ywane w projekcie:
+	\begin{itemize*}
+		\item \textbf{Auth\_user} --- przechowuje dane u¿ytkowników systemu,
+		\item \textbf{Main\_app\_documents} --- zawiera dokumenty znajduj¹ce siê w repozytorium serwera,
+		\item  \textbf{Main\_app\_tokens} --- przetrzymuje tokeny sesji u¿ytkowników.
+	\end{itemize*}
+
+	Tabela Auth\_user sk³ada siê z:
+	\begin{itemize*}
+		\item \textbf{id} --- unikalny identyfikator u¿ytkownika,
+		\item \textbf{password} --- has³o u¿ytkownika przechowywane w postaci skrótu,
+		\item \textbf{last\_login} --- data ostatniego zalogowania u¿ytkownika,
+		\item \textbf{is\_superuser} --- okreœla czy u¿ytkownik posiada uprawnienia administratora,
+		\item \textbf{first\_name} --- imiê u¿ytkownika,
+		\item \textbf{last\_name} --- nazwisko u¿ytkownika,
+		\item \textbf{email} --- adres email potrzebny do rejestracji,
+		\item \textbf{is\_staff} --- czy ma dostêp do strony administratora,
+		\item \textbf{is\_active} --- czy konto u¿ytkownika jest aktywne,
+		\item \textbf{data\_joined} --- data utworzenia konta,
+		\item \textbf{username} --- login u¿ytkownika.
+	\end{itemize*}
+\newpage
+	Tabela Main\_app\_documents zawiera:
+	\begin{itemize*}
+		\item \textbf{id} --- unikalny identyfikator dokumentu,
+		\item \textbf{owner\_id} --- klucz obcy, identyfikator u¿ytkownika, który jest w³aœcicielem dokumentu,
+		\item  \textbf{file} --- œcie¿ka dostêpu do pliku znajduj¹cego siê w pamiêci dysku serwera,
+		\item \textbf{timestamp} --- znacznik czasowy podpisu dokumentu,
+		\item  \textbf{hash} --- skrót zawartoœci dokumentu.
+	\end{itemize*}
+
+	Tabela Main\_app\_tokens przetrzymuje takie dane jak:
+	\begin{itemize*}
+		\item \textbf{id} --- unikalny identyfikator tokena sesji,
+		\item \textbf{user\_id} --- klucz obcy, identyfikator u¿ytkownika,
+		\item \textbf{timestamp } --- czas wa¿noœci tokena,
+		\item \textbf{key} --- unikalna wartoœæ tokena.
+	\end{itemize*}
+
+	Diagramy bazy danych odpowiednio encji i relacji przedstawione zosta³y \linebreak na~Rys.~\ref{diagram:diagram encji}~i~Rys.~\ref{diagram:diagram relacji}. 
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{Diagram_encji.png}
+		\caption{Diagram encji bazy danych}
+		\label{diagram:diagram encji}
+	\end{figure}
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=15cm]{Diagram_relacji.png}
+		\caption{Diagram relacji bazy danych}
+		\label{diagram:diagram relacji}
+	\end{figure}
+
+\chapter{Diagramy klas}
+	\section{Aplikacja serwerowa}
+
+	\section{Aplikacja webowa}
+	
+	\section{Aplikacja desktopowa}
+	
+	\section{Aplikacja mobilna}
+
+\chapter{Implementacja}
+	Kod Ÿród³owy systemu wraz z postêpami pracy znajduje siê w \textcolor{blue}{\href{https://github.com/wapet1995/WTI---Baza-danych-dokument-w-podpisanych-stemplami-czasowymi}{Repozytorium GitHub}}.
+
+\chapter{Widok graficzny systemu, obs³uga interfejsu}
+
+
+\section{Aplikacja webowa}
+
+\section{Aplikacja desktopowa}
+
+\section{Aplikacja mobilna}
+
+	
+\chapter{Perspektywy rozwoju}
+	System na stan obecny ogranicza u¿ytkownika do korzystania z systemu android, jeœli chodzi o aplikacjê mobiln¹ oraz wymusza korzystanie z systemu Windows w celu u¿ycia aplikacji desktopowej. W przysz³oœci mo¿na rozszerzyæ modu³y o kompatybilnoœæ z systemami IOS i Linux.
+	
+	Dodatkow¹ funkcjonalnoœæ systemu jak¹ nale¿y rozwa¿yæ w perspektywach rozwoju jest dodawanie wielu plików jednoczeœnie, jak równie¿ wprowadzenie \linebreak mo¿liwoœæ dodawania dokumentów wymaganych wielu podpisów przez ró¿nych u¿ytkowników.
+	
+	System z scentralizowan¹ baz¹ danych mo¿e byæ nara¿ony na przeci¹¿enia oraz przepe³nienie pamiêci. Rozwi¹zaniem jest zastosowanie rozproszonych bazy danych.
+	
+	
+	
 \end{document}
