@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +42,7 @@ import javax.crypto.spec.DHParameterSpec;
  */
 
 public class SprawdzAsync extends AsyncTask<String, Void, String> {
-
+    private boolean przejscie = false;
     private Activity activity;
     private ProgressBar progressBar;
 
@@ -67,61 +68,85 @@ public class SprawdzAsync extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        super.onPostExecute(s);
+
         progressBar.setVisibility(View.INVISIBLE);
+        if(przejscie == true) {
+            Intent intent = new Intent(activity, SzczegolySprawdzonegoPlikuActivity.class);
+            activity.startActivity(intent);
+            ((Activity) activity).finish();
+        }
 
     }
 
-    private String wgrajPlik(String plikPath)
-    {
+    private String wgrajPlik(String plikPath) {
         String wiadomosc = "";
         String wynik = upload(plikPath);
-        String status ="";
-        if(wynik.equals(""))
-        {
+        String status = "";
+        if (!wynik.equals("")) {
             JSONObject jsonObj = null;
             try {
                 jsonObj = new JSONObject(wynik);
-                JSONObject objectjso = jsonObj.getJSONObject("magnet");
-                status = objectjso.getString("status");
+
+                Log.d("globbbb", "przed");
+                Log.d("glggla", "dsda " + jsonObj.getString("id"));
+
+
+                String nazwaPliku = jsonObj.getString("nazwa");
+                int id = Integer.parseInt(jsonObj.getString("id"));
+                String Temptimestamp = jsonObj.getString("timestamp");
+                String timestamp[] = Temptimestamp.split("\\.");
+                String autor = jsonObj.getString("autor");
+                Log.d("ssprawdzautro", autor);
+                GlobalValue.sprawdzonyPlik = new SzczegolyDokumentow(id, nazwaPliku, timestamp[0], autor, "link");
+                przejscie = true;
+                return wiadomosc;
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            if(status.equals("error"))
-            {
-                wiadomosc = "Taki plik nie istnieje";
-                Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
-                return wiadomosc;
+
+            try {
+                jsonObj = new JSONObject(wynik);
+                if (jsonObj.isNull("magnet")) {
+                    Log.d("globbbb", " magneeeet");
+                    JSONObject objectjso = jsonObj.getJSONObject("magnet");
+                    Log.d("maaaadasdasdasd", "Asdasdasd");
+                    status = objectjso.getString("status");
+                    if (status.equals("error")) {
+                        wiadomosc = "Taki plik nie istnieje";
+                        Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
+                        return wiadomosc;
+                    } else if (status.equals("file not exists")) {
+                        wiadomosc = "Taki plik już istnieje:\n" + plikPath;
+                        Snackbar snackbar = Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_INDEFINITE);
+                        View snackbarView = snackbar.getView();
+                        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                        tv.setMaxLines(30);
+                        snackbar.show();
+                        return wiadomosc;
+                    }
+                    if (status.equals("bad sign")) {
+                        wiadomosc = "Złe znaki:\n" + plikPath;
+                        Snackbar snackbar = Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_INDEFINITE);
+                        View snackbarView = snackbar.getView();
+                        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                        tv.setMaxLines(30);
+                        snackbar.show();
+                        return wiadomosc;
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            else if(status.equals("file exists"))
-            {
-                wiadomosc = "Taki plik już istnieje:\n" + plikPath;
-                Snackbar snackbar = Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_INDEFINITE);
-                View snackbarView = snackbar.getView();
-                TextView tv= (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                tv.setMaxLines(30);
-                snackbar.show();
-                return wiadomosc;
-            }
-            else if(status.equals("ok"))
-            {
-                wiadomosc = wiadomosc + "Plik został podpisany stemplem czasowym";
-                Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
-                return wiadomosc;
-            }
+            Log.d("globbbb", "cosss");
+
+
+            return wiadomosc;
         }
-
-
-        Snackbar snackbar =  Snackbar.make(activity.getCurrentFocus(), wynik,Snackbar.LENGTH_INDEFINITE);
-        View snackbarView = snackbar.getView();
-        TextView tv= (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-        tv.setMaxLines(30);
-        snackbar.show();
         return wiadomosc;
     }
-
-
     public static String upload(String pathFile){
         String charset = "UTF-8";
         File uploadFile1 = new File(pathFile);

@@ -96,6 +96,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.dawid.wtistemple.ArchwiwumActivity" />
         </activity>
+        <activity
+            android:name=".SzczegolySprawdzonegoPlikuActivity"
+            android:label="@string/title_activity_szczegoly_sprawdzonego_pliku"
+            android:parentActivityName=".menuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dawid.wtistemple.menuActivity" />
+        </activity>
     </application>
 
 </manifest>

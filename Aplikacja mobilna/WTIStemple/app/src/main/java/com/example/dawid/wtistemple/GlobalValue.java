@@ -37,4 +37,7 @@ public class GlobalValue extends Application {
         return listaArchiwum;
     }
     public static int WybranyDokument;
+    public static SzczegolyDokumentow sprawdzonyPlik;
+    public  static String PlikPath;
+
 }

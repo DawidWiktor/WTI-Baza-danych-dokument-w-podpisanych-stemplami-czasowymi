@@ -119,7 +119,6 @@ public class PobieraniePlikuMagnetycznegoAsync extends AsyncTask<String, String,
             os.close();
             int responseCode=conn.getResponseCode();
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-
                 sciezka = Environment.getExternalStorageDirectory() + "/" + GlobalValue.listaArchiwum.get(GlobalValue.WybranyDokument).nazwa + "-"+GlobalValue.listaArchiwum.get(GlobalValue.WybranyDokument).timestamp + ".magnet";
                 input = conn.getInputStream();
                 output = new FileOutputStream(new File(sciezka));

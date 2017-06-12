@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.dawid.wtistemple.SzczegolyDokumentuActivity">
+    tools:context="com.example.dawid.wtistemple.SzczegolySprawdzonegoPlikuActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -19,11 +19,10 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
-
     <ScrollView
-    android:id="@+id/scrollView3"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,67 +31,58 @@
             android:weightSum="1">
 
             <TextView
-                android:id="@+id/nazwaTemplate"
+                android:id="@+id/nazwaSTemplate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nazwa pliku:"
-                android:layout_marginTop="75dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="75dp"
                 android:layout_marginBottom="7dp"/>
             <TextView
-                android:id="@+id/nazwaArtykuluTV"
+                android:id="@+id/nazwaSArtykuluTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="30dp"/>
 
             <TextView
-                android:id="@+id/dataTemplate"
+                android:id="@+id/autorSTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Właściciel:"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="7dp"/>
+            <TextView
+                android:id="@+id/autorNazwaSTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:id="@+id/dataSTemplate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Data podpisania pliku:"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="7dp"/>
             <TextView
-                android:id="@+id/timestampTV"
+                android:id="@+id/timestampSTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="30dp"/>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
             <Button
-                android:id="@+id/pobierzBTN"
+                android:id="@+id/pobierzSprawdzonyPlikBTN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pobierz"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:onClick="pobierzClick"/>
 
-            <Button
-                android:id="@+id/pobierzPlikMagnetycznyBTN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pobierz plik magnetyczny"
-                android:layout_marginTop="20dp"
-                android:onClick="pobierzPlikMagnetycznyClick"/>
-
-            <Button
-                android:id="@+id/usunPlikBTN"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Usuń"
-                android:layout_marginTop="20dp"
-                android:onClick="usunClick"/>
-            </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
-
 
 </android.support.design.widget.CoordinatorLayout>

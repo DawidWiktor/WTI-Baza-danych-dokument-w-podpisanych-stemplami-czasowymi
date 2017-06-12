@@ -48,7 +48,7 @@ public class PobieraniePlikuAsync extends AsyncTask<String, String, String> {
     private String sciezka = "";
     private String rozszerzenie ="";
     private Activity activity;
-
+    String nazwaPliku = "";
     public PobieraniePlikuAsync(Activity activity)
     {
         this.activity = activity;
@@ -82,9 +82,12 @@ public class PobieraniePlikuAsync extends AsyncTask<String, String, String> {
 
 
     private String sprawdzenieDanych(){
-        String nazwaPliku = GlobalValue.listaArchiwum.get(GlobalValue.WybranyDokument).nazwa;
-        String[] splitNazwa = nazwaPliku.split("\\.");
+        String nazwa = GlobalValue.listaArchiwum.get(GlobalValue.WybranyDokument).nazwa;
+        String[] splitNazwa = nazwa.split("\\.");
+        for (int i =0; i< splitNazwa.length-1; i++)
+            nazwaPliku+= splitNazwa[i];
         rozszerzenie = splitNazwa[splitNazwa.length-1];
+
         String wiadomosc = laczenie();
 
 
@@ -102,7 +105,7 @@ public class PobieraniePlikuAsync extends AsyncTask<String, String, String> {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
-                sciezka = Environment.getExternalStorageDirectory() + "/" + GlobalValue.listaArchiwum.get(GlobalValue.WybranyDokument).nazwa + "." + rozszerzenie;
+                sciezka = Environment.getExternalStorageDirectory() + "/" + nazwaPliku + "." + rozszerzenie;
                 input = conn.getInputStream();
                 output = new FileOutputStream(new File(sciezka));
                 byte data[] = new byte[4096];

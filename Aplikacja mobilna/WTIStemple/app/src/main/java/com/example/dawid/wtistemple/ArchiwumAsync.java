@@ -90,10 +90,11 @@ public class ArchiwumAsync extends AsyncTask<String, String, String> {
                     JSONObject objectJS = docs.getJSONObject(i);
                     int ID = objectJS.getInt("id");
                     String nazwa = objectJS.getString("nazwa");
-                    String timestamp = objectJS.getString("timestamp");
+                    String Temptimestamp = objectJS.getString("timestamp");
+                    String timestamp[] = Temptimestamp.split("\\.");
                     String autor = objectJS.getString("autor");
                     String linkPobierz = objectJS.getString("pobierz");
-                    SzczegolyDokumentow dokument = new SzczegolyDokumentow(ID, nazwa, timestamp, autor, linkPobierz);
+                    SzczegolyDokumentow dokument = new SzczegolyDokumentow(ID, nazwa, timestamp[0], autor, linkPobierz);
                     listDokumenty[i]=  dokument;
                     GlobalValue.listaArchiwum.add(dokument);
                 }

@@ -43,6 +43,7 @@ public class menuActivity extends AppCompatActivity
 
     public Button wybierzPlik, wgraj, sprawdz;
     private String plikPath = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,6 +151,7 @@ Uri path;
                             // Get the file path from the URI
                             final String path = FileUtils.getPath(this, uri);
                             plikPath = path;
+                            GlobalValue.PlikPath = path;
                             Snackbar snackbar =  Snackbar.make(getCurrentFocus(), "Wybrany plik: " + plikPath,Snackbar.LENGTH_INDEFINITE);
                             View snackbarView = snackbar.getView();
                             TextView tv= (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
@@ -173,8 +175,6 @@ Uri path;
     public void sprawdzClick(View w)
     {
         new SprawdzAsync(this).execute(plikPath);
-
-        //new JsonTask(this).execute("http://192.168.137.1:8000/api/test_get/");
     }
 }
 
