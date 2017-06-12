@@ -140,7 +140,7 @@ public class LogowanieAsync extends AsyncTask<String, String, String> {
     }
 
     public String laczenie(){
-        String requestURL = "http://192.168.137.1:8000/api/login/";
+        String requestURL = "http://"+GlobalValue.ipAdres+"/api/login/";
         URL url;
         String response = "";
         try {

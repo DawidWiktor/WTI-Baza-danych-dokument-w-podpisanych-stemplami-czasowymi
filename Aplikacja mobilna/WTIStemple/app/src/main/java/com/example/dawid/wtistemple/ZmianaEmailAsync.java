@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +41,7 @@ import static android.R.attr.theme;
  */
 
 public class ZmianaEmailAsync extends AsyncTask<String, String, String> {
-
+    private boolean wykonano = false;
     private Activity activity;
     private EditText email;
     public ZmianaEmailAsync(Activity activity)
@@ -64,7 +65,12 @@ public class ZmianaEmailAsync extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String s) {
+
         super.onPostExecute(s);
+        if(wykonano == true)
+        {
+            Toast.makeText(activity, "Na e-mail został wysłany link aktywacyjny", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -99,6 +105,7 @@ public class ZmianaEmailAsync extends AsyncTask<String, String, String> {
             Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
             return wiadomosc;
         } else {
+            wykonano = true;
             Intent intent = new Intent(activity, logowanieActivity.class);
             activity.startActivity(intent);
         }
@@ -108,7 +115,7 @@ public class ZmianaEmailAsync extends AsyncTask<String, String, String> {
 
     public String laczenie(){
         String newEmail = email.getText().toString();
-        String requestURL = "http://192.168.137.1:8000/api/change_mail/";
+        String requestURL = "http://"+GlobalValue.ipAdres+"/api/change_mail/";
         URL url;
         String response = "";
         try {

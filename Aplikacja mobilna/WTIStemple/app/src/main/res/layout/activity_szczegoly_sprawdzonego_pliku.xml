@@ -37,12 +37,14 @@
                 android:text="Nazwa pliku:"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="75dp"
+                android:textSize="16dp"
                 android:layout_marginBottom="7dp"/>
             <TextView
                 android:id="@+id/nazwaSArtykuluTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:textSize="16dp"
                 android:layout_marginBottom="30dp"/>
 
             <TextView
@@ -50,12 +52,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Właściciel:"
+                android:textSize="16dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="7dp"/>
             <TextView
                 android:id="@+id/autorNazwaSTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="30dp"/>
 
@@ -64,6 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Data podpisania pliku:"
+                android:textSize="16dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="7dp"/>
             <TextView
@@ -71,6 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:textSize="16dp"
                 android:layout_marginBottom="30dp"/>
 
             <Button

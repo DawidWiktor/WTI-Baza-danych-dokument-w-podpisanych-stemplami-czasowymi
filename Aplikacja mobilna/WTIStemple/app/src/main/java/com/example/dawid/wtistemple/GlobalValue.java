@@ -12,7 +12,7 @@ import java.util.List;
 
 public class GlobalValue extends Application {
     public static String LoginGlobal, PasswordGlobal, TokenGlobal;
-
+    public static final String ipAdres = "192.168.137.1:8000";
     public static String getLoginGlobal() {
         return LoginGlobal;
     }
@@ -27,7 +27,7 @@ public class GlobalValue extends Application {
     public static void setPasswordGlobal(String str) {
         PasswordGlobal = str;
     }
-
+    public static String sciezkaPobrania;
     public static ArrayList<SzczegolyDokumentow> listaArchiwum = new ArrayList<SzczegolyDokumentow>();
     public static void setListaArchiwum(ArrayList<SzczegolyDokumentow> list)
     {

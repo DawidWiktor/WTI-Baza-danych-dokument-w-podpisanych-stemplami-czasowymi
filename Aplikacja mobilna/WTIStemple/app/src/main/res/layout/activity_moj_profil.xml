@@ -38,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="65dp"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
             android:text="@string/zmianaHasla" />
 
@@ -47,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/aktualneHaslo"
+            android:textSize="16dp"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"/>
 
@@ -55,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:textSize="16dp"
+            android:inputType="textPassword"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"/>
@@ -65,15 +68,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/noweHaslo"
+            android:textSize="16dp"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"/>
 
         <EditText
             android:id="@+id/noweHasloET"
+            android:textSize="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
@@ -83,6 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/noweHaslo"
+            android:textSize="16dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"/>
 
@@ -91,8 +97,9 @@
             android:id="@+id/noweHaslo1ET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:textSize="16dp"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
@@ -111,6 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/zmianaEmail"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"/>
 
@@ -119,6 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/email"
+            android:textSize="16dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"/>
 
@@ -127,6 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:textSize="16dp"
             android:inputType="textPersonName"
 
             android:layout_marginLeft="20dp"

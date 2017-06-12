@@ -148,6 +148,7 @@ public class MultipartUtilitySprawdzenie {
             for (int i = 0; i < spliTNazwa.length-1; i++)
                 plik += spliTNazwa[i];
             String sciezka = Environment.getExternalStorageDirectory() + "/" + plik + "."+spliTNazwa[spliTNazwa.length-1];
+            GlobalValue.sciezkaPobrania = sciezka;
             InputStream input = httpConn.getInputStream();
             OutputStream output = new FileOutputStream(new File(sciezka));
             byte data[] = new byte[4096];

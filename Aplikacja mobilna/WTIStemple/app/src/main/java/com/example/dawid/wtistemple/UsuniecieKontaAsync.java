@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +41,7 @@ import static android.R.attr.theme;
  */
 
 public class UsuniecieKontaAsync extends AsyncTask<String, String, String> {
-
+    private boolean wykonano = false;
     private Activity activity;
 
     public UsuniecieKontaAsync(Activity activity)
@@ -64,6 +65,10 @@ public class UsuniecieKontaAsync extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        if(wykonano == true)
+        {
+            Toast.makeText(activity, "Konto zostało usunięte", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -89,6 +94,7 @@ public class UsuniecieKontaAsync extends AsyncTask<String, String, String> {
             Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
             return wiadomosc;
         } else {
+            wykonano = true;
             Intent intent = new Intent(activity, logowanieActivity.class);
             activity.startActivity(intent);
         }
@@ -97,7 +103,7 @@ public class UsuniecieKontaAsync extends AsyncTask<String, String, String> {
     }
 
     public String laczenie(){
-        String requestURL = "http://192.168.137.1:8000/api/del_account/";
+        String requestURL = "http://"+GlobalValue.ipAdres+"/api/del_account/";
         URL url;
         String response = "";
         try {

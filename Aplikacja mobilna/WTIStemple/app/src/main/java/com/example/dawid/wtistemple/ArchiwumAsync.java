@@ -108,7 +108,7 @@ public class ArchiwumAsync extends AsyncTask<String, String, String> {
     }
 
     public String laczenie(){
-        String requestURL = "http://192.168.137.1:8000/api/archives/";
+        String requestURL = "http://"+GlobalValue.ipAdres+"/api/archives/";
         URL url;
 
         String response = "";

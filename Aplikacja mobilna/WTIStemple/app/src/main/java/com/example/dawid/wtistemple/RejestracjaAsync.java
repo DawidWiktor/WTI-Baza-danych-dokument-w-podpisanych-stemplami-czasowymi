@@ -139,7 +139,7 @@ public class RejestracjaAsync extends AsyncTask<Void, Void, String> {
     }
 
     public String laczenie(){
-        String requestURL = "http://192.168.137.1:8000/api/register/";
+        String requestURL = "http://"+GlobalValue.ipAdres+"/api/register/";
         URL url;
         String response = "";
         try {

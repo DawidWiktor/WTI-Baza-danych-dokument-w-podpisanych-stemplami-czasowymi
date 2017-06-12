@@ -31,6 +31,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+
         android:layout_gravity="bottom|right"
         android:text="@string/opisProgramu"
         app:layout_anchor="@+id/include2"
@@ -41,6 +42,8 @@
         android:layout_width="157dp"
         android:layout_height="wrap_content"
         android:layout_gravity="top|right"
+        android:layout_marginLeft="22dp"
+
         android:onClick="wybierzPlikClcik"
         android:text="@string/wybierzPlik"
         app:layout_anchor="@+id/include2"

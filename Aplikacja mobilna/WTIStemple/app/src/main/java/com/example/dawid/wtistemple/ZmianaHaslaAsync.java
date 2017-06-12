@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +41,7 @@ import static android.R.attr.theme;
  */
 
 public class ZmianaHaslaAsync extends AsyncTask<String, String, String> {
-
+    private boolean wykonano = false;
     private Activity activity;
     private EditText aktualneHaslo, noweHaslo, noweHaslo1;
     public ZmianaHaslaAsync(Activity activity)
@@ -67,6 +68,10 @@ public class ZmianaHaslaAsync extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        if(wykonano== true)
+        {
+            Toast.makeText(activity, "Zmieniono hasło do konta", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -102,6 +107,7 @@ public class ZmianaHaslaAsync extends AsyncTask<String, String, String> {
             Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_LONG).show();
             return wiadomosc;
         } else {
+            wykonano = true;
             Intent intent = new Intent(activity, menuActivity.class);
             activity.startActivity(intent);
         }
@@ -112,7 +118,7 @@ public class ZmianaHaslaAsync extends AsyncTask<String, String, String> {
     public String laczenie(){
         String aktualneHasl = aktualneHaslo.getText().toString();
         String noweHasl =noweHaslo.getText().toString();
-        String requestURL = "http://192.168.137.1:8000/api/change_password/";
+        String requestURL = "http://"+GlobalValue.ipAdres+"/api/change_password/";
         URL url;
         String response = "";
         try {

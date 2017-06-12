@@ -32,6 +32,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -82,6 +83,7 @@ public class PobieraniePlikuZMagnetycznegoAsync extends AsyncTask<String, Void, 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        Toast.makeText(activity, "Plik został pobrany w\n" + GlobalValue.sciezkaPobrania, Toast.LENGTH_SHORT).show();
     }
 
     private String wgrajPlik(String plikPath)
@@ -148,7 +150,7 @@ public class PobieraniePlikuZMagnetycznegoAsync extends AsyncTask<String, Void, 
         String charset = "UTF-8";
         File uploadFile1 = new File(pathFile);
         String wynik = "";
-        String requestURL = "http://192.168.137.1:8000/api/download_file/";
+        String requestURL = "http://"+GlobalValue.ipAdres+"/api/download_file/";
         Log.d("ttatat", "asdasd");
         try {
             MultipartUtilitySprawdzenie multipart = new MultipartUtilitySprawdzenie(requestURL, charset);

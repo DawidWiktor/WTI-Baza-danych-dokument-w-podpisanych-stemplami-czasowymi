@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +42,6 @@ import javax.crypto.spec.DHParameterSpec;
  */
 
 public class WgrywanieAsync extends AsyncTask<String, Void, String> {
-
     private Activity activity;
     private ProgressBar progressBar;
 
@@ -69,7 +69,6 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         progressBar.setVisibility(View.INVISIBLE);
-
     }
 
     private String wgrajPlik(String plikPath)
@@ -78,14 +77,16 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
 
         String haszPliku = "";
         String wynik = upload(plikPath);
+        Log.d("wyyynik", wynik);
         String status ="";
-        if(wynik.equals(""))
+        if(!wynik.equals(""))
         {
             JSONObject jsonObj = null;
             try {
                 jsonObj = new JSONObject(wynik);
                 JSONObject objectjso = jsonObj.getJSONObject("upload");
                 status = objectjso.getString("status");
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -98,6 +99,7 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
             }
             else if(status.equals("file exists"))
             {
+
                 wiadomosc = "Taki plik już istnieje:\n" + plikPath;
                 Snackbar snackbar = Snackbar.make(activity.getCurrentFocus(), wiadomosc, Snackbar.LENGTH_INDEFINITE);
                 View snackbarView = snackbar.getView();
@@ -113,19 +115,6 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
                 return wiadomosc;
             }
         }
-        try {
-            haszPliku = AlgorytmSHA256.hashFile(plikPath);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Snackbar snackbar =  Snackbar.make(activity.getCurrentFocus(), haszPliku,Snackbar.LENGTH_INDEFINITE);
-        View snackbarView = snackbar.getView();
-        TextView tv= (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-        tv.setMaxLines(30);
-        snackbar.show();
 
         return wiadomosc;
     }
@@ -135,7 +124,7 @@ public class WgrywanieAsync extends AsyncTask<String, Void, String> {
         String charset = "UTF-8";
         File uploadFile1 = new File(pathFile);
         String wynik = "";
-        String requestURL = "http://192.168.137.1:8000/api/upload/";
+        String requestURL = "http://"+GlobalValue.ipAdres+"/api/upload/";
 
         try {
             MultipartUtility multipart = new MultipartUtility(requestURL, charset);

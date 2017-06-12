@@ -87,16 +87,12 @@ public class SprawdzAsync extends AsyncTask<String, Void, String> {
             try {
                 jsonObj = new JSONObject(wynik);
 
-                Log.d("globbbb", "przed");
-                Log.d("glggla", "dsda " + jsonObj.getString("id"));
-
-
                 String nazwaPliku = jsonObj.getString("nazwa");
                 int id = Integer.parseInt(jsonObj.getString("id"));
                 String Temptimestamp = jsonObj.getString("timestamp");
                 String timestamp[] = Temptimestamp.split("\\.");
                 String autor = jsonObj.getString("autor");
-                Log.d("ssprawdzautro", autor);
+
                 GlobalValue.sprawdzonyPlik = new SzczegolyDokumentow(id, nazwaPliku, timestamp[0], autor, "link");
                 przejscie = true;
                 return wiadomosc;
@@ -151,7 +147,7 @@ public class SprawdzAsync extends AsyncTask<String, Void, String> {
         String charset = "UTF-8";
         File uploadFile1 = new File(pathFile);
         String wynik = "";
-        String requestURL = "http://192.168.137.1:8000/api/check_magnet/";
+        String requestURL = "http://"+GlobalValue.ipAdres+"/api/check_magnet/";
 
         try {
             MultipartUtility multipart = new MultipartUtility(requestURL, charset);

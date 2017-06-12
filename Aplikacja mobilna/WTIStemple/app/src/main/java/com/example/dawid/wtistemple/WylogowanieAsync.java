@@ -97,7 +97,7 @@ public class WylogowanieAsync extends AsyncTask<String, String, String> {
     }
 
     public String laczenie(){
-        String requestURL = "http://192.168.137.1:8000/api/logout/";
+        String requestURL = "http://"+GlobalValue.ipAdres+"/api/logout/";
         URL url;
         String response = "";
         try {
