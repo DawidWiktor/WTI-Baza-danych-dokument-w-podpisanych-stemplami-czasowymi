@@ -33,6 +33,7 @@
 \usepackage[tableposition=top]{caption}
 \makeatletter
 \newcommand{\linia}{\rule{\linewidth}{0.4mm}}
+\def\NazwaSys {MagnetoDocs }
 \renewcommand{\maketitle}{\begin{titlepage}
 		\vspace*{-4cm}
 		\begin{center}\small
@@ -43,8 +44,8 @@
 		\vspace{5cm}
 		\noindent\linia
 		\begin{center}
-			\LARGE \textsc{Projekt Zespo³owy}\\
-			\Large {Inteligentny zamek}
+			\Large \textsc{Projekt Wybrane Technologie Internetowe}\\
+			\LARGE {\NazwaSys}
 		\end{center}
 		\linia
 		\vspace{1cm}
@@ -82,12 +83,12 @@
 \definecolor{lightgray}{RGB}{230,230,230}
 \begin{document}
 	\maketitle
-	\newpage 
+	\newpage
 	\tableofcontents
-\chapter{Wstêp}
-	System ten bêdzie s³u¿yæ do uzyskiwania podpisów cyfrowych ze stemplem czasowym, który bêdzie wiarygodny poprzez zastosowanie urzêdu certyfikacyjnego w postaci serwera po³¹czonego z baz¹ danych. U¿ytkownik przy pomocy aplikacji lub strony internetowej bêdzie przesy³a³ dokument wraz z funkcj¹ skrótu, nastêpnie serwer bêdzie swoim w³asnym podpisem dawa³ stempel czasowy, który bêdzie umieszcza³ w bazie danych i odsy³a³ u¿ytkownikowi tak zwany plik magnetyczny \footnote{Plik s³u¿acy do pobrania dokumentu z repozytorium serwera, utworzony na podstawie skrótu dokumentu oryginalnego oraz znacznika czasowego} wraz znacznikiem czasowy. Posiadaj¹c plik magnetyczny  Dziêki temu dokumenty bêd¹ mia³y wiarygodny znacznik daty podpisu pozwalaj¹cy okreœliæ dok³adn¹ godzinê zatwierdzenia dokumentu w systemie autentykacji.
+\chapter*{Wstêp}
+	System ten s³u¿y do znakowania dokumentów stepem czasowym. Znacznik nadawany jest przez urz¹d certyfikuj¹cy w postaci serwera po³¹czonego z baz¹ danych. U¿ytkownik przy pomocy aplikacji lub strony internetowej bêdzie przesy³a³ dokument wraz z funkcj¹ skrótu, nastêpnie serwer bêdzie swoim w³asnym podpisem dawa³ stempel czasowy, który bêdzie umieszcza³ w bazie danych i odsy³a³ \linebreak u¿ytkownikowi tak zwany plik magnetyczny \footnote{Plik s³u¿¹cy do pobrania dokumentu z repozytorium serwera, utworzony na podstawie skrótu dokumentu oryginalnego oraz znacznika czasowego} wraz znacznikiem czasowy. Posiadaj¹c plik magnetyczny  Dziêki temu dokumenty bêd¹ mia³y wiarygodny znacznik daty podpisu pozwalaj¹cy okreœliæ dok³adn¹ godzinê zatwierdzenia dokumentu w systemie autentykacji.
 	
-	W sk³ad systemu bêdzie wchodziæ:
+	W sk³ad systemu wchodzi:
 	\begin{itemize*}
 		\item aplikacja serwerowa z baz¹ danych,
 		\item aplikacja webowa,
@@ -96,8 +97,8 @@
 	\end{itemize*}
 
 \chapter{Organizacja pracy}
-	\section{Podzia³ zadañ}
-	Realizacja projektu odbywaæ siê bêdzie w modu³ach tworzonych wspó³bie¿nie: 
+	\section*{Podzia³ zadañ}
+	Realizacja projektu odbywa siê w modu³ach tworzonych wspó³bie¿nie: 
 	\begin{itemize*}
 		\item dokumentowania projektu,
 		\item tworzenia aplikacji serwerowej,
@@ -120,14 +121,14 @@
 		\rowcolor{lightgray} Damian Filipowicz & Programista, aplikacja desktopowa, aplikacja serwerowa\\ \hline
 	\end{longtable}
 	
-	\section{Harmonogram pracy}
+	\section*{Harmonogram pracy}
 	Harmonogram pracy zespo³u przedstawiony zosta³ na wykresie Gantta, który znajduje siê na Rys. \ref{wykres:wykres gantta}
 	
 	\begin{landscape}
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=23cm]{Wykres_Gantta.PNG}
-		\caption{Diagram weryfikacja stempli czasowych}
+		\caption{Wykres Gantta harmonogramu prac nad systemem}
 		\label{wykres:wykres gantta}
 	\end{figure}
 	\end{landscape}
@@ -165,7 +166,7 @@
 		\end{figure}
 		
 \chapter{Aktorzy systemu}
-	W systemie wyró¿niamy nastêpuj¹cych aktorów:
+	W systemie \NazwaSys wyró¿niamy nastêpuj¹cych aktorów:
 	\begin{itemize*}
 		\item \textbf{Serwer} --- g³ówna inteligencja systemu operuj¹ca na bazie danych, pe³ni funkcjê urzêdu certyfikuj¹cego,
 		\item \textbf{Aplikacja webowa} --- aplikacja internetowa dzia³aj¹ca wraz z serwerem udostêpniaj¹ca interfejs graficzny dla u¿ytkownika,
@@ -180,7 +181,7 @@
 	Aplikacja serwerowa spe³nia g³ówn¹ rolê w systemie. Jest urzêdem podpisuj¹cym dokumenty stemplem czasowym oraz repozytorium dla plików. Wymagania funkcjonalne stawiane aplikacji serwerowej przedstawiono w Tabeli \ref{tab:wymagania_aplikacja_serwerowa}.
 	
 	\begin{longtable}[!ht]{|m{3.5cm}|m{7.5cm}|m{3.7cm}|} 
-		\caption{Tabela wymagañ funkcjonalnych aplikacji serwerowej}
+		\caption{Wymagania funkcjonalne aplikacji serwerowej}
 		\label{tab:wymagania_aplikacja_serwerowa}\\
 		\hline	
 		\rowcolor{lightgray}Funkcja & Opis & Aktorzy \\	\hline
@@ -196,7 +197,7 @@
 	Aplikacja kliencka znajduje siê po stronie klienta w postaci interfejsu graficznego. Wymagania funkcjonalne stawiane aplikacji webowej przedstawiono w Tabeli \ref{tab:wymagania_aplikacja_kliencka}.
 	
 	\begin{longtable}[!ht]{|m{3.5cm}|m{7.5cm}|m{3.7cm}|} 
-		\caption{Tabela wymagañ funkcjonalnych aplikacji klienckiej}
+		\caption{Wymagania funkcjonalne aplikacji klienckiej}
 		\label{tab:wymagania_aplikacja_kliencka}\\
 		\hline	
 		\rowcolor{lightgray}Funkcja & Opis & Aktorzy \\	\hline
@@ -208,24 +209,24 @@
 		Rejestracja u¿ytkownika & Mo¿liwoœæ utworzenia konta u¿ytkownika w systemie & Aplikacja kliencka, Aplikacja serwerowa \\ \hline
 		Listowanie dostêpnych plików & Wyœwietlenie dostêpnych w repozytorium plików & Aplikacja kliencka, Aplikacja serwerowa \\ \hline
 	\end{longtable}
+\newpage
+	\section{Diagram przypadków u¿ycia systemu}
+		Diagram przypadków u¿ycia (funkcjonalnoœci) systemu \NazwaSys wraz z opowiadaj¹cymi aktorami przedstawiono na Rys. \ref{diagram:diagram przypadkow uzycia}.
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[width=14.6cm]{diagram_przypadkow_uzycia.png}
+			\caption{Diagram przypadków u¿ycia systemu \NazwaSys}
+			\label{diagram:diagram przypadkow uzycia}
+		\end{figure}
 
-\chapter{Diagram przypadków u¿ycia}
-	Diagram przypadków u¿ycia (funkcjonalnoœci) systemu wraz z opowiadaj¹cymi aktorami przedstawiono na Rys. \ref{diagram:diagram przypadkow uzycia}.
-	\begin{figure}[!h]
-		\centering
-		\includegraphics[width=14.6cm]{diagram_przypadkow_uzycia.png}
-		\caption{Diagram przypadków u¿ycia}
-		\label{diagram:diagram przypadkow uzycia}
-	\end{figure}
-
-\chapter{Diagramy sekwencji}
+\chapter{Szczegó³owy opis funkcjonalnoœci systemu}
 	Diagramy przedstawione w tym rozdziale maj¹ na celu przybli¿enie ogólnego dzia³ania systemu. Schematy nie s¹ odzwierciedleniem poszczególnych przypadków u¿ycia, mog¹ zawieraæ szcz¹tkowe odniesienia do wielu z nich. 
 	
 	\section*{Rejestracja u¿ytkownika}
 	Diagram znajduj¹cy siê na Rys. \ref{diagram:diagram seq rejestracja uzytkownika} przedstawia sekwencje akcji wykonywanych podczas rejestracji u¿ytkownika.
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=13cm]{diagram_seq_rejestracja_uzytkownika.png}
+		\includegraphics[width=12cm]{diagram_seq_rejestracja_uzytkownika.png}
 		\caption{Diagram sekwencji rejestracji u¿ytkownika}
 		\label{diagram:diagram seq rejestracja uzytkownika}
 	\end{figure}
